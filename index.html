@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS Plumbing, Heating & Electrical | Service You Can Trust Since 1963</title>
+    <meta name="description" content="Winnipeg's full-service plumbing, heating, and electrical team. Family-owned and operated since 1963.">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css?v=3">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <canvas id="particles-bg"></canvas>
+
+
+    <!-- Gradient Background Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Top Bar for 24/7 Care -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="ticker">
+                <span class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</span>
+                <span class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</span>
+                <span class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</span>
+                <span class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-wrapper">
+                    <img src="assets/ss_detailed_white.png" alt="SS Plumbing White" class="brand-logo brand-white">
+                    <img src="assets/ss_detailed_colour.png" alt="SS Plumbing Colour" class="brand-logo brand-orange">
+                </div>
+            </a>
+            
+                        <nav class="nav-links">
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="#services" class="nav-link">Trades</a>
+                <a href="service-area.html" class="nav-link">Service Area</a>
+                <a href="our-work.html" class="nav-link">Our Work</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+
+            <div class="nav-buttons">
+                <!-- Weather Widget -->
+                <div class="weather-widget" id="weatherWidget" title="Your Local Temperature">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" class="thermo-svg">
+                        <!-- Outline -->
+                        <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Fluid Fill -->
+                        <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" fill="var(--temp-color, #888)" class="thermo-fluid" />
+                    </svg>
+                    <span id="tempDisplay" class="temp-text">--°C</span>
+                </div>
+                <!-- Socials -->
+                <div class="nav-socials">
+                    <a href="https://www.facebook.com/profile.php?id=100054262460305" target="_blank" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/ssplumbing_heating/" target="_blank" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-svg"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                </div>
+                
+                <a href="#" class="btn btn-outline nav-cta">Make Payment</a>
+                <a href="tel:2042220723" class="btn btn-call nav-cta">
+                    <i data-lucide="phone" class="icon-sm"></i>
+                    204.222.0723
+                </a>
+            </div>
+
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container hero-container">
+                <div class="hero-content fade-up">
+                    <div class="badge">
+                        <i data-lucide="award" class="icon-sm"></i>
+                        <span>Local Leader in Commercial & Retail Services.</span>
+                    </div>
+                    <h1 class="hero-title">Service.<br>Satisfaction.<br><span class="highlight">Since 1963.</span></h1>
+                    <p class="hero-subtitle">
+                        <strong>Manitoba's</strong> trusted full-service tradesmen.<br><br>
+                        Leaders in commercial projects and residential repairs for plumbing, heating, electrical, and A/C.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#services" class="btn btn-primary btn-lg">Explore Services</a>
+                        <a href="#contact" class="btn btn-outline btn-lg">Book Today</a>
+                    </div>
+                </div>
+                <div class="hero-visual fade-up delay-1">
+                    <div class="glass-card hero-stats-card">
+                        <div class="stat-row">
+                            <div class="stat-icon-wrap bg-blue">
+                                <i data-lucide="droplets"></i>
+                            </div>
+                            <div class="stat-text">
+                                <strong>Plumbing</strong>
+                                <span>Repairs & Installs</span>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-icon-wrap bg-orange icon-combo">
+                                <i data-lucide="snowflake" class="icon-bg-snow"></i>
+                                <i data-lucide="flame" class="icon-fg-flame"></i>
+                            </div>
+                            <div class="stat-text">
+                                <strong>Heating & Cooling</strong>
+                                <span>Climate Control</span>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-icon-wrap bg-yellow">
+                                <i data-lucide="zap"></i>
+                            </div>
+                            <div class="stat-text">
+                                <strong>Electrical</strong>
+                                <span>Safe & Certified</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-header text-center fade-up">
+                    <h2 class="section-title">One Company. <br>All Your Needs.</h2>
+                    <p class="section-desc">Reliable, experienced, Winnipeg-rooted tradesmen serving both residential and commercial renovations and repairs.</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Plumbing Card -->
+                    <a href="plumbing.html" class="service-card plumbing fade-up" style="display: block; text-decoration: none;">
+                        <div class="card-glow"></div>
+                        <div class="card-icon">
+                            <i data-lucide="droplets"></i>
+                        </div>
+                        <h3 class="card-title">Plumbing</h3>
+                        <p class="card-desc">From leaky faucets to full commercial repipes. Expert solutions ensuring perfect flow and pressure.</p>
+                        <div class="card-link">Learn More <i data-lucide="arrow-right" class="icon-sm"></i></div>
+                    </a>
+
+                    <!-- Heating Card -->
+                    <a href="heating-cooling.html" class="service-card heating fade-up delay-1" style="display: block; text-decoration: none;">
+                        <div class="card-glow"></div>
+                        <div class="card-icon icon-combo">
+                            <i data-lucide="snowflake" class="icon-bg-snow card-snow"></i>
+                            <i data-lucide="flame" class="icon-fg-flame"></i>
+                        </div>
+                        <h3 class="card-title">Heating & Cooling</h3>
+                        <p class="card-desc">Stay warm in the winter, cool in the summer. Furnace repair, A/C installation, and air quality.</p>
+                        <div class="card-link">Learn More <i data-lucide="arrow-right" class="icon-sm"></i></div>
+                    </a>
+
+                    <!-- Electrical Card -->
+                    <a href="electrical.html" class="service-card electrical fade-up delay-2" style="display: block; text-decoration: none;">
+                        <div class="card-glow"></div>
+                        <div class="card-icon">
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <h3 class="card-title">Electrical</h3>
+                        <p class="card-desc">Safe, up-to-code wiring, panel upgrades, and lighting solutions for modern homes and businesses.</p>
+                        <div class="card-link">Learn More <i data-lucide="arrow-right" class="icon-sm"></i></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container about-container">
+                <div class="about-image fade-up">
+                    <img src="assets/since63.png" alt="Trusted in Winnipeg Since 1963" class="about-sticker">
+                </div>
+                <div class="about-content fade-up delay-1">
+                    <h2 class="section-title">Built on a foundation of Trust.</h2>
+                    <p class="lead">SS stands for Service & Satisfaction — and we've been proving it to Winnipeg since 1963.</p>
+                    <p>Our credibility comes from our deep roots in the community and our full-service capability. Why deal with three different contractors when you can make one call to the experts who know this city best?</p>
+                    
+                    <ul class="feature-list">
+                        <li><i data-lucide="check-circle-2"></i> Local Winnipeg Specialists</li>
+                        <li><i data-lucide="check-circle-2"></i> Residential & Commercial</li>
+                        <li><i data-lucide="check-circle-2"></i> Renovations & Repairs</li>
+                        <li><i data-lucide="check-circle-2"></i> Decades of Proven Service</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trusted Brands Section -->
+        <section class="trusted-brands" id="brands">
+            <div class="container text-center fade-up">
+                <h3 class="brands-title">We use the industry's most trusted, high-quality brands</h3>
+                <div class="brands-grid">
+                    <a href="https://www.americanstandard-us.com/" target="_blank" class="brand-link american-standard" aria-label="American Standard">
+                        <img src="assets/png-transparent-american-standard-hd-logo.png" alt="American Standard">
+                    </a>
+                    <a href="https://www.bryant.com/" target="_blank" class="brand-link bryant" aria-label="Bryant">
+                        <img src="assets/bryant-01-logo-png-transparent.png" alt="Bryant">
+                    </a>
+                    <a href="https://www.grohe.us/" target="_blank" class="brand-link grohe" aria-label="Grohe">
+                        <img src="assets/Grohe-logo.png" alt="Grohe">
+                    </a>
+                    <a href="https://www.deltafaucet.com/" target="_blank" class="brand-link delta" aria-label="Delta">
+                        <img src="assets/delta-faucets-logo-png-transparent.png" alt="Delta">
+                    </a>
+                    <a href="https://www.kohler.com/" target="_blank" class="brand-link kohler" aria-label="Kohler">
+                        <img src="assets/KohlerLogoImage.jpeg" alt="Kohler">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="certifications" id="certifications">
+            <div class="container text-center fade-up">
+                <h3 class="cert-title">Safety & Certifications</h3>
+                <div class="cert-badges">
+                    <span class="cert-badge">COR Certified</span>
+                    <span class="cert-badge">Aerial Lift Safety</span>
+                    <span class="cert-badge">Confined Space</span>
+                    <span class="cert-badge">Standard First Aid</span>
+                    <span class="cert-badge">Fall Protection</span>
+                    <span class="cert-badge">Fork Lift Operation</span>
+                    <span class="cert-badge">Hearing Testing</span>
+                    <span class="cert-badge">Manitoba Ozone Protection Industry Assoc.</span>
+                    <span class="cert-badge">Safety Committee Training</span>
+                    <span class="cert-badge">Supervisors Training</span>
+                    <span class="cert-badge">Transportation of Dangerous Goods</span>
+                    <span class="cert-badge">WHMIS</span>
+                    <span class="cert-badge">Working Alone</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta" id="contact">
+            <div class="container cta-container fade-up">
+                <div class="cta-content">
+                    <h2>Ready to get started?</h2>
+                    <p>Contact our Winnipeg team today for trusted service on your next repair or renovation.</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="tel:2042220723" class="btn btn-call btn-lg cta-btn">
+                        <i data-lucide="phone"></i> 204.222.0723
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="brand-link">
+                    <img src="assets/ss_detailed_colour.png" alt="SS Plumbing Logo" class="brand-logo-footer">
+                </a>
+                <p class="footer-tagline">Service you can trust since 1963.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="plumbing.html">Plumbing</a></li>
+                    <li><a href="heating-cooling.html">Heating & Cooling</a></li>
+                    <li><a href="electrical.html">Electrical</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                                        <li><a href="about.html">About Us</a></li>
+                    <li><a href="#services">Trades</a></li>
+                    <li><a href="service-area.html">Service Area</a></li>
+                    <li><a href="our-work.html">Our Work</a></li>
+                    <li><a href="certifications.html">Certifications</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p class="location-text"><i data-lucide="map-pin" class="location-dot"></i> Winnipeg, Manitoba</p>
+                <p>Phone: <a href="tel:2042220723">204.222.0723</a></p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=100054262460305" target="_blank" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/ssplumbing_heating/" target="_blank" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-svg"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 S.S. Plumbing & Heating Co. Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js?v=2"></script>
+</body>
+</html>

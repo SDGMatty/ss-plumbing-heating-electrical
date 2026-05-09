@@ -1,0 +1,2015 @@
+/* =========================================
+   SS Plumbing - Modern Brand Styles
+   Dark Mode Premium Aesthetic
+   ========================================= */
+
+   :root {
+    /* Brand Colors */
+    --navy-blue: #0B192C;       /* Primary Navy */
+    --navy-dark: #050B14;       /* Base Background */
+    --silver: #E2E8F0;          /* Silver / Text */
+    --gray: #94A3B8;            /* Muted Text */
+    
+    /* Trade Accents */
+    --plumbing-blue: #0088FF;
+    --heating-orange: #FF4400;
+    --electrical-yellow: #FFC000;
+    
+    /* Utilities */
+    --white: #FFFFFF;
+    --glass-bg: rgba(11, 25, 44, 0.6);
+    --glass-border: rgba(226, 232, 240, 0.1);
+    
+    /* Layout */
+    --container-width: 1440px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Font */
+    --font-primary: 'Outfit', sans-serif;
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--navy-dark);
+    color: var(--silver);
+    line-height: 1.6;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* =========================================
+   Typography
+   ========================================= */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--white);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.section-desc {
+    font-size: 1.25rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* =========================================
+   Background Glowing Orbs (Premium Effect)
+   ========================================= */
+.bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.15;
+    animation: float 10s ease-in-out infinite alternate;
+}
+
+#particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--plumbing-blue);
+    top: -100px;
+    left: -200px;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--electrical-yellow);
+    top: 40%;
+    right: -150px;
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    width: 700px;
+    height: 700px;
+    background: var(--heating-orange);
+    bottom: -200px;
+    left: 10%;
+    animation-delay: -2s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(50px) scale(1.1); }
+}
+
+/* =========================================
+   Buttons
+   ========================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--plumbing-blue), #0056b3);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(0, 136, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 68, 0, 0.5);
+    background: linear-gradient(135deg, var(--heating-orange), #aa2200);
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: var(--silver);
+    color: var(--white);
+    transition: var(--transition);
+}
+
+.btn-outline:hover {
+    background: linear-gradient(135deg, var(--heating-orange), #aa2200);
+    border-color: transparent;
+    box-shadow: 0 8px 25px rgba(255, 68, 0, 0.5);
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+.btn-call {
+    background: linear-gradient(135deg, var(--heating-orange), #aa2200);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(255, 68, 0, 0.3);
+}
+
+.btn-call:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 136, 255, 0.5);
+    background: linear-gradient(135deg, #0099ff, #0056b3);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.nav-cta {
+    min-width: 180px;
+    height: 46px;
+    padding: 0;
+}
+
+.hero-actions .btn-primary {
+    box-shadow: 0 0 25px rgba(0, 136, 255, 0.6);
+}
+
+.hero-actions .btn-primary:hover {
+    box-shadow: 0 0 35px rgba(0, 136, 255, 0.8);
+}
+
+.hero-actions .btn-outline {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+}
+
+.hero-actions .btn-outline:hover {
+    box-shadow: 0 0 35px rgba(0, 136, 255, 0.6);
+}
+
+/* =========================================
+   Navigation
+   ========================================= */
+.navbar {
+    position: sticky;
+    top: -1px; /* ensures scroll trigger smoothness */
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    padding: 1rem 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Header */
+.top-bar {
+    background: var(--heating-orange);
+    color: var(--navy-dark);
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    z-index: 1000;
+    position: relative;
+    overflow: hidden;
+}
+
+.ticker {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 35s linear infinite;
+}
+
+.ticker:hover {
+    animation-play-state: paused;
+}
+
+.ticker-item {
+    display: inline-block;
+    padding-right: 3rem;
+}
+
+@keyframes ticker {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.navbar {   z-index: 1001;
+    font-weight: 600;
+}
+
+.top-bar-inner {
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-height: 24px;
+}
+
+.top-bar-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: max-content;
+    max-width: 80%; /* Prevent overlapping edges on small screens */
+}
+
+.top-right-group {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.weather-widget {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    opacity: 0;
+    margin-right: 1rem;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.thermo-fluid {
+    /* Using inset() directly dynamically cuts the top of the internal fill block. */
+    clip-path: inset(var(--temp-empty-pct, 100%) 0 0 0); 
+    transition: clip-path 2s cubic-bezier(0.175, 0.885, 0.32, 1.275), fill 2s ease;
+}
+
+.nav-socials {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-right: 1.25rem;
+}
+
+.nav-socials a {
+    color: var(--silver);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.nav-socials a:hover {
+    color: var(--heating-orange);
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 8px rgba(255, 68, 0, 0.6));
+}
+
+.nav-socials i, .nav-socials svg {
+    width: 18px;
+    height: 18px;
+}
+
+.top-bar strong {
+    font-weight: 900;
+}
+
+/* Navbar container */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand-logo {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.brand-white {
+    transition: opacity 0.3s ease;
+}
+
+.brand-orange {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.logo:hover .brand-white {
+    opacity: 0;
+}
+
+.logo:hover .brand-orange {
+    opacity: 1;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.85));
+}
+
+.brand-logo-footer {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    margin-left: 4rem;
+    white-space: nowrap;
+}
+
+.nav-link {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--plumbing-blue);
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--white);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* =========================================
+   Hero Section
+   ========================================= */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--silver);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    margin-bottom: 1.5rem;
+}
+
+.hero-title .highlight {
+    background: linear-gradient(90deg, var(--white), var(--silver));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--gray);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+}
+
+.hero-visual {
+    position: relative;
+}
+
+.hero-visual::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(0, 136, 255, 0.1) 0%, transparent 70%);
+    top: -10%; left: -10%;
+    z-index: -1;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.stat-row:not(:last-child) {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: var(--white);
+}
+
+.bg-blue { background: linear-gradient(135deg, var(--plumbing-blue), #004488); box-shadow: 0 10px 20px rgba(0,136,255,0.2); }
+.bg-orange { background: linear-gradient(135deg, var(--heating-orange), #aa2200); box-shadow: 0 10px 20px rgba(255,68,0,0.2); }
+.bg-yellow { background: linear-gradient(135deg, var(--electrical-yellow), #aa8800); box-shadow: 0 10px 20px rgba(255,192,0,0.2); color: var(--navy-dark); }
+
+.stat-text strong {
+    display: block;
+    font-size: 1.25rem;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+.stat-text span {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   Combo Icons (Heating & Cooling)
+   ========================================= */
+.icon-combo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-bg-snow {
+    position: absolute;
+    transform: translate(10px, -6px); /* Shifts right and up */
+    z-index: 0;
+    stroke-width: 2.5px;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.icon-fg-flame {
+    position: relative;
+    z-index: 1;
+    fill: currentColor;
+    stroke: var(--heating-orange);
+    stroke-width: 2px;
+    transform: translate(-4px, 4px); /* Shifts left and down */
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* =========================================
+   Services Section
+   ========================================= */
+.services {
+    padding: 8rem 0;
+    position: relative;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    z-index: 1;
+}
+
+/* Allow physics elements to physically spiral and erupt outside the card structure */
+.service-card.electrical,
+.service-card.heating {
+    overflow: visible;
+}
+
+.card-glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: -50px;
+    right: -50px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.service-card.plumbing .card-glow { background: var(--plumbing-blue); }
+.service-card.heating .card-glow { background: var(--heating-orange); }
+.service-card.electrical .card-glow { background: var(--electrical-yellow); }
+
+.service-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.service-card.plumbing:hover { box-shadow: 0 20px 40px rgba(0, 136, 255, 0.15); }
+.service-card.heating:hover { box-shadow: 0 20px 40px rgba(255, 68, 0, 0.15); }
+.service-card.electrical:hover { box-shadow: 0 20px 40px rgba(255, 192, 0, 0.15); }
+
+.service-card:hover .card-glow {
+    opacity: 0.5;
+}
+
+/* =========================================
+   Advanced Card Interactions
+   ========================================= */
+
+/* 1. Plumbing - Liquid Wave Fill */
+.service-card.plumbing::before {
+    content: '';
+    position: absolute;
+    width: 250%;
+    height: 250%;
+    bottom: -250%; /* Mathematical boundary: Apex precisely touches the bottom 0% to start immediately! */
+    left: -75%;
+    background: radial-gradient(circle, rgba(0, 136, 255, 0.15) 0%, rgba(0, 68, 136, 0.25) 100%);
+    border-radius: 38%;
+    transition: bottom 6s linear; /* Smooth, constant 6 second climb from empty to full */
+    z-index: -2;
+    pointer-events: none;
+}
+.service-card.plumbing:hover::before {
+    bottom: -30%; /* Reaches the very top, filling the entire card */
+    animation: waveSpin 6s linear infinite;
+}
+@keyframes waveSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 2. Electrical - 3D Spiraling Morph Currents */
+.service-card.electrical::before,
+.service-card.electrical::after {
+    content: '';
+    position: absolute;
+    /* Expanding bounds so the spiral arcs around and through the exact outer box limits */
+    top: -5%; left: -5%;
+    width: 110%; height: 110%;
+    border: 1.5px solid transparent;
+    border-radius: 40% 60% 70% 30% / 50% 30% 60% 40%;
+    z-index: -1; /* Anchors the spiral physically from behind the card */
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: drop-shadow(0 0 6px var(--electrical-yellow)) drop-shadow(0 0 10px rgba(255, 210, 0, 0.8));
+}
+
+/* Base Spiral Loop */
+.service-card.electrical::before {
+    border-color: var(--electrical-yellow);
+    /* Internal glow gives dimensionality to the wire */
+    box-shadow: inset 0 0 8px rgba(255, 220, 0, 0.5);
+}
+
+/* Opposing Spiral Loop */
+.service-card.electrical::after {
+    border-color: rgba(255, 240, 0, 0.95);
+    /* Irregular alternate deformation forces constant collision and jumping! */
+    border-radius: 60% 40% 30% 70% / 40% 60% 50% 50%;
+    border-width: 1px;
+}
+
+/* Hover Triggers: Engaging the dual-axis spin */
+.service-card.electrical:hover::before {
+    opacity: 1;
+    animation: 2s linear infinite spiralSpin;
+}
+.service-card.electrical:hover::after {
+    opacity: 1;
+    animation: 2.8s linear infinite reverse spiralSpin;
+}
+
+@keyframes spiralSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+/* 3. Heating / Cooling - Interactive Graphic Ignition */
+
+/* Graphic API: Below Freezing -> Ignite Flame! */
+.service-card.heating.climate-hot:hover .icon-fg-flame {
+    animation: igniteGraphic 1.5s infinite alternate ease-in-out;
+    filter: drop-shadow(0 -5px 12px rgba(255, 68, 0, 0.9)) drop-shadow(0 0 20px rgba(255, 200, 0, 0.8));
+    fill: var(--heating-orange);
+    stroke: var(--white);
+    z-index: 5;
+}
+.service-card.heating.climate-hot:hover .icon-bg-snow {
+    opacity: 0.1; /* Melting */
+    transform: translate(10px, -6px) scale(0.6);
+    filter: blur(3px);
+}
+
+@keyframes igniteGraphic {
+    0% { transform: translate(-4px, 4px) scale(1) rotate(0deg); }
+    50% { transform: translate(-4px, 1px) scale(1.15) rotate(5deg); }
+    100% { transform: translate(-4px, -2px) scale(1.3) rotate(-3deg); }
+}
+/* 1. Box Top Flames (Stylized Vector Fireplace - strict height limit) */
+.service-card.heating.climate-hot::before {
+    content: '';
+    position: absolute;
+    width: calc(100% - 40px); /* Stops cleanly at the physical border-radius curves */
+    height: 40px; /* Capped extremely low to guarantee absolutely NO text overlap above! */
+    bottom: 100%; /* Sits exactly on top of the box */
+    left: 20px;
+    /* Round off external hard-edges created by the tile chop using border radii and soft alpha masks! */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15px, rgba(0,0,0,1) calc(100% - 15px), rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15px, rgba(0,0,0,1) calc(100% - 15px), rgba(0,0,0,0) 100%);
+    /* Repeating organic C-curve bezier strings mirroring the stylized visual reference provided */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath fill='rgba(255,80,0,0.95)' d='M0 100 C 5 80 15 60 10 20 C 15 40 25 70 30 100 C 35 70 45 40 40 10 C 45 30 55 60 60 100 C 65 85 70 60 75 30 C 80 50 85 80 90 100 C 95 80 105 60 100 20 C 105 40 115 70 120 100 C 125 70 135 40 130 10 C 135 30 145 60 150 100 C 155 85 160 60 165 30 C 170 50 175 80 180 100 C 185 80 195 60 190 20 C 195 40 200 70 200 100 L 0 100 Z'/%3E%3Cpath fill='rgba(255,180,0,0.95)' d='M10 100 C 15 85 20 70 15 40 C 20 60 25 80 30 100 C 35 80 40 60 40 30 C 45 50 50 80 55 100 C 60 85 65 70 65 40 C 70 60 75 80 80 100 C 85 80 90 60 90 30 C 95 50 100 80 105 100 C 110 85 115 70 115 40 C 120 60 125 80 130 100 C 135 80 140 60 140 30 C 145 50 150 80 155 100 C 160 85 165 70 165 40 C 170 60 175 80 180 100 C 185 80 190 60 190 30 C 195 50 200 80 200 100 L 0 100 Z'/%3E%3C/svg%3E");
+    background-size: 100px 100%; /* Creates a seamless repeating tiling flame pattern */
+    background-repeat: repeat-x;
+    background-position: left bottom;
+    filter: drop-shadow(0 -2px 5px rgba(255, 100, 0, 0.4));
+    z-index: -1;
+    opacity: 0;
+    transform-origin: bottom center;
+    transform: scaleY(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+    pointer-events: none;
+}
+.service-card.heating.climate-hot:hover::before {
+    opacity: 1;
+    transform: scaleY(1);
+    animation: gentleLick 2.5s infinite linear;
+}
+@keyframes gentleLick {
+    0% { transform: scaleY(1) skewX(2deg); background-position-x: 0px; }
+    25% { transform: scaleY(1.1) skewX(-2deg); }
+    50% { transform: scaleY(0.95) skewX(1deg); }
+    75% { transform: scaleY(1.15) skewX(-1deg); }
+    100% { transform: scaleY(1) skewX(2deg); background-position-x: 100px; /* Exactly one cycle of the 100px SVG pattern perfectly loops the visual panning! */ }
+}
+
+/* 2. Internal Box Ceiling Heat Glow (Subtle Ambience) */
+.service-card.heating.climate-hot::after {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 60px; /* Reduced for a tight ceiling glow */
+    top: -100px;
+    left: -25%;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255, 80, 0, 0.15) 0%, transparent 60%);
+    filter: blur(20px);
+    z-index: -2;
+    transition: top 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+}
+.service-card.heating.climate-hot:hover::after {
+    top: 0;
+    animation: flickerCeiling 2s infinite alternate ease-in-out;
+}
+@keyframes flickerCeiling {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* Box Ceiling Frost (Above Freezing) */
+.service-card.heating.climate-cold::after {
+    content: '';
+    position: absolute;
+    top: -160px;
+    left: 20px;
+    width: calc(100% - 40px); /* Fits cleanly within the un-clipped border-radius ceiling */
+    height: 160px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100' preserveAspectRatio='none'%3E%3Cpath fill='rgba(255,255,255,0.1)' d='M0 0 L 0 20 L 15 50 L 30 10 L 45 70 L 60 20 L 80 80 L 100 10 L 120 40 L 140 15 L 170 65 L 190 10 L 210 50 L 240 25 L 270 50 L 300 10 L 300 0 Z'/%3E%3Cpath fill='rgba(255,255,255,0.2)' d='M0 0 L 0 40 L 10 70 L 25 30 L 50 80 L 70 30 L 90 90 L 110 30 L 130 60 L 150 20 L 180 85 L 200 25 L 220 70 L 250 40 L 280 60 L 300 15 L 300 0 Z'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    opacity: 0; /* Hide while floating over visible overflow bounds */
+    transition: top 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+.service-card.heating.climate-cold:hover::after {
+    top: 0;
+    opacity: 1;
+}
+/* Graphic API: Above Freezing -> Crystal Frost! */
+.service-card.heating.climate-cold:hover .icon-bg-snow {
+    filter: drop-shadow(0 0 15px rgba(0, 200, 255, 1)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.8));
+    stroke: #00e5ff;
+    transform: translate(10px, -6px) scale(1.5);
+    z-index: 5;
+}
+.service-card.heating.climate-cold:hover .icon-fg-flame {
+    opacity: 0.1; /* Snuffed out */
+    transform: translate(-4px, 4px) scale(0.6);
+    filter: blur(3px);
+    fill: transparent;
+}
+
+.card-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--white);
+    transition: var(--transition);
+}
+
+.service-card.plumbing .card-icon { color: var(--plumbing-blue); }
+.service-card.heating .card-icon { color: var(--heating-orange); }
+.service-card.electrical .card-icon { color: var(--electrical-yellow); }
+
+.service-card:hover .card-icon {
+    background: var(--white);
+    transform: scale(1.1);
+}
+
+.service-card.electrical:hover .card-icon { color: var(--navy-dark); }
+
+.card-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.card-desc {
+    color: var(--gray);
+    margin-bottom: 2rem;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+}
+
+.service-card.plumbing .card-link { color: var(--plumbing-blue); }
+.service-card.heating .card-link { color: var(--heating-orange); }
+.service-card.electrical .card-link { color: var(--electrical-yellow); }
+
+.card-link:hover {
+    gap: 1rem;
+}
+
+/* =========================================
+   About Section
+   ========================================= */
+.about {
+    padding: 8rem 0;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.about-image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pattern-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image: radial-gradient(var(--silver) 2px, transparent 2px);
+    background-size: 30px 30px;
+}
+
+.about-sticker {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    object-fit: contain;
+    z-index: 2;
+    position: relative;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+}
+
+.about-content .lead {
+    font-size: 1.5rem;
+    color: var(--white);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+.about-content p {
+    margin-bottom: 2rem;
+    color: var(--gray);
+    font-size: 1.1rem;
+}
+
+.feature-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.feature-list i {
+    color: var(--plumbing-blue);
+}
+
+/* =========================================
+   Certifications
+   ========================================= */
+.certifications {
+    padding: 6rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.cert-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: var(--white);
+    letter-spacing: -0.02em;
+}
+
+.cert-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cert-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--silver);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.cert-badge:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   Internal Pages (General)
+   ========================================= */
+.page-hero {
+    padding: 12rem 0 6rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.page-title {
+    font-size: 3.5rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   Pipe Timeline Flow
+   ========================================= */
+.pipe-section {
+    padding: 2rem 0 8rem;
+    position: relative;
+    z-index: 10;
+}
+
+.pipe-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* The Main Vertical Pipe */
+.main-pipe {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #334155 0%, #cbd5e1 30%, #94a3b8 50%, #334155 80%, #0f172a 100%);
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(0, 136, 255, 0.1);
+    overflow: hidden;
+}
+
+/* Animated Water Flow */
+.water-flow {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        var(--plumbing-blue) 40%, 
+        #00e6ff 50%, 
+        var(--plumbing-blue) 60%, 
+        transparent 100%
+    );
+    animation: flowDown 3s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes flowDown {
+    0% { top: -100%; }
+    100% { top: 100%; }
+}
+
+/* Pipe Items Container */
+.pipe-item {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.pipe-item:last-child {
+    margin-bottom: 0;
+}
+
+/* The Joint on the Main Pipe */
+.pipe-joint {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    background: radial-gradient(circle, #94a3b8 0%, #334155 100%);
+    border: 4px solid #1e293b;
+    border-radius: 50%;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+/* The horizontal connector elbow pipe */
+.pipe-connector {
+    position: absolute;
+    top: 50%;
+    height: 60px;
+    width: 15%;
+    z-index: 1;
+    transition: var(--transition);
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+}
+
+.pipe-item.left .pipe-connector {
+    right: 50%;
+    border-top: 16px solid #64748b;
+    border-left: 16px solid #64748b;
+    border-top-left-radius: 20px;
+}
+
+.pipe-item.right .pipe-connector {
+    left: 50%;
+    border-top: 16px solid #64748b;
+    border-right: 16px solid #64748b;
+    border-top-right-radius: 20px;
+}
+
+/* Service Cards */
+.service-card-modern {
+    width: 40%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: var(--transition);
+    position: relative;
+    z-index: 3;
+    /* Pushing it down slightly so the elbow points directly at the card icon */
+    margin-top: 50px; 
+}
+
+.pipe-item.left {
+    justify-content: flex-start;
+}
+
+.pipe-item.right {
+    justify-content: flex-end;
+}
+
+.service-card-modern .card-icon-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 136, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+}
+
+.service-card-modern .service-icon {
+    color: var(--plumbing-blue);
+    width: 24px;
+    height: 24px;
+    transition: var(--transition);
+}
+
+.service-card-modern h3 {
+    color: var(--white);
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+}
+
+.service-card-modern p {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* Hover Effects */
+.pipe-item:hover .service-card-modern {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(0, 136, 255, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 136, 255, 0.15);
+}
+
+.pipe-item:hover .pipe-joint {
+    background: var(--plumbing-blue);
+    box-shadow: 0 0 15px var(--plumbing-blue);
+}
+
+.pipe-item:hover .pipe-connector {
+    border-color: var(--plumbing-blue);
+    filter: drop-shadow(0 0 10px rgba(0, 136, 255, 0.5));
+}
+
+.pipe-item:hover .card-icon-wrap {
+    background: var(--plumbing-blue);
+    box-shadow: 0 0 15px rgba(0, 136, 255, 0.4);
+}
+
+.pipe-item:hover .service-icon {
+    color: var(--white);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-pipe {
+        left: 30px;
+    }
+    .pipe-joint {
+        left: 30px;
+    }
+    .pipe-item {
+        justify-content: flex-end;
+    }
+    .service-card-modern {
+        width: calc(100% - 80px);
+    }
+    .pipe-item.left .pipe-connector,
+    .pipe-item.right .pipe-connector {
+        left: 30px;
+        width: 40px;
+    }
+}
+
+/* =========================================
+   PCB Flat Staggered Flow (Electrical)
+   ========================================= */
+.pcb-section {
+    padding: 4rem 0 8rem;
+    position: relative;
+    z-index: 10;
+    background: #061124; /* Very dark PCB blue to match general dark theme */
+    overflow: hidden;
+}
+
+.pcb-bg-pattern {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.6;
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%2312386e' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 20h30l20 20v40l20 20h40l20-20v-50l30-30h40M0 120h40l20-20v-20l20-20h60l20 20v60l40 40M40 200v-30l30-30h60l30 30v30M160 200v-50l-20-20h-40M100 0v40l-20 20h-40l-20-20v-20'/%3E%3C/g%3E%3Cg fill='%2312386e'%3E%3Ccircle cx='30' cy='20' r='4'/%3E%3Ccircle cx='70' cy='80' r='4'/%3E%3Ccircle cx='110' cy='100' r='4'/%3E%3Ccircle cx='130' cy='50' r='4'/%3E%3Ccircle cx='40' cy='120' r='4'/%3E%3Ccircle cx='80' cy='80' r='4'/%3E%3Ccircle cx='140' cy='80' r='4'/%3E%3Ccircle cx='40' cy='170' r='4'/%3E%3Ccircle cx='130' cy='140' r='4'/%3E%3Ccircle cx='160' cy='150' r='4'/%3E%3Ccircle cx='100' cy='40' r='4'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 250px 250px;
+    z-index: 0;
+}
+
+.pcb-board.staggered {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    z-index: 1;
+}
+
+/* Staggered Items */
+.pcb-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.pcb-item.align-left { justify-content: flex-start; }
+.pcb-item.align-right { justify-content: flex-end; }
+
+/* Offsets for organic scattering */
+.offset-1 { margin-left: 5%; }
+.offset-2 { margin-right: 15%; }
+.offset-3 { margin-left: 18%; }
+.offset-4 { margin-right: 5%; }
+.offset-5 { margin-left: 8%; }
+.offset-6 { margin-right: 20%; }
+.offset-7 { margin-left: 15%; }
+.offset-8 { margin-right: 10%; }
+
+/* Connectors between Card and Node */
+.trace-connector {
+    width: 40px;
+    height: 4px;
+    background: #12386e;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.pcb-item.align-left .trace-connector {
+    margin-left: -2px; /* overlap border */
+}
+.pcb-item.align-right .trace-connector {
+    margin-right: -2px;
+}
+
+/* The Nodes (Circles) */
+.pcb-node {
+    width: 20px;
+    height: 20px;
+    background: #061124;
+    border: 4px solid #12386e;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.pcb-item.align-left .pcb-node {
+    right: -10px; /* push to end of connector */
+}
+
+.pcb-item.align-right .pcb-node {
+    left: -10px;
+}
+
+/* Service Cards */
+.service-card-pcb {
+    background: rgba(6, 17, 36, 0.85); /* Match dark blue bg */
+    border: 2px solid #12386e;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 350px;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.card-icon-wrap {
+    min-width: 50px;
+    height: 50px;
+    background: rgba(18, 56, 110, 0.3);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #12386e;
+    transition: all 0.3s ease;
+}
+
+.service-icon {
+    color: #12386e;
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+}
+
+.card-content h3 {
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-content p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ====== HOVER EFFECTS (Electric Yellow) ====== */
+.pcb-item:hover .service-card-pcb {
+    border-color: #FFF000;
+    box-shadow: 0 10px 30px rgba(255, 240, 0, 0.15);
+    background: rgba(6, 17, 36, 0.98);
+    transform: translateY(-5px);
+}
+
+.pcb-item:hover .trace-connector {
+    background: #FFF000;
+    box-shadow: 0 0 12px #FFF000;
+}
+
+.pcb-item:hover .pcb-node {
+    background: #FFF000;
+    border-color: #FFF000;
+    box-shadow: 0 0 20px #FFF000;
+}
+
+.pcb-item:hover .card-icon-wrap {
+    background: rgba(255, 240, 0, 0.1);
+    border-color: #FFF000;
+    box-shadow: 0 0 15px rgba(255, 240, 0, 0.2);
+}
+
+.pcb-item:hover .service-icon {
+    color: #FFF000;
+    filter: drop-shadow(0 0 5px #FFF000);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pcb-board.staggered {
+        gap: 2rem;
+    }
+    .pcb-item {
+        justify-content: center !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        flex-direction: column;
+    }
+    .service-card-pcb {
+        width: 100%;
+        max-width: 400px;
+    }
+    /* Hide the connectors on mobile since they stack directly */
+    .trace-connector {
+        display: none;
+    }
+}
+
+/* =========================================
+   Trusted Brands Section
+   ========================================= */
+.trusted-brands {
+    padding: 5rem 0;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.brands-title {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin-bottom: 3rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.brands-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+}
+
+.brand-link {
+    display: block;
+    transition: var(--transition);
+    opacity: 0.4;
+}
+
+.brand-link img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    /* Force to pure white */
+    filter: brightness(0) invert(1);
+    transition: all 0.4s ease;
+}
+
+/* Specific fix for Kohler JPEG */
+.brand-link.kohler img {
+    mix-blend-mode: screen;
+}
+
+/* Hover States */
+.brand-link:hover {
+    opacity: 1;
+    transform: translateY(-4px);
+}
+
+/* Brand-specific Glow Colors */
+.brand-link.american-standard:hover img {
+    /* Restore color and add glow */
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.7));
+}
+
+.brand-link.bryant:hover img {
+    /* Restore color and add red glow */
+    filter: drop-shadow(0 0 15px rgba(227, 24, 55, 0.9));
+}
+
+.brand-link.grohe:hover img {
+    /* Restore color and add blue glow */
+    filter: drop-shadow(0 0 15px rgba(0, 85, 164, 0.9));
+}
+
+.brand-link.delta:hover img {
+    /* Keep white and add glow (Delta is black) */
+    filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+}
+
+.brand-link.kohler:hover img {
+    /* Keep white and add glow (Kohler is black) */
+    filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+}
+
+@media (max-width: 768px) {
+    .brands-grid {
+        gap: 3rem;
+    }
+    .brand-link img {
+        height: 30px;
+    }
+}
+
+/* =========================================
+   Contact Page
+   ========================================= */
+.contact-section {
+    padding: 4rem 0 8rem;
+    position: relative;
+    z-index: 10;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Info Panel */
+.contact-info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    transition: var(--transition);
+}
+
+.contact-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.emergency-card {
+    background: linear-gradient(135deg, rgba(255, 68, 0, 0.1), rgba(255, 68, 0, 0.02));
+    border-color: rgba(255, 68, 0, 0.2);
+}
+
+.emergency-card:hover {
+    background: linear-gradient(135deg, rgba(255, 68, 0, 0.15), rgba(255, 68, 0, 0.05));
+    border-color: rgba(255, 68, 0, 0.4);
+}
+
+.emergency-icon {
+    color: var(--heating-orange);
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.standard-icon {
+    color: var(--plumbing-blue);
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.card-content h3 {
+    color: var(--white);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-content p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.emergency-number {
+    display: inline-block;
+    color: var(--heating-orange);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+.standard-link {
+    color: var(--white);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.standard-link:hover {
+    color: var(--plumbing-blue);
+}
+
+/* Form Panel */
+.contact-form-panel {
+    background: rgba(11, 25, 44, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 3.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.form-header {
+    margin-bottom: 2.5rem;
+}
+
+.form-header h2 {
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: var(--gray);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: var(--silver);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--plumbing-blue);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 4px rgba(0, 136, 255, 0.1);
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.select-icon {
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+    pointer-events: none;
+}
+
+.submit-btn {
+    margin-top: 1rem;
+    padding: 1.25rem;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--plumbing-blue);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.submit-btn:hover {
+    background: #0077ee;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 136, 255, 0.2);
+}
+
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-form-panel {
+        padding: 2rem;
+    }
+}
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   CTA Section
+   ========================================= */
+.cta {
+    padding: 6rem 0;
+}
+
+.cta-container {
+    background: linear-gradient(135deg, rgba(0, 136, 255, 0.1), rgba(11, 25, 44, 0.8));
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--plumbing-blue), var(--electrical-yellow), var(--heating-orange));
+}
+
+.cta-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cta-content p {
+    font-size: 1.25rem;
+    color: var(--silver);
+    max-width: 500px;
+}
+
+.cta-btn {
+    font-size: 1.25rem;
+    padding: 1.25rem 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 136, 255, 0.3);
+}
+
+/* =========================================
+   Footer
+   ========================================= */
+.footer {
+    background: #03060E;
+    padding: 6rem 0 2rem;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer-brand .footer-tagline {
+    margin-top: 1.5rem;
+    color: var(--gray);
+    font-size: 1.1rem;
+}
+
+.footer h4 {
+    color: var(--white);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer ul li a {
+    color: var(--gray);
+}
+
+.footer ul li a:hover {
+    color: var(--plumbing-blue);
+}
+
+.footer-contact p {
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+}
+
+.location-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.location-dot {
+    color: var(--heating-orange);
+    width: 20px;
+    height: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+}
+
+.social-links a:hover {
+    background: var(--plumbing-blue);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   Animations
+   ========================================= */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 992px) {
+    .hero-container,
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .hero {
+        padding-top: 8rem;
+        text-align: center;
+    }
+    
+    .hero-subtitle {
+        margin: 0 auto 2.5rem;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+        padding: 3rem 2rem;
+    }
+    
+    .top-bar-inner {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .nav-links, .nav-cta, .nav-socials, .weather-widget {
+        display: none;
+    }
+    
+    .mobile-toggle {
+        display: block;
+        z-index: 1002;
+    }
+
+    /* Mobile Menu Active State */
+    .navbar.mobile-menu-active {
+        background: var(--navy-dark);
+        height: 100vh;
+        align-items: flex-start;
+        position: fixed;
+    }
+
+    .navbar.mobile-menu-active .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 5rem;
+        width: 100%;
+        gap: 2rem;
+    }
+
+    .navbar.mobile-menu-active .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .navbar.mobile-menu-active .nav-link {
+        font-size: 1.25rem;
+        display: inline-block;
+    }
+
+    .navbar.mobile-menu-active .nav-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .navbar.mobile-menu-active .nav-socials,
+    .navbar.mobile-menu-active .nav-cta,
+    .navbar.mobile-menu-active .weather-widget {
+        display: flex;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
