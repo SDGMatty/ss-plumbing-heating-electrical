@@ -318,6 +318,11 @@ if (canvas) {
             if (card.classList.contains('plumbing')) currentShape = 'plumbing';
             if (card.classList.contains('heating')) {
                 currentShape = card.classList.contains('climate-cold') ? 'heating_snow' : 'heating_flame';
+                const video = card.querySelector('.frost-video');
+                if (video && card.classList.contains('climate-cold')) {
+                    video.currentTime = 0;
+                    video.play().catch(err => console.log('Video play interrupted:', err));
+                }
             }
             if (card.classList.contains('electrical')) currentShape = 'electrical';
         });
@@ -325,6 +330,12 @@ if (canvas) {
         card.addEventListener('mouseleave', () => {
             hoveredCard = null;
             currentShape = null; 
+            if (card.classList.contains('heating')) {
+                const video = card.querySelector('.frost-video');
+                if (video) {
+                    video.pause();
+                }
+            }
         });
     });
 }
