@@ -2589,24 +2589,24 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .nav-buttons {
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
     
     .nav-cta {
         display: inline-flex !important;
-        font-size: 0.72rem !important;
-        padding: 0.35rem 0.65rem !important;
+        font-size: 0.66rem !important;
+        padding: 0.3rem 0.5rem !important;
         border-radius: 50px !important;
         white-space: nowrap;
     }
 
     @media (max-width: 480px) {
         .nav-buttons {
-            gap: 0.3rem;
+            gap: 0.25rem;
         }
         .nav-cta {
-            font-size: 0.65rem !important;
-            padding: 0.3rem 0.5rem !important;
+            font-size: 0.58rem !important;
+            padding: 0.25rem 0.4rem !important;
         }
     }
 
@@ -3080,16 +3080,16 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .hero-title {
-        font-size: clamp(1.4rem, 7.5vw, 1.8rem);
+        font-size: clamp(1.8rem, 9vw, 2.5rem);
         margin-bottom: 0.75rem;
         line-height: 1.15;
     }
     
     .hero-subtitle {
-        font-size: clamp(0.8rem, 2.8vw, 0.88rem);
+        font-size: clamp(0.95rem, 3.2vw, 1.15rem);
         margin-bottom: 1.5rem;
         padding: 0 0.5rem;
-        line-height: 1.45;
+        line-height: 1.5;
     }
     
     .hero-actions {
@@ -3102,9 +3102,9 @@ h1, h2, h3, h4, h5, h6 {
     
     .hero-actions .btn {
         width: 100%;
-        max-width: clamp(200px, 65vw, 250px);
-        padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.25rem);
-        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        max-width: clamp(180px, 60vw, 220px);
+        padding: clamp(0.55rem, 1.8vw, 0.68rem) clamp(0.85rem, 2.5vw, 1.1rem);
+        font-size: clamp(0.78rem, 2.3vw, 0.85rem);
         text-align: center;
         box-sizing: border-box;
     }
