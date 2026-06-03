@@ -2596,7 +2596,7 @@ h1, h2, h3, h4, h5, h6 {
         display: inline-flex !important;
         font-size: 0.66rem !important;
         padding: 0.3rem 0.5rem !important;
-        border-radius: 50px !important;
+        border-radius: 8px !important;
         white-space: nowrap;
     }
 
