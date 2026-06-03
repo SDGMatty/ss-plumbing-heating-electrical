@@ -2832,16 +2832,16 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .banner-bbb-logo-outside {
-        height: 28px;
+        height: clamp(22px, 7vw, 28px);
         width: auto;
         flex-shrink: 0;
     }
     
     .hero-leader-banner {
-        height: 24px;
-        font-size: 0.52rem;
-        padding: 0 0.6rem 0 1.5rem;
-        margin-left: -26px;
+        height: clamp(18px, 6vw, 24px);
+        font-size: clamp(7px, 2.3vw, 10px);
+        padding: 0 0.5rem 0 clamp(16px, 5vw, 24px);
+        margin-left: clamp(-26px, -7vw, -18px);
         border-radius: 50px;
         display: inline-flex;
         align-items: center;
@@ -2850,13 +2850,13 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .hero-title {
-        font-size: clamp(1.5rem, 7.5vw, 1.9rem);
+        font-size: clamp(1.4rem, 7.5vw, 1.8rem);
         margin-bottom: 0.75rem;
         line-height: 1.15;
     }
     
     .hero-subtitle {
-        font-size: 0.88rem;
+        font-size: clamp(0.8rem, 2.8vw, 0.88rem);
         margin-bottom: 1.5rem;
         padding: 0 0.5rem;
         line-height: 1.45;
@@ -2872,42 +2872,11 @@ h1, h2, h3, h4, h5, h6 {
     
     .hero-actions .btn {
         width: 100%;
-        max-width: 250px;
-        padding: 0.75rem 1.25rem;
-        font-size: 0.9rem;
+        max-width: clamp(200px, 65vw, 250px);
+        padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.25rem);
+        font-size: clamp(0.8rem, 2.5vw, 0.9rem);
         text-align: center;
         box-sizing: border-box;
-    }
-}
-
-@media (max-width: 360px) {
-    .hero-leader-container {
-        margin-bottom: 1.25rem;
-    }
-
-    .banner-bbb-logo-outside {
-        height: 24px;
-    }
-    
-    .hero-leader-banner {
-        height: 20px;
-        font-size: 0.46rem;
-        padding: 0 0.5rem 0 1.25rem;
-        margin-left: -22px;
-    }
-
-    .hero-title {
-        font-size: 1.4rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.82rem;
-    }
-
-    .hero-actions .btn {
-        max-width: 220px;
-        padding: 0.65rem 1rem;
-        font-size: 0.85rem;
     }
 }
 
