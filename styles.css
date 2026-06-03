@@ -2806,6 +2806,12 @@ h1, h2, h3, h4, h5, h6 {
     .footer-brand .brand-logo-footer {
         margin: 0 auto;
     }
+
+    .footer-brand .footer-tagline {
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        letter-spacing: 0.05em;
+    }
     
     .footer-badges {
         justify-content: center;
@@ -2819,13 +2825,23 @@ h1, h2, h3, h4, h5, h6 {
         grid-area: company;
     }
     
+    .footer-links {
+        text-align: center;
+    }
+    
     .footer-contact {
         grid-area: contact;
-        text-align: left;
+        text-align: center;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         margin-top: 1rem;
+        width: 100%;
+    }
+
+    .footer-contact .location-text,
+    .footer-contact .social-links {
+        justify-content: center;
     }
 }
 
