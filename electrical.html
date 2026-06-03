@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="assets/ss_detailed_colour.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SS Plumbing, Heating & Electrical | Service You Can Trust Since 1963</title>
@@ -10,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=5">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -27,10 +28,10 @@
     <div class="top-bar">
         <div class="container top-bar-inner">
             <div class="ticker">
-                <span class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</span>
-                <span class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</span>
-                <span class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</span>
-                <span class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</span>
+                <a href="tel:2042220723" class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</a>
+                <a href="tel:2042220723" class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</a>
+                <a href="tel:2042220723" class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</a>
+                <a href="tel:2042220723" class="ticker-item"><strong>24/7 Emergency Care Available</strong> &mdash; Like Family: We're there when you need us most.</a>
             </div>
         </div>
     </div>
@@ -94,99 +95,53 @@
             </div>
         </section>
 
-        <section class="pcb-section" id="pcbSection">
-            <div class="pcb-bg-pattern"></div>
-            <div class="container">
-                <div class="pcb-board staggered">
-                    
-                    <div class="pcb-item align-left offset-1 fade-up">
-                        <div class="service-card-pcb">
-                            <div class="card-icon-wrap"><i data-lucide="zap" class="service-icon"></i></div>
-                            <div class="card-content">
-                                <h3>Panel Replacements</h3>
-                                <p>Upgrade outdated panels to safely handle modern electrical loads.</p>
-                            </div>
-                        </div>
-                        <div class="trace-connector right-connect"><div class="pcb-node"></div></div>
-                    </div>
-                    
-                    <div class="pcb-item align-right offset-2 fade-up delay-1">
-                        <div class="trace-connector left-connect"><div class="pcb-node"></div></div>
-                        <div class="service-card-pcb">
-                            <div class="card-icon-wrap"><i data-lucide="activity" class="service-icon"></i></div>
-                            <div class="card-content">
-                                <h3>Service Upgrades</h3>
-                                <p>Boost your home's total capacity with comprehensive service upgrades.</p>
-                            </div>
-                        </div>
+        <section class="radial-hero" id="electricalRadial">
+            <div class="container" style="position: relative; width: 100%; height: 100%;">
+                
+                <div class="radial-center electrical-center">
+                    <i data-lucide="lightbulb" class="spin-slow"></i>
+                </div>
+
+                <div class="radial-grid">
+                    <div class="radial-card" style="--desk-top: 15%; --desk-left: 20%;">
+                        <h3><i data-lucide="zap" style="color: var(--electrical-yellow); width: 20px;"></i> Panel Replacements</h3>
+                        <p>Upgrade outdated panels to safely handle modern electrical loads.</p>
                     </div>
 
-                    <div class="pcb-item align-left offset-3 fade-up">
-                        <div class="service-card-pcb">
-                            <div class="card-icon-wrap"><i data-lucide="home" class="service-icon"></i></div>
-                            <div class="card-content">
-                                <h3>House Rewires</h3>
-                                <p>Full or partial rewiring to remove knob-and-tube or aluminum wiring.</p>
-                            </div>
-                        </div>
-                        <div class="trace-connector right-connect"><div class="pcb-node"></div></div>
+                    <div class="radial-card" style="--desk-top: 15%; --desk-left: 80%;">
+                        <h3><i data-lucide="activity" style="color: var(--electrical-yellow); width: 20px;"></i> Service Upgrades</h3>
+                        <p>Boost your home's total capacity with comprehensive service upgrades.</p>
                     </div>
 
-                    <div class="pcb-item align-right offset-4 fade-up delay-1">
-                        <div class="trace-connector left-connect"><div class="pcb-node"></div></div>
-                        <div class="service-card-pcb">
-                            <div class="card-icon-wrap"><i data-lucide="lightbulb" class="service-icon"></i></div>
-                            <div class="card-content">
-                                <h3>Lighting Upgrades</h3>
-                                <p>Modern LED retrofits, pot lights, and smart home lighting installations.</p>
-                            </div>
-                        </div>
+                    <div class="radial-card" style="--desk-top: 50%; --desk-left: 10%;">
+                        <h3><i data-lucide="home" style="color: var(--electrical-yellow); width: 20px;"></i> House Rewires</h3>
+                        <p>Full or partial rewiring to remove knob-and-tube or aluminum wiring.</p>
                     </div>
 
-                    <div class="pcb-item align-left offset-5 fade-up">
-                        <div class="service-card-pcb">
-                            <div class="card-icon-wrap"><i data-lucide="plus-square" class="service-icon"></i></div>
-                            <div class="card-content">
-                                <h3>Additions</h3>
-                                <p>Seamlessly integrate new rooms and spaces into your existing electrical grid.</p>
-                            </div>
-                        </div>
-                        <div class="trace-connector right-connect"><div class="pcb-node"></div></div>
+                    <div class="radial-card" style="--desk-top: 50%; --desk-left: 90%;">
+                        <h3><i data-lucide="lightbulb" style="color: var(--electrical-yellow); width: 20px;"></i> Lighting Upgrades</h3>
+                        <p>Modern LED retrofits, pot lights, and smart home lighting installations.</p>
                     </div>
 
-                    <div class="pcb-item align-right offset-6 fade-up delay-1">
-                        <div class="trace-connector left-connect"><div class="pcb-node"></div></div>
-                        <div class="service-card-pcb">
-                            <div class="card-icon-wrap"><i data-lucide="tool" class="service-icon"></i></div>
-                            <div class="card-content">
-                                <h3>Garage & Shop Wiring</h3>
-                                <p>Heavy-duty wiring for power tools, welders, and EV charging stations.</p>
-                            </div>
-                        </div>
+                    <div class="radial-card" style="--desk-top: 85%; --desk-left: 20%;">
+                        <h3><i data-lucide="plus-square" style="color: var(--electrical-yellow); width: 20px;"></i> Additions</h3>
+                        <p>Seamlessly integrate new rooms and spaces into your existing electrical grid.</p>
                     </div>
 
-                    <div class="pcb-item align-left offset-7 fade-up">
-                        <div class="service-card-pcb">
-                            <div class="card-icon-wrap"><i data-lucide="waves" class="service-icon"></i></div>
-                            <div class="card-content">
-                                <h3>Hot Tubs</h3>
-                                <p>Safe, dedicated circuits and GFCI installations for outdoor spas.</p>
-                            </div>
-                        </div>
-                        <div class="trace-connector right-connect"><div class="pcb-node"></div></div>
+                    <div class="radial-card" style="--desk-top: 85%; --desk-left: 80%;">
+                        <h3><i data-lucide="tool" style="color: var(--electrical-yellow); width: 20px;"></i> Garage & Shop</h3>
+                        <p>Heavy-duty wiring for power tools, welders, and EV charging stations.</p>
                     </div>
 
-                    <div class="pcb-item align-right offset-8 fade-up delay-1">
-                        <div class="trace-connector left-connect"><div class="pcb-node"></div></div>
-                        <div class="service-card-pcb">
-                            <div class="card-icon-wrap"><i data-lucide="sun" class="service-icon"></i></div>
-                            <div class="card-content">
-                                <h3>Landscape Lighting</h3>
-                                <p>Architectural and pathway lighting to illuminate your home's exterior.</p>
-                            </div>
-                        </div>
+                    <div class="radial-card" style="--desk-top: 105%; --desk-left: 35%;">
+                        <h3><i data-lucide="waves" style="color: var(--electrical-yellow); width: 20px;"></i> Hot Tubs</h3>
+                        <p>Safe, dedicated circuits and GFCI installations for outdoor spas.</p>
                     </div>
 
+                    <div class="radial-card" style="--desk-top: 105%; --desk-left: 65%;">
+                        <h3><i data-lucide="sun" style="color: var(--electrical-yellow); width: 20px;"></i> Landscape Lighting</h3>
+                        <p>Architectural and pathway lighting to illuminate your home's exterior.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -200,6 +155,10 @@
                     <img src="assets/ss_detailed_colour.png" alt="SS Plumbing Logo" class="brand-logo-footer">
                 </a>
                 <p class="footer-tagline">Service you can trust since 1963.</p>
+                <div class="footer-badges">
+                    <a href="https://www.bbb.org/ca/mb/sunnyside/profile/plumber/ss-plumbing-heating-co-ltd-0057-12222#sealclick" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/Accredited_Business_Seal_Rating_RGB.svg.svg" alt="BBB A+ Rated Accredited Business" class="footer-badge bbb-badge"></a>
+                    <img src="assets/Safety Certification/cor_badge.webp" alt="COR Certified CSAM" class="footer-badge cor-badge">
+                </div>
             </div>
             
             <div class="footer-links">

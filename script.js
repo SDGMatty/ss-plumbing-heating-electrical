@@ -271,7 +271,10 @@ if (canvas) {
         initCanvas();
         generateShapePoints(); 
         particles = [];
-        let numParticles = 800; // Increased density for dot cluster richness
+        // Dynamically scale number of particles based on screen area so it fills the screen perfectly no matter the aspect ratio!
+        let numParticles = Math.floor((width * height) / 2500);
+        numParticles = Math.min(Math.max(numParticles, 400), 1500); // Keep it performant
+        
         for (let i = 0; i < numParticles; i++) {
             particles.push(new Particle(i, numParticles));
         }
@@ -299,8 +302,8 @@ if (canvas) {
     }
 
     window.addEventListener('resize', function() {
-        initCanvas();
-        generateShapePoints(); 
+        // Re-initialize the entire field so particles spawn across the newly expanded fullscreen dimensions
+        init();
     });
 
     init();
@@ -398,4 +401,245 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     initWeatherWidget();
+
+    function initDashboard() {
+        const dashboard = document.querySelector('.compact-dashboard');
+        const selectors = document.querySelectorAll('.selector-btn');
+        const canvas = document.getElementById('telemetry-wave');
+        if (!dashboard || !selectors || !canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = canvas.offsetWidth;
+        let height = canvas.height = canvas.offsetHeight;
+
+        function resizeCanvas() {
+            width = canvas.width = canvas.offsetWidth;
+            height = canvas.height = canvas.offsetHeight;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        // Force an initial layout sync
+        setTimeout(resizeCanvas, 100);
+
+        // Current telemetry mode
+        let currentMode = 'plumbing';
+
+        const profiles = {
+            plumbing: {
+                amplitude: 20,
+                frequency: 0.015,
+                speed: 0.05,
+                color1: '#0088ff',
+                noise: 0.05,
+                type: 'sine',
+                metrics: [
+                    { label: 'FLOW RATE', val: 4.8, unit: ' GPM', variance: 0.3 },
+                    { label: 'SYSTEM PRESSURE', val: 55.0, unit: ' PSI', variance: 1.5 }
+                ]
+            },
+            heating: {
+                amplitude: 25,
+                frequency: 0.03,
+                speed: 0.08,
+                color1: '#ff4400',
+                noise: 0.25,
+                type: 'thermal',
+                metrics: [
+                    { label: 'BTU OUTPUT', val: 42500, unit: ' BTU/h', variance: 400 },
+                    { label: 'ZONE TEMPERATURE', val: 21.4, unit: ' °C', variance: 0.2 }
+                ]
+            },
+            electrical: {
+                amplitude: 30,
+                frequency: 0.04,
+                speed: 0.12,
+                color1: '#ffc000',
+                noise: 0.4,
+                type: 'pulse',
+                metrics: [
+                    { label: 'GRID LOAD', val: 12.8, unit: ' kW', variance: 0.6 },
+                    { label: 'VOLTAGE', val: 240.2, unit: ' V', variance: 0.8 }
+                ]
+            }
+        };
+
+        // Smoothly interpolated values
+        let currentAmp = profiles.plumbing.amplitude;
+        let currentFreq = profiles.plumbing.frequency;
+        let currentSpeed = profiles.plumbing.speed;
+        let currentNoise = profiles.plumbing.noise;
+        let color1 = profiles.plumbing.color1;
+
+        let time = 0;
+
+        // Fluctuating values representation
+        let metricsState = [
+            { val: 4.8 },
+            { val: 55.0 }
+        ];
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        // Interpolate colors
+        function interpolateColor(colorA, colorB, factor) {
+            const rgbA = hexToRgb(colorA);
+            const rgbB = hexToRgb(colorB);
+            if (!rgbA || !rgbB) return colorA;
+
+            const r = Math.round(rgbA.r + (rgbB.r - rgbA.r) * factor);
+            const g = Math.round(rgbA.g + (rgbB.g - rgbA.g) * factor);
+            const b = Math.round(rgbA.b + (rgbB.b - rgbA.b) * factor);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function drawWave() {
+            ctx.clearRect(0, 0, width, height);
+
+            time += currentSpeed;
+
+            // Interpolate toward target profile values
+            const target = profiles[currentMode];
+            currentAmp += (target.amplitude - currentAmp) * 0.1;
+            currentFreq += (target.frequency - currentFreq) * 0.1;
+            currentSpeed += (target.speed - currentSpeed) * 0.1;
+            currentNoise += (target.noise - currentNoise) * 0.1;
+            color1 = interpolateColor(color1, target.color1, 0.1);
+            
+            // Draw gradient background wave fill
+            const grad = ctx.createLinearGradient(0, 0, 0, height);
+            grad.addColorStop(0, color1);
+            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+            ctx.beginPath();
+            ctx.moveTo(0, height);
+
+            for (let x = 0; x <= width; x += 2) {
+                let y = height / 2;
+
+                if (target.type === 'sine') {
+                    y += Math.sin(x * currentFreq + time) * currentAmp;
+                    y += Math.cos(x * (currentFreq * 0.5) - time * 0.5) * (currentAmp * 0.3);
+                } else if (target.type === 'thermal') {
+                    y += Math.sin(x * currentFreq + time) * currentAmp;
+                    y += Math.sin(x * (currentFreq * 2) - time * 1.5) * (currentAmp * 0.25);
+                    y += (Math.random() - 0.5) * currentAmp * currentNoise;
+                } else if (target.type === 'pulse') {
+                    let base = Math.sin(x * currentFreq + time);
+                    let pulse = Math.sign(base) * Math.pow(Math.abs(base), 0.25);
+                    y += pulse * currentAmp;
+                    if (Math.sin(x * 0.1 + time * 3) > 0.8) {
+                        y += (Math.random() - 0.5) * currentAmp * currentNoise * 2.5;
+                    }
+                }
+
+                ctx.lineTo(x, y);
+            }
+
+            ctx.lineTo(width, height);
+            ctx.closePath();
+
+            ctx.fillStyle = grad;
+            ctx.globalAlpha = 0.12;
+            ctx.fill();
+
+            // Draw line on top
+            ctx.beginPath();
+            for (let x = 0; x <= width; x += 2) {
+                let y = height / 2;
+
+                if (target.type === 'sine') {
+                    y += Math.sin(x * currentFreq + time) * currentAmp;
+                    y += Math.cos(x * (currentFreq * 0.5) - time * 0.5) * (currentAmp * 0.3);
+                } else if (target.type === 'thermal') {
+                    y += Math.sin(x * currentFreq + time) * currentAmp;
+                    y += Math.sin(x * (currentFreq * 2) - time * 1.5) * (currentAmp * 0.25);
+                    y += (Math.random() - 0.5) * currentAmp * currentNoise;
+                } else if (target.type === 'pulse') {
+                    let base = Math.sin(x * currentFreq + time);
+                    let pulse = Math.sign(base) * Math.pow(Math.abs(base), 0.25);
+                    y += pulse * currentAmp;
+                    if (Math.sin(x * 0.1 + time * 3) > 0.8) {
+                        y += (Math.random() - 0.5) * currentAmp * currentNoise * 2.5;
+                    }
+                }
+
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+
+            ctx.strokeStyle = color1;
+            ctx.lineWidth = 2.5;
+            ctx.globalAlpha = 0.85;
+            ctx.stroke();
+
+            requestAnimationFrame(drawWave);
+        }
+
+        // Fluctuate metrics data
+        function updateMetrics() {
+            const target = profiles[currentMode];
+            target.metrics.forEach((m, idx) => {
+                const labelEl = document.getElementById(`metric-label-${idx + 1}`);
+                const valueEl = document.getElementById(`metric-value-${idx + 1}`);
+
+                if (labelEl && valueEl) {
+                    labelEl.textContent = m.label;
+                    
+                    const change = (Math.random() - 0.5) * m.variance;
+                    metricsState[idx].val += change;
+                    
+                    const minBound = m.val - m.variance * 5;
+                    const maxBound = m.val + m.variance * 5;
+                    metricsState[idx].val = Math.max(minBound, Math.min(maxBound, metricsState[idx].val));
+
+                    let formattedVal = metricsState[idx].val;
+                    if (m.val % 1 !== 0) {
+                        formattedVal = formattedVal.toFixed(1);
+                    } else {
+                        formattedVal = Math.round(formattedVal);
+                    }
+
+                    valueEl.textContent = `${formattedVal}${m.unit}`;
+                }
+            });
+        }
+
+        const initialTarget = profiles[currentMode];
+        metricsState[0].val = initialTarget.metrics[0].val;
+        metricsState[1].val = initialTarget.metrics[1].val;
+        updateMetrics();
+
+        // Interval to fluctuate stats slightly
+        setInterval(updateMetrics, 800);
+
+        selectors.forEach(btn => {
+            const handleModeChange = () => {
+                const trade = btn.getAttribute('data-trade');
+                if (trade === currentMode) return;
+
+                selectors.forEach(s => s.classList.remove('active'));
+                btn.classList.add('active');
+
+                dashboard.className = `compact-dashboard mode-${trade}`;
+                currentMode = trade;
+
+                metricsState[0].val = profiles[trade].metrics[0].val;
+                metricsState[1].val = profiles[trade].metrics[1].val;
+                updateMetrics();
+            };
+
+            btn.addEventListener('click', handleModeChange);
+            btn.addEventListener('mouseenter', handleModeChange);
+        });
+
+        drawWave();
+    }
+    initDashboard();
 });
