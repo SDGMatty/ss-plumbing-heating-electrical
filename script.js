@@ -653,4 +653,32 @@ document.addEventListener('DOMContentLoaded', () => {
         drawWave();
     }
     initDashboard();
+
+    // --- CERTIFICATIONS MODAL LOGIC ---
+    const openCertModal = document.getElementById('open-cert-modal');
+    const certModal = document.getElementById('cert-modal');
+    const closeCertModalX = document.getElementById('close-modal-x');
+    const closeCertModalOverlay = document.getElementById('close-modal-overlay');
+
+    if (openCertModal && certModal) {
+        const openModal = () => {
+            certModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // prevent background scrolling
+        };
+        const closeModal = () => {
+            certModal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        openCertModal.addEventListener('click', openModal);
+        closeCertModalX.addEventListener('click', closeModal);
+        closeCertModalOverlay.addEventListener('click', closeModal);
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && certModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
 });
