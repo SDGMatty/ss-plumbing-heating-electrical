@@ -2895,16 +2895,16 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .banner-bbb-logo-outside {
-        height: clamp(22px, 7vw, 28px);
+        height: clamp(26px, 7vw, 36px);
         width: auto;
         flex-shrink: 0;
     }
     
     .hero-leader-banner {
-        height: clamp(18px, 6vw, 24px);
-        font-size: clamp(7px, 2.3vw, 10px);
-        padding: 0 0.5rem 0 clamp(16px, 5vw, 24px);
-        margin-left: clamp(-26px, -7vw, -18px);
+        height: clamp(22px, 6vw, 32px);
+        font-size: clamp(8px, 2.3vw, 11px);
+        padding: 0 0.6rem 0 clamp(20px, 6vw, 30px);
+        margin-left: clamp(-32px, -7.5vw, -22px);
         border-radius: 50px;
         display: inline-flex;
         align-items: center;
