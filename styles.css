@@ -2573,7 +2573,7 @@ h1, h2, h3, h4, h5, h6 {
         text-align: center;
     }
     
-    .nav-links, .nav-cta, .nav-socials, .weather-widget {
+    .nav-links, .nav-socials, .weather-widget {
         display: none;
     }
     
@@ -2582,10 +2582,32 @@ h1, h2, h3, h4, h5, h6 {
         z-index: 1002;
         transition: all 0.3s ease;
     }
-    
+
     .mobile-toggle:hover {
         color: var(--heating-orange) !important;
         filter: drop-shadow(0 0 8px rgba(255, 69, 0, 0.8));
+    }
+    
+    .nav-buttons {
+        gap: 0.5rem;
+    }
+    
+    .nav-cta {
+        display: inline-flex !important;
+        font-size: 0.72rem !important;
+        padding: 0.35rem 0.65rem !important;
+        border-radius: 50px !important;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+        .nav-buttons {
+            gap: 0.3rem;
+        }
+        .nav-cta {
+            font-size: 0.65rem !important;
+            padding: 0.3rem 0.5rem !important;
+        }
     }
 
     /* Mobile Menu Active State */
@@ -2631,9 +2653,19 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .navbar.mobile-menu-active .nav-socials,
-    .navbar.mobile-menu-active .nav-cta,
     .navbar.mobile-menu-active .weather-widget {
         display: flex;
+    }
+
+    .navbar.mobile-menu-active .nav-cta {
+        display: flex !important;
+        font-size: 1rem !important;
+        padding: 0.75rem 1.5rem !important;
+        width: 100% !important;
+        max-width: 280px !important;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px !important;
     }
     
     .footer-container {
@@ -3030,16 +3062,16 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .banner-bbb-logo-outside {
-        height: clamp(26px, 7vw, 36px);
+        height: clamp(32px, 8.5vw, 44px);
         width: auto;
         flex-shrink: 0;
     }
     
     .hero-leader-banner {
-        height: clamp(22px, 6vw, 32px);
-        font-size: clamp(8px, 2.3vw, 11px);
-        padding: 0 0.6rem 0 clamp(20px, 6vw, 30px);
-        margin-left: clamp(-32px, -7.5vw, -22px);
+        height: clamp(28px, 7.5vw, 38px);
+        font-size: clamp(9.5px, 2.5vw, 12px);
+        padding: 0 0.6rem 0 clamp(28px, 7vw, 38px);
+        margin-left: clamp(-38px, -8vw, -28px);
         border-radius: 50px;
         display: inline-flex;
         align-items: center;
