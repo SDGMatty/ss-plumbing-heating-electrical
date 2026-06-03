@@ -681,4 +681,59 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- MAKE PAYMENT MODAL LOGIC ---
+    const initPaymentModal = () => {
+        // Create modal container dynamically
+        const modalContainer = document.createElement('div');
+        modalContainer.className = 'payment-modal';
+        modalContainer.id = 'payment-coming-soon-modal';
+        
+        modalContainer.innerHTML = `
+            <div class="payment-modal-overlay"></div>
+            <div class="payment-modal-content">
+                <button class="payment-modal-close-btn">&times;</button>
+                <h3 class="payment-modal-title">Online Payment</h3>
+                <div class="payment-modal-body">
+                    <p style="margin-bottom: 1.25rem; font-weight: 600; color: #fef08a;">Online payment coming soon!</p>
+                    <p>Please call us at <strong><a href="tel:2042220723" style="color: var(--white); text-decoration: none;">204.222.0723</a></strong> or email <strong><a href="mailto:info@ssplumbing.ca" style="color: var(--white); text-decoration: none;">info@ssplumbing.ca</a></strong> with the proper information to complete your payment.</p>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modalContainer);
+        
+        const overlay = modalContainer.querySelector('.payment-modal-overlay');
+        const closeBtn = modalContainer.querySelector('.payment-modal-close-btn');
+        
+        const showModal = (e) => {
+            e.preventDefault();
+            modalContainer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        
+        const hideModal = () => {
+            modalContainer.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        
+        // Find all "Make Payment" nav buttons on the page
+        const payBtns = Array.from(document.querySelectorAll('a, button')).filter(el => 
+            el.textContent.trim().toLowerCase() === 'make payment'
+        );
+        
+        payBtns.forEach(btn => {
+            btn.addEventListener('click', showModal);
+        });
+        
+        closeBtn.addEventListener('click', hideModal);
+        overlay.addEventListener('click', hideModal);
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalContainer.classList.contains('active')) {
+                hideModal();
+            }
+        });
+    };
+    initPaymentModal();
 });
