@@ -1291,12 +1291,24 @@ h1, h2, h3, h4, h5, h6 {
     pointer-events: none;
     z-index: 2;
     mix-blend-mode: screen; /* keys out the black background, leaving white ice crystals */
+    -webkit-mask-image: radial-gradient(circle, transparent 15%, rgba(0, 0, 0, 0.4) 45%, black 85%);
+    mask-image: radial-gradient(circle, transparent 15%, rgba(0, 0, 0, 0.4) 45%, black 85%);
     transition: opacity 0.8s ease;
     border-radius: inherit;
 }
 
 .service-card.heating.climate-cold:hover .frost-video {
-    opacity: 0.85; /* semi-transparent to preserve readability of content */
+    opacity: 0.95; 
+}
+
+/* Set off card content visually from the white crystals */
+.service-card.heating.climate-cold:hover .card-title,
+.service-card.heating.climate-cold:hover .card-desc,
+.service-card.heating.climate-cold:hover .card-link,
+.service-card.heating.climate-cold:hover .card-icon {
+    position: relative;
+    z-index: 5;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 1), 0 4px 20px rgba(0, 0, 0, 1), 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
 /* Animated Frost Cracks */
