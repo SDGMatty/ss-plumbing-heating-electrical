@@ -1974,7 +1974,7 @@ h1, h2, h3, h4, h5, h6 {
    Internal Pages (General)
    ========================================= */
 .page-hero {
-    padding: 14rem 0 6rem;
+    padding: 8rem 0 4rem;
     text-align: center;
     position: relative;
     z-index: 10;
@@ -2890,6 +2890,10 @@ h1, h2, h3, h4, h5, h6 {
         text-align: center;
     }
     
+    .page-hero {
+        padding: 6rem 0 3rem !important;
+    }
+    
     .hero-subtitle {
         margin: 0 auto 1rem;
         text-align: center;
@@ -3394,6 +3398,10 @@ h1, h2, h3, h4, h5, h6 {
         padding-top: 3rem !important;
         padding-bottom: 1.5rem !important;
         min-height: auto !important;
+    }
+    
+    .page-hero {
+        padding: 4.5rem 0 2rem !important;
     }
 
     .certifications-container {
