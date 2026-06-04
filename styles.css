@@ -3611,17 +3611,25 @@ h1, h2, h3, h4, h5, h6 {
         box-sizing: border-box;
     }
 
+    .hero-leader-container a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        z-index: 2;
+    }
+
     .banner-bbb-logo-outside {
-        height: clamp(32px, 8.5vw, 44px);
-        width: auto;
+        height: 38px !important;
+        width: 38px !important;
         flex-shrink: 0;
     }
     
     .hero-leader-banner {
-        height: clamp(28px, 7.5vw, 38px);
-        font-size: clamp(9.5px, 2.5vw, 12px);
-        padding: 0 0.6rem 0 clamp(28px, 7vw, 38px);
-        margin-left: clamp(-38px, -8vw, -28px);
+        height: 32px !important;
+        font-size: 10.5px !important;
+        padding: 0 0.8rem 0 2.2rem !important;
+        margin-left: -26px !important;
         border-radius: 50px;
         display: inline-flex;
         align-items: center;
