@@ -3996,10 +3996,3 @@ h1, h2, h3, h4, h5, h6 {
 .card-cooling-theme:hover .service-icon {
     color: var(--white) !important;
 }
-
-/* Hide particle background on touch-only devices with coarse pointer (phones/tablets) */
-@media (pointer: coarse) {
-    #particles-bg {
-        display: none !important;
-    }
-}

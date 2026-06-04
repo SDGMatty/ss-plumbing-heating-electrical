@@ -92,7 +92,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Particle Background Effect (Forming Trades)
 // ==========================================
 const canvas = document.getElementById('particles-bg');
-if (canvas && window.matchMedia('(pointer: fine)').matches) {
+if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
@@ -235,20 +235,22 @@ if (canvas && window.matchMedia('(pointer: fine)').matches) {
                 destY = this.originY;
             }
 
-            let dxM = mouse.x - this.x;
-            let dyM = mouse.y - this.y;
-            let distance = Math.sqrt(dxM * dxM + dyM * dyM);
             let repelX = 0;
             let repelY = 0;
             
-            if (mouse.x !== null && distance < mouse.radius) {
-                let forceDirectionX = dxM / distance;
-                let forceDirectionY = dyM / distance;
-                let force = (mouse.radius - distance) / mouse.radius;
-                // Stronger repel so mouse interaction is distinctly noticeable
-                let repelStrength = isFormed ? (this.density * 1.5) : (this.density * 3.5);
-                repelX = -forceDirectionX * force * repelStrength;
-                repelY = -forceDirectionY * force * repelStrength;
+            if (mouse.x !== null) {
+                let dxM = mouse.x - this.x;
+                let dyM = mouse.y - this.y;
+                let distance = Math.sqrt(dxM * dxM + dyM * dyM);
+                if (distance < mouse.radius) {
+                    let forceDirectionX = dxM / distance;
+                    let forceDirectionY = dyM / distance;
+                    let force = (mouse.radius - distance) / mouse.radius;
+                    // Stronger repel so mouse interaction is distinctly noticeable
+                    let repelStrength = isFormed ? (this.density * 1.5) : (this.density * 3.5);
+                    repelX = -forceDirectionX * force * repelStrength;
+                    repelY = -forceDirectionY * force * repelStrength;
+                }
             }
             
             this.floatAngle += this.floatSpeed;
@@ -284,7 +286,10 @@ if (canvas && window.matchMedia('(pointer: fine)').matches) {
         particles = [];
         // Dynamically scale number of particles based on screen area so it fills the screen perfectly no matter the aspect ratio!
         let numParticles = Math.floor((width * height) / 2500);
-        numParticles = Math.min(Math.max(numParticles, 400), 1500); // Keep it performant
+        const isTouch = !window.matchMedia('(pointer: fine)').matches;
+        const minCount = isTouch ? 120 : 400;
+        const maxCount = isTouch ? 180 : 1500;
+        numParticles = Math.min(Math.max(numParticles, minCount), maxCount); // Keep it performant
         
         for (let i = 0; i < numParticles; i++) {
             particles.push(new Particle(i, numParticles));
