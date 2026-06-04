@@ -2972,6 +2972,12 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: center;
         align-items: center;
     }
+    
+    .nav-cta svg {
+        width: 11px !important;
+        height: 11px !important;
+        margin-right: 4px !important;
+    }
 
     @media (max-width: 480px) {
         .nav-buttons {
@@ -2982,6 +2988,11 @@ h1, h2, h3, h4, h5, h6 {
             font-size: 0.54rem !important;
             width: 92px !important;
             height: 28px !important;
+        }
+        .nav-cta svg {
+            width: 9px !important;
+            height: 9px !important;
+            margin-right: 3px !important;
         }
     }
 
