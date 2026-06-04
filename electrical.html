@@ -47,7 +47,14 @@
             
                         <nav class="nav-links">
                 <a href="index.html#about" class="nav-link">About Us</a>
-                <a href="index.html#services" class="nav-link">Trades</a>
+                <div class="nav-dropdown">
+                    <a href="index.html#services" class="nav-link dropdown-toggle">Trades <i data-lucide="chevron-down" class="dropdown-icon"></i></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="plumbing.html" class="dropdown-item">Plumbing</a>
+                        <a href="heating-cooling.html" class="dropdown-item">Heating & Cooling</a>
+                        <a href="electrical.html" class="dropdown-item">Electrical</a>
+                    </div>
+                </div>
                 <div class="nav-dropdown">
                     <a href="service-area.html" class="nav-link dropdown-toggle">Service Area <i data-lucide="chevron-down" class="dropdown-icon"></i></a>
                     <div class="nav-dropdown-menu">
@@ -177,14 +184,14 @@
     <footer class="footer">
         <div class="container footer-container">
             <div class="footer-brand">
-                <a href="index.html" class="brand-link">
-                    <img src="assets/ss_detailed_colour.png" alt="SS Plumbing Logo" class="brand-logo-footer">
-                </a>
-                <p class="footer-tagline">Service you can trust since 1963.</p>
-                <div class="footer-badges">
+                <div class="footer-logo-row">
                     <a href="https://www.bbb.org/ca/mb/sunnyside/profile/plumber/ss-plumbing-heating-co-ltd-0057-12222#sealclick" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/Accredited_Business_Seal_Rating_RGB.svg.svg" alt="BBB A+ Rated Accredited Business" class="footer-badge bbb-badge"></a>
+                    <a href="index.html" class="brand-link">
+                        <img src="assets/ss_detailed_colour.png" alt="SS Plumbing Logo" class="brand-logo-footer">
+                    </a>
                     <a href="https://www.constructionsafety.mb.ca/" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/cor_badge.webp" alt="COR Certified CSAM" class="footer-badge cor-badge"></a>
                 </div>
+                <p class="footer-tagline">Service You Can Trust</p>
             </div>
             
             <div class="footer-links">
@@ -199,7 +206,7 @@
             <div class="footer-links">
                 <h4>Company</h4>
                 <ul>
-                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="index.html#about">About Us</a></li>
                     <li><a href="index.html#services">Trades</a></li>
                     <li><a href="service-area.html">Service Area</a></li>
                     <li><a href="our-work.html">Our Work</a></li>

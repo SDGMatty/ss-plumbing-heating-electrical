@@ -282,11 +282,13 @@ if (canvas) {
 
     function init() {
         initCanvas();
-        generateShapePoints(); 
+        const isTouch = !window.matchMedia('(pointer: fine)').matches;
+        if (!isTouch && document.querySelectorAll('.service-card').length > 0) {
+            generateShapePoints(); 
+        }
         particles = [];
         // Dynamically scale number of particles based on screen area so it fills the screen perfectly no matter the aspect ratio!
         let numParticles = Math.floor((width * height) / 2500);
-        const isTouch = !window.matchMedia('(pointer: fine)').matches;
         const minCount = isTouch ? 120 : 400;
         const maxCount = isTouch ? 180 : 1500;
         numParticles = Math.min(Math.max(numParticles, minCount), maxCount); // Keep it performant
@@ -376,8 +378,68 @@ if (canvas) {
 
 // --- WEATHER WIDGET LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
+    function updateWeatherUI(temp) {
+        const display = document.getElementById('tempDisplay');
+        const fluid = document.querySelector('.thermo-fluid');
+        const heatingCard = document.querySelector('.heating');
+        
+        if (display) {
+            display.textContent = `${Math.round(temp)}°C`;
+        }
+        
+        if (fluid) {
+            // Map scale: -30C is completely empty, +35C is completely full
+            let boundedTemp = Math.max(-30, Math.min(35, temp));
+            let fillPct = ((boundedTemp + 30) / 65) * 100;
+            let emptyPct = 100 - fillPct;
+            
+            // Color mapping: frozen blue -> mild green -> warm yellow -> hot orange
+            let color = '#2AB2E2';
+            if (temp > 25) color = '#F24C27'; 
+            else if (temp > 10) color = '#FFB800'; 
+            else if (temp > 0)  color = '#4caf50'; 
+            
+            // Trigger custom CSS animation values after a short delay
+            setTimeout(() => {
+                fluid.style.setProperty('--temp-empty-pct', `${emptyPct}%`);
+                fluid.style.setProperty('--temp-color', color);
+            }, 500);
+        }
+
+        // Inject reversed climate state: Fire to combat the freeze, Frost to combat the heat!
+        if (heatingCard) {
+            if (temp <= 0) {
+                heatingCard.classList.add('climate-hot'); // Below Freezing -> Fire
+                if (typeof currentShape !== 'undefined' && currentShape && currentShape.startsWith('heating')) {
+                    currentShape = 'heating_flame';
+                }
+            } else {
+                heatingCard.classList.add('climate-cold'); // Above Freezing -> Frost
+                if (typeof currentShape !== 'undefined' && currentShape && currentShape.startsWith('heating')) {
+                    currentShape = 'heating_snow';
+                }
+            }
+        }
+    }
+
     async function initWeatherWidget() {
         try {
+            // Try to load cached weather from sessionStorage first
+            const cachedWeather = sessionStorage.getItem('ss_weather_cache');
+            if (cachedWeather) {
+                try {
+                    const cache = JSON.parse(cachedWeather);
+                    const cacheAge = Date.now() - cache.timestamp;
+                    // Cache duration: 30 minutes
+                    if (cacheAge < 30 * 60 * 1000 && typeof cache.temp === 'number') {
+                        updateWeatherUI(cache.temp);
+                        return;
+                    }
+                } catch (e) {
+                    console.log("Failed to parse cached weather, fetching fresh data.");
+                }
+            }
+
             // Geographic Fallback (Winnipeg)
             let lat = 49.8844;
             let lon = -97.1470;
@@ -401,45 +463,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await res.json();
             if (data && data.current_weather) {
                 const temp = data.current_weather.temperature;
-                const display = document.getElementById('tempDisplay');
-                const fluid = document.querySelector('.thermo-fluid');
-                const heatingCard = document.querySelector('.heating');
-                
-                if (display && fluid) {
-                    display.textContent = `${Math.round(temp)}°C`;
-                    
-                    // Map scale: -30C is completely empty, +35C is completely full
-                    let boundedTemp = Math.max(-30, Math.min(35, temp));
-                    let fillPct = ((boundedTemp + 30) / 65) * 100;
-                    let emptyPct = 100 - fillPct;
-                    
-                    // Color mapping: frozen blue -> mild green -> warm yellow -> hot orange
-                    let color = '#2AB2E2';
-                    if (temp > 25) color = '#F24C27'; 
-                    else if (temp > 10) color = '#FFB800'; 
-                    else if (temp > 0)  color = '#4caf50'; 
-                    
-                    // Trigger custom CSS animation values after a short delay
-                    setTimeout(() => {
-                        fluid.style.setProperty('--temp-empty-pct', `${emptyPct}%`);
-                        fluid.style.setProperty('--temp-color', color);
-                    }, 500);
-                }
-
-                // Inject reversed climate state: Fire to combat the freeze, Frost to combat the heat!
-                if (heatingCard) {
-                    if (temp <= 0) {
-                        heatingCard.classList.add('climate-hot'); // Below Freezing -> Fire
-                        if (typeof currentShape !== 'undefined' && currentShape && currentShape.startsWith('heating')) {
-                            currentShape = 'heating_flame';
-                        }
-                    } else {
-                        heatingCard.classList.add('climate-cold'); // Above Freezing -> Frost
-                        if (typeof currentShape !== 'undefined' && currentShape && currentShape.startsWith('heating')) {
-                            currentShape = 'heating_snow';
-                        }
-                    }
-                }
+                updateWeatherUI(temp);
+                // Save to sessionStorage cache
+                sessionStorage.setItem('ss_weather_cache', JSON.stringify({
+                    temp: temp,
+                    timestamp: Date.now()
+                }));
             }
         } catch (e) {
             console.error('Weather widget failed:', e);

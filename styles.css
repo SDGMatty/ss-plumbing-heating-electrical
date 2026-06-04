@@ -2732,17 +2732,33 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 4rem;
 }
 
-.footer-brand .footer-tagline {
-    margin-top: 1.5rem;
-    color: var(--gray);
-    font-size: 1.1rem;
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.footer-badges {
+.footer-logo-row {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
-    margin-top: 1.5rem;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-brand .brand-logo-footer {
+    height: 90px;
+    width: auto;
+    object-fit: contain;
+}
+
+.footer-brand .footer-tagline {
+    margin-top: 1.25rem;
+    color: var(--gray);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
 }
 
 .footer-badge {
@@ -3556,25 +3572,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .footer-brand {
         grid-area: brand;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         margin-bottom: 1rem;
-    }
-    
-    .footer-brand .brand-logo-footer {
-        margin: 0 auto;
-    }
-
-    .footer-brand .footer-tagline {
-        text-transform: uppercase;
-        font-size: 0.95rem;
-        letter-spacing: 0.05em;
-    }
-    
-    .footer-badges {
-        justify-content: center;
     }
     
     .footer-container > div:nth-child(2) {
