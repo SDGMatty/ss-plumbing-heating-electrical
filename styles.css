@@ -2886,7 +2886,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .hero {
-        padding-top: 8rem;
+        padding-top: 4rem;
         text-align: center;
     }
     
@@ -3371,8 +3371,8 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .hero {
-        padding-top: 6rem !important;
-        padding-bottom: 2.5rem !important;
+        padding-top: 3rem !important;
+        padding-bottom: 1.5rem !important;
         min-height: auto !important;
     }
 
@@ -3641,9 +3641,9 @@ h1, h2, h3, h4, h5, h6 {
     
     .hero-actions .btn {
         width: 100%;
-        max-width: clamp(180px, 60vw, 220px);
-        padding: clamp(0.55rem, 1.8vw, 0.68rem) clamp(0.85rem, 2.5vw, 1.1rem);
-        font-size: clamp(0.78rem, 2.3vw, 0.85rem);
+        max-width: clamp(230px, 80vw, 290px);
+        padding: clamp(0.75rem, 2.2vw, 0.9rem) clamp(1.2rem, 3vw, 1.8rem);
+        font-size: clamp(0.88rem, 2.6vw, 1rem);
         text-align: center;
         box-sizing: border-box;
     }
