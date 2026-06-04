@@ -1968,6 +1968,19 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 1.45rem; /* adjusted hover transition shift */
 }
 
+/* Trade Dropdown Hover Colors */
+.dropdown-item[href="plumbing.html"]:hover {
+    color: var(--plumbing-blue) !important;
+}
+
+.dropdown-item[href="heating-cooling.html"]:hover {
+    color: var(--heating-orange) !important;
+}
+
+.dropdown-item[href="electrical.html"]:hover {
+    color: var(--electrical-yellow) !important;
+}
+
 /* =========================================
    Internal Pages (General)
    ========================================= */
@@ -2737,11 +2750,12 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.footer-logo-row {
+.footer-badges {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
 }
 
 .footer-brand .brand-logo-footer {
