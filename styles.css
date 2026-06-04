@@ -2950,15 +2950,19 @@ h1, h2, h3, h4, h5, h6 {
         filter: drop-shadow(0 0 8px rgba(255, 69, 0, 0.8));
     }
     
+    .brand-logo {
+        height: 38px !important;
+    }
+    
     .nav-buttons {
         gap: 0.4rem;
     }
     
     .nav-cta {
         display: inline-flex !important;
-        font-size: 0.66rem !important;
-        padding: 0.35rem 0.6rem !important;
-        border-radius: 8px !important;
+        font-size: 0.62rem !important;
+        padding: 0.3rem 0.5rem !important;
+        border-radius: 6px !important;
         white-space: nowrap;
         min-width: auto !important; /* Reset desktop fixed width */
         height: auto !important;    /* Reset desktop fixed height */
@@ -2969,16 +2973,8 @@ h1, h2, h3, h4, h5, h6 {
             gap: 0.25rem;
         }
         .nav-cta {
-            font-size: 0.58rem !important;
+            font-size: 0.56rem !important;
             padding: 0.25rem 0.4rem !important;
-        }
-        /* Hide 'Make Payment' on small phone headers to make room for logo/call button */
-        .nav-buttons .btn-outline {
-            display: none !important;
-        }
-        /* Keep it visible in the active menu drawer */
-        .navbar.mobile-menu-active .nav-buttons .btn-outline {
-            display: flex !important;
         }
     }
 
