@@ -330,6 +330,9 @@ if (canvas) {
     // Set up hover triggers for services
     serviceCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
+            const isTouch = !window.matchMedia('(pointer: fine)').matches;
+            if (isTouch) return;
+            
             hoveredCard = card;
             if (card.classList.contains('plumbing')) currentShape = 'plumbing';
             if (card.classList.contains('heating')) {
@@ -352,6 +355,9 @@ if (canvas) {
         });
         
         card.addEventListener('mouseleave', () => {
+            const isTouch = !window.matchMedia('(pointer: fine)').matches;
+            if (isTouch) return;
+            
             hoveredCard = null;
             currentShape = null; 
             if (card.classList.contains('heating')) {
