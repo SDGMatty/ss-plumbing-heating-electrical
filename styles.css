@@ -280,15 +280,19 @@ h1, h2, h3, h4, h5, h6 {
 .top-bar {
     background: var(--heating-orange);
     color: var(--navy-dark);
-    padding: 0.5rem 0;
+    padding: 0;
+    height: 36px;
     font-size: 0.9rem;
     z-index: 1000;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 .ticker {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     white-space: nowrap;
     animation: ticker 35s linear infinite;
 }
@@ -298,13 +302,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ticker-item {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding-right: 3rem;
     font-size: 0.85rem;
     color: var(--navy-dark);
     text-decoration: none;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    line-height: 1;
 }
 
 .ticker-item:hover {
@@ -2964,7 +2970,8 @@ h1, h2, h3, h4, h5, h6 {
     
     .top-bar {
         font-size: 0.75rem !important;
-        padding: 0.35rem 0 !important;
+        padding: 0 !important;
+        height: 30px !important;
     }
     
     .ticker-item {
