@@ -2929,6 +2929,15 @@ h1, h2, h3, h4, h5, h6 {
         padding: 3rem 2rem;
     }
     
+    .top-bar {
+        font-size: 0.75rem !important;
+        padding: 0.35rem 0 !important;
+    }
+    
+    .ticker-item {
+        font-size: 0.72rem !important;
+    }
+    
     .top-bar-inner {
         flex-direction: column;
         gap: 0.5rem;
