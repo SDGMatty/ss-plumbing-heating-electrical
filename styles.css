@@ -492,11 +492,11 @@ h1, h2, h3, h4, h5, h6 {
    Hero Section
    ========================================= */
 .hero {
-    min-height: 85vh;
+    min-height: 80vh; /* Adjusted from 85vh */
     display: flex;
     align-items: center;
-    padding-top: 5rem;
-    padding-bottom: 2rem;
+    padding-top: 3.5rem; /* Reduced from 5rem */
+    padding-bottom: 1.5rem; /* Reduced from 2rem */
     position: relative;
 }
 
@@ -528,13 +528,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 2rem;
 }
 
-.banner-bbb-logo-outside {
-    height: 54px;
+.banner-bbb-logo-inside {
+    height: 34px; /* Scaled down to sit cleanly inside the 48px banner container */
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
-    z-index: 2;
-    position: relative;
+    display: block;
 }
 
 .hero-leader-banner {
@@ -542,8 +540,8 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    padding: 0 1.5rem 0 3.4rem;
-    margin-left: -60px;
+    padding: 0 1.5rem 0 0.5rem; /* Cleaned up left padding since logo is inside */
+    gap: 0.75rem; /* Space between logo and text */
     font-size: 0.88rem;
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -3626,8 +3624,8 @@ h1, h2, h3, h4, h5, h6 {
         box-sizing: border-box;
     }
 
-    .banner-bbb-logo-outside {
-        height: clamp(32px, 8.5vw, 44px);
+    .banner-bbb-logo-inside {
+        height: clamp(20px, 5.5vw, 26px); /* Scaled down on mobile to sit inside the mobile banner height */
         width: auto;
         flex-shrink: 0;
     }
@@ -3635,8 +3633,9 @@ h1, h2, h3, h4, h5, h6 {
     .hero-leader-banner {
         height: clamp(28px, 7.5vw, 38px);
         font-size: clamp(9.5px, 2.5vw, 12px);
-        padding: 0 0.6rem 0 clamp(28px, 7vw, 38px);
-        margin-left: clamp(-38px, -8vw, -28px);
+        padding: 0 1rem 0 0.4rem; /* Cleaned up left padding since logo is inside on mobile */
+        gap: 0.5rem; /* Space between logo and text on mobile */
+        margin-left: 0; /* Removed negative offset overlap */
         border-radius: 50px;
         display: inline-flex;
         align-items: center;
