@@ -529,19 +529,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .banner-bbb-logo-inside {
-    height: 52px; /* Set to 52px as requested */
+    height: 44px; /* Sized to fit nested within the 56px container */
     width: auto;
     object-fit: contain;
     display: block;
-    margin-left: 4px; /* Shifts the logo slightly to the right */
 }
 
 .hero-leader-banner {
-    height: 52px; /* Matched to 52px to align top and bottom with the logo */
+    height: 56px; /* Matched for perfect 6px padding top/bottom around the 44px logo */
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    padding: 0 1.5rem 0 0; /* Padding-left is 0 so the glass box starts exactly at the logo's left boundary */
+    padding: 0 1.5rem 0 6px; /* 6px left padding to match top/bottom vertical alignment spacing */
     gap: 0.75rem; /* Gap between the logo and text */
     font-size: 0.88rem;
     background: rgba(255, 255, 255, 0.07);
