@@ -3825,7 +3825,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     padding: 2.25rem 2rem 4.5rem; /* extra bottom padding for action link spacing */
-    transition: var(--transition);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     z-index: 3;
     display: flex;
@@ -3897,7 +3897,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    transition: var(--transition);
+    transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .plumbing-theme .trade-card .card-icon-wrap { background: rgba(0, 136, 255, 0.1); }
@@ -3911,7 +3911,7 @@ h1, h2, h3, h4, h5, h6 {
 .trade-card .service-icon {
     width: 24px;
     height: 24px;
-    transition: var(--transition);
+    transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .plumbing-theme .trade-card .service-icon { color: var(--plumbing-blue); }
