@@ -110,7 +110,7 @@ if (canvas) {
 
     const paths = {
         'drop': new Path2D('M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z'),
-        'lightning': new Path2D('M 13 2 L 3 14 L 12 14 L 11 22 L 21 10 L 12 10 Z'),
+        'lightning': new Path2D('M 13 2 L 3 14 L 12 14 L 10.5 24 L 21 10 L 12 10 Z'),
         'flame': new Path2D('M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z')
     };
 
@@ -144,7 +144,7 @@ if (canvas) {
         offCanvas.height = height;
         const oCtx = offCanvas.getContext('2d', { willReadFrequently: true });
         
-        const targetSize = Math.max(250, Math.min(width, height) * 0.35); // Card-sized footprint
+        const targetSize = Math.max(180, Math.min(width, height) * 0.35); // Card-sized footprint
         const scale = targetSize / 24; 
         
         for (let key in pathKeys) {
@@ -160,7 +160,7 @@ if (canvas) {
             } else if (pathKeys[key].type === 'stroke') {
                 oCtx.lineCap = 'round';
                 oCtx.lineJoin = 'round';
-                oCtx.lineWidth = 12.0;
+                oCtx.lineWidth = 2.0;
                 oCtx.strokeStyle = 'rgba(255, 0, 0, 1)';
                 oCtx.stroke(pathKeys[key].path);
             }
@@ -260,7 +260,7 @@ if (canvas) {
             let finalDestX = destX + floatOffsetX + repelX;
             let finalDestY = destY + floatOffsetY + repelY;
 
-            let baseGatherSpeed = isFormed ? 0.18 : 0.08;
+            let baseGatherSpeed = isFormed ? (width < 768 ? 0.09 : 0.18) : 0.08;
             this.speedX = (finalDestX - this.x) * baseGatherSpeed;
             this.speedY = (finalDestY - this.y) * baseGatherSpeed;
 
@@ -329,10 +329,18 @@ if (canvas) {
             if (card.classList.contains('plumbing')) currentShape = 'plumbing';
             if (card.classList.contains('heating')) {
                 currentShape = card.classList.contains('climate-cold') ? 'heating_snow' : 'heating_flame';
-                const video = card.querySelector('.frost-video');
-                if (video && card.classList.contains('climate-cold')) {
-                    video.currentTime = 0;
-                    video.play().catch(err => console.log('Video play interrupted:', err));
+                if (card.classList.contains('climate-cold')) {
+                    const video = card.querySelector('.frost-video');
+                    if (video) {
+                        video.currentTime = 0;
+                        video.play().catch(err => console.log('Video play interrupted:', err));
+                    }
+                } else {
+                    const fireVideo = card.querySelector('.fire-video');
+                    if (fireVideo) {
+                        fireVideo.currentTime = 0;
+                        fireVideo.play().catch(err => console.log('Video play interrupted:', err));
+                    }
                 }
             }
             if (card.classList.contains('electrical')) currentShape = 'electrical';
@@ -345,6 +353,10 @@ if (canvas) {
                 const video = card.querySelector('.frost-video');
                 if (video) {
                     video.pause();
+                }
+                const fireVideo = card.querySelector('.fire-video');
+                if (fireVideo) {
+                    fireVideo.pause();
                 }
             }
         });
