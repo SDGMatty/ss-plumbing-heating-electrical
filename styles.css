@@ -2955,26 +2955,33 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .nav-buttons {
+        margin-left: auto;
+        margin-right: 0.75rem;
         gap: 0.4rem;
     }
     
     .nav-cta {
         display: inline-flex !important;
         font-size: 0.62rem !important;
-        padding: 0.3rem 0.5rem !important;
+        padding: 0 !important;
         border-radius: 6px !important;
         white-space: nowrap;
         min-width: auto !important; /* Reset desktop fixed width */
-        height: auto !important;    /* Reset desktop fixed height */
+        width: 108px !important;    /* Force equal width */
+        height: 32px !important;   /* Force equal height */
+        justify-content: center;
+        align-items: center;
     }
 
     @media (max-width: 480px) {
         .nav-buttons {
+            margin-right: 0.5rem;
             gap: 0.25rem;
         }
         .nav-cta {
-            font-size: 0.56rem !important;
-            padding: 0.25rem 0.4rem !important;
+            font-size: 0.54rem !important;
+            width: 92px !important;
+            height: 28px !important;
         }
     }
 
