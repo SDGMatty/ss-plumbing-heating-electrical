@@ -92,7 +92,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Particle Background Effect (Forming Trades)
 // ==========================================
 const canvas = document.getElementById('particles-bg');
-if (canvas && window.innerWidth >= 768) {
+if (canvas && window.matchMedia('(pointer: fine)').matches) {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
