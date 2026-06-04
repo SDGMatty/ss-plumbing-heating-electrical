@@ -80,12 +80,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 100, // Account for fixed header
-                behavior: 'smooth'
-            });
+            if (targetId === '#services') {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            } else {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100, // Account for fixed header
+                    behavior: 'smooth'
+                });
+            }
         }
     });
+});
+
+// Center the services grid if navigated to with #services hash
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.location.hash === '#services') {
+        setTimeout(() => {
+            const targetElement = document.querySelector('#services');
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+        }, 300);
+    }
 });
 
 // ==========================================
