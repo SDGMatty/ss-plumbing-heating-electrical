@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=18">
+    <link rel="stylesheet" href="styles.css?v=40">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -46,9 +46,16 @@
             </a>
             
                         <nav class="nav-links">
-                <a href="about.html" class="nav-link">About Us</a>
+                <a href="index.html#about" class="nav-link">About Us</a>
                 <a href="index.html#services" class="nav-link">Trades</a>
-                <a href="service-area.html" class="nav-link">Service Area</a>
+                <div class="nav-dropdown">
+                    <a href="service-area.html" class="nav-link dropdown-toggle">Service Area <i data-lucide="chevron-down" class="dropdown-icon"></i></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="service-area.html#winnipeg" class="dropdown-item">Winnipeg & Surrounding</a>
+                        <a href="service-area.html#manitoba" class="dropdown-item">Rest of Manitoba</a>
+                        <a href="service-area.html#out-of-province" class="dropdown-item">Out of Province</a>
+                    </div>
+                </div>
                 <a href="our-work.html" class="nav-link">Our Work</a>
                 <a href="contact.html" class="nav-link">Contact Us</a>
             </nav>
@@ -90,99 +97,70 @@
     <main>
         <section class="page-hero plumbing-hero">
             <div class="container">
-                <h1 class="page-title">Plumbing Services</h1>
+                <h1 class="page-title"><span class="color-plumbing">Plumbing</span> Services</h1>
                 <p class="page-subtitle">Expert installations, rapid repairs, and preventative maintenance.</p>
             </div>
         </section>
 
-        <section class="pipe-section">
+        <section class="trades-section plumbing-theme">
             <div class="container">
-                <div class="pipe-wrapper">
-                    <!-- The vertical pipe line -->
-                    <div class="main-pipe">
-                        <div class="water-flow"></div>
-                    </div>
+                <div class="trades-grid">
+                    
+                    <a href="contact.html?trade=plumbing&service=Bathroom & Kitchen Renovations" class="trade-card">
+                        <div class="card-icon-wrap"><i data-lucide="bath" class="service-icon"></i></div>
+                        <h3>Bathroom & Kitchen Renovations</h3>
+                        <p>Complete rough-ins, fixture installations, and modern upgrades.</p>
+                        <span class="card-action-link">Request Info <i data-lucide="arrow-right" class="icon-sm"></i></span>
+                    </a>
 
-                    <!-- The items -->
-                    <div class="pipe-item left">
-                        <div class="pipe-joint"></div>
-                        <div class="pipe-connector"></div>
-                        <div class="service-card-modern">
-                            <div class="card-icon-wrap"><i data-lucide="bath" class="service-icon"></i></div>
-                            <h3>Bathroom & Kitchen Renovations</h3>
-                            <p>Complete rough-ins, fixture installations, and modern upgrades.</p>
-                        </div>
-                    </div>
+                    <a href="contact.html?trade=plumbing&service=Water Line Replacements" class="trade-card">
+                        <div class="card-icon-wrap"><i data-lucide="droplets" class="service-icon"></i></div>
+                        <h3>Water Line Replacements</h3>
+                        <p>Full-scale replacements to ensure clean, reliable water pressure.</p>
+                        <span class="card-action-link">Request Info <i data-lucide="arrow-right" class="icon-sm"></i></span>
+                    </a>
 
-                    <div class="pipe-item right">
-                        <div class="pipe-joint"></div>
-                        <div class="pipe-connector"></div>
-                        <div class="service-card-modern">
-                            <div class="card-icon-wrap"><i data-lucide="droplets" class="service-icon"></i></div>
-                            <h3>Water Line Replacements</h3>
-                            <p>Full-scale replacements to ensure clean, reliable water pressure.</p>
-                        </div>
-                    </div>
+                    <a href="contact.html?trade=plumbing&service=Pumps" class="trade-card">
+                        <div class="card-icon-wrap"><i data-lucide="settings" class="service-icon"></i></div>
+                        <h3>Pumps</h3>
+                        <p>Installation and maintenance of reliable pump systems.</p>
+                        <span class="card-action-link">Request Info <i data-lucide="arrow-right" class="icon-sm"></i></span>
+                    </a>
 
-                    <div class="pipe-item left">
-                        <div class="pipe-joint"></div>
-                        <div class="pipe-connector"></div>
-                        <div class="service-card-modern">
-                            <div class="card-icon-wrap"><i data-lucide="settings" class="service-icon"></i></div>
-                            <h3>Pumps</h3>
-                            <p>Installation and maintenance of reliable pump systems.</p>
-                        </div>
-                    </div>
+                    <a href="contact.html?trade=plumbing&service=Service and Repair" class="trade-card">
+                        <div class="card-icon-wrap"><i data-lucide="wrench" class="service-icon"></i></div>
+                        <h3>Service and Repair</h3>
+                        <p>Rapid response for leaks, bursts, and everyday plumbing issues.</p>
+                        <span class="card-action-link">Request Info <i data-lucide="arrow-right" class="icon-sm"></i></span>
+                    </a>
 
-                    <div class="pipe-item right">
-                        <div class="pipe-joint"></div>
-                        <div class="pipe-connector"></div>
-                        <div class="service-card-modern">
-                            <div class="card-icon-wrap"><i data-lucide="wrench" class="service-icon"></i></div>
-                            <h3>Service and Repair</h3>
-                            <p>Rapid response for leaks, bursts, and everyday plumbing issues.</p>
-                        </div>
-                    </div>
+                    <a href="contact.html?trade=plumbing&service=Water Heaters" class="trade-card">
+                        <div class="card-icon-wrap"><i data-lucide="thermometer" class="service-icon"></i></div>
+                        <h3>Water Heaters</h3>
+                        <p>Expert installation and servicing for both standard tanks and tankless systems.</p>
+                        <span class="card-action-link">Request Info <i data-lucide="arrow-right" class="icon-sm"></i></span>
+                    </a>
 
-                    <div class="pipe-item left">
-                        <div class="pipe-joint"></div>
-                        <div class="pipe-connector"></div>
-                        <div class="service-card-modern">
-                            <div class="card-icon-wrap"><i data-lucide="thermometer" class="service-icon"></i></div>
-                            <h3>Water Heaters</h3>
-                            <p>Expert installation and servicing for both standard tanks and tankless systems.</p>
-                        </div>
-                    </div>
+                    <a href="contact.html?trade=plumbing&service=Sump Pits" class="trade-card">
+                        <div class="card-icon-wrap"><i data-lucide="shield-alert" class="service-icon"></i></div>
+                        <h3>Sump Pits</h3>
+                        <p>Protect your basement with professionally installed and maintained sump pumps.</p>
+                        <span class="card-action-link">Request Info <i data-lucide="arrow-right" class="icon-sm"></i></span>
+                    </a>
 
-                    <div class="pipe-item right">
-                        <div class="pipe-joint"></div>
-                        <div class="pipe-connector"></div>
-                        <div class="service-card-modern">
-                            <div class="card-icon-wrap"><i data-lucide="shield-alert" class="service-icon"></i></div>
-                            <h3>Sump Pits</h3>
-                            <p>Protect your basement with professionally installed and maintained sump pumps.</p>
-                        </div>
-                    </div>
+                    <a href="contact.html?trade=plumbing&service=Backflow Prevention" class="trade-card">
+                        <div class="card-icon-wrap"><i data-lucide="corner-down-left" class="service-icon"></i></div>
+                        <h3>Backflow Prevention</h3>
+                        <p>Certified testing and installation to keep your drinking water safe from contamination.</p>
+                        <span class="card-action-link">Request Info <i data-lucide="arrow-right" class="icon-sm"></i></span>
+                    </a>
 
-                    <div class="pipe-item left">
-                        <div class="pipe-joint"></div>
-                        <div class="pipe-connector"></div>
-                        <div class="service-card-modern">
-                            <div class="card-icon-wrap"><i data-lucide="corner-down-left" class="service-icon"></i></div>
-                            <h3>Backflow Prevention</h3>
-                            <p>Certified testing and installation to keep your drinking water safe from contamination.</p>
-                        </div>
-                    </div>
-
-                    <div class="pipe-item right">
-                        <div class="pipe-joint"></div>
-                        <div class="pipe-connector"></div>
-                        <div class="service-card-modern">
-                            <div class="card-icon-wrap"><i data-lucide="waves" class="service-icon"></i></div>
-                            <h3>Drain & Sewer Cleaning</h3>
-                            <p>Professional augering and cleaning to clear the toughest blockages.</p>
-                        </div>
-                    </div>
+                    <a href="contact.html?trade=plumbing&service=Drain & Sewer Cleaning" class="trade-card">
+                        <div class="card-icon-wrap"><i data-lucide="waves" class="service-icon"></i></div>
+                        <h3>Drain & Sewer Cleaning</h3>
+                        <p>Professional augering and cleaning to clear the toughest blockages.</p>
+                        <span class="card-action-link">Request Info <i data-lucide="arrow-right" class="icon-sm"></i></span>
+                    </a>
 
                 </div>
             </div>
@@ -199,7 +177,7 @@
                 <p class="footer-tagline">Service you can trust since 1963.</p>
                 <div class="footer-badges">
                     <a href="https://www.bbb.org/ca/mb/sunnyside/profile/plumber/ss-plumbing-heating-co-ltd-0057-12222#sealclick" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/Accredited_Business_Seal_Rating_RGB.svg.svg" alt="BBB A+ Rated Accredited Business" class="footer-badge bbb-badge"></a>
-                    <img src="assets/Safety Certification/cor_badge.webp" alt="COR Certified CSAM" class="footer-badge cor-badge">
+                    <a href="https://www.constructionsafety.mb.ca/" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/cor_badge.webp" alt="COR Certified CSAM" class="footer-badge cor-badge"></a>
                 </div>
             </div>
             
@@ -219,7 +197,7 @@
                     <li><a href="index.html#services">Trades</a></li>
                     <li><a href="service-area.html">Service Area</a></li>
                     <li><a href="our-work.html">Our Work</a></li>
-                    <li><a href="certifications.html">Certifications</a></li>
+                    <li><a href="index.html#certifications">Certifications</a></li>
                     <li><a href="careers.html">Careers</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
@@ -227,8 +205,8 @@
 
             <div class="footer-contact">
                 <h4>Contact Us</h4>
-                <p class="location-text"><i data-lucide="map-pin" class="location-dot"></i> Winnipeg, Manitoba</p>
-                <p>Phone: <a href="tel:2042220723">204.222.0723</a></p>
+                <p class="location-text"><a href="https://www.google.com/maps/search/?api=1&query=2318+Springfield+Road+Sunnyside+MB+R5R+0E8" target="_blank" rel="noopener noreferrer" class="footer-location-link"><i data-lucide="map-pin" class="location-dot"></i> 2318 Springfield Road, Sunnyside, MB</a></p>
+                <p>Phone: <a href="tel:2042220723" class="footer-phone-link">204.222.0723</a></p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/profile.php?id=100054262460305" target="_blank" aria-label="Facebook">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -245,6 +223,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=7"></script>
 </body>
 </html>

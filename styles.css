@@ -89,6 +89,16 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
 }
 
+.section-subtitle {
+    font-size: 1.15rem;
+    color: var(--heating-orange);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.45em;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
 .section-desc {
     font-size: 1.25rem;
     color: var(--gray);
@@ -484,7 +494,7 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 85vh;
     display: flex;
     align-items: center;
-    padding-top: 2rem;
+    padding-top: 5rem;
     padding-bottom: 2rem;
     position: relative;
 }
@@ -542,6 +552,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1;
     position: relative;
     white-space: nowrap;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 102, 0, 0.2);
 }
 
 
@@ -566,7 +577,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .retail-text {
-    color: #38bdf8; /* Lighter blue */
+    color: var(--plumbing-blue);
     font-weight: 700;
 }
 
@@ -586,8 +597,20 @@ h1, h2, h3, h4, h5, h6 {
 .hero-subtitle {
     font-size: 1.25rem;
     color: var(--gray);
+    margin-bottom: 1rem;
+    max-width: 580px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.hero-specialties {
+    font-size: 1.55rem;
+    color: var(--white);
     margin-bottom: 2.5rem;
-    max-width: 500px;
+    max-width: 580px;
+    line-height: 1.6;
+    text-align: left;
+    font-weight: 500;
 }
 
 .hero-actions {
@@ -682,6 +705,9 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.45));
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
 }
 
 /* Glass fill & futuristic grid overlay */
@@ -718,17 +744,116 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Color coordination for interactive map borders, lakes, grid, and cities */
-.compact-dashboard.mode-plumbing ~ .map-visual-container { color: var(--plumbing-blue); }
-.compact-dashboard.mode-heating ~ .map-visual-container { color: var(--heating-orange); }
-.compact-dashboard.mode-electrical ~ .map-visual-container { color: var(--electrical-yellow); }
+.map-visual-container.mode-plumbing { color: var(--plumbing-blue); }
+.map-visual-container.mode-heating { color: var(--heating-orange); }
+.map-visual-container.mode-electrical { color: var(--electrical-yellow); }
 
-.compact-dashboard.mode-plumbing ~ .map-visual-container .map-border-stroke { filter: drop-shadow(0 0 8px rgba(0, 136, 255, 0.28)); }
-.compact-dashboard.mode-heating ~ .map-visual-container .map-border-stroke { filter: drop-shadow(0 0 8px rgba(255, 68, 0, 0.28)); }
-.compact-dashboard.mode-electrical ~ .map-visual-container .map-border-stroke { filter: drop-shadow(0 0 8px rgba(255, 192, 0, 0.28)); }
+.map-visual-container.mode-plumbing .map-border-stroke { stroke: #ffffff !important; filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.3)); }
+.map-visual-container.mode-heating .map-border-stroke { stroke: #ffffff !important; filter: drop-shadow(0 0 6px rgba(255, 90, 31, 0.3)); }
+.map-visual-container.mode-electrical .map-border-stroke { stroke: #ffffff !important; filter: drop-shadow(0 0 6px rgba(255, 192, 0, 0.3)); }
 
-.compact-dashboard.mode-plumbing ~ .map-visual-container .city-dot { fill: var(--plumbing-blue); filter: drop-shadow(0 0 4px var(--plumbing-blue)); opacity: 0.85; }
-.compact-dashboard.mode-heating ~ .map-visual-container .city-dot { fill: var(--heating-orange); filter: drop-shadow(0 0 4px var(--heating-orange)); opacity: 0.85; }
-.compact-dashboard.mode-electrical ~ .map-visual-container .city-dot { fill: var(--electrical-yellow); filter: drop-shadow(0 0 4px var(--electrical-yellow)); opacity: 0.85; }
+.map-visual-container.mode-plumbing .city-dot { fill: var(--plumbing-blue); filter: drop-shadow(0 0 4px var(--plumbing-blue)); opacity: 0.85; }
+.map-visual-container.mode-heating .city-dot { fill: var(--heating-orange); filter: drop-shadow(0 0 4px var(--heating-orange)); opacity: 0.85; }
+.map-visual-container.mode-electrical .city-dot { fill: var(--electrical-yellow); filter: drop-shadow(0 0 4px var(--electrical-yellow)); opacity: 0.85; }
+
+/* HUD Icon Tags surrounding the Manitoba outline */
+.hud-icon-tag {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.4);
+    cursor: pointer;
+    z-index: 5;
+}
+
+.hud-icon-tag.active {
+    opacity: 0.9;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+.hud-icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(11, 25, 44, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+.hud-icon-circle i {
+    width: 32px;
+    height: 32px;
+    transition: all 0.5s ease;
+}
+
+/* Plumbing tag styles (overlays top-left Northwest corner point 24.0, 10.0) */
+.hud-plumbing {
+    top: 3.125%;
+    left: 3.92%;
+}
+.hud-plumbing .hud-icon-circle {
+    border-color: rgba(0, 229, 255, 0.2);
+    color: var(--plumbing-blue);
+}
+.hud-plumbing.active .hud-icon-circle {
+    border-color: var(--plumbing-blue);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.55);
+    background: rgba(0, 136, 255, 0.1);
+}
+
+/* Heating tag styles (overlays Southeast jutout point 117.1, 44.4) */
+.hud-heating {
+    top: 30%;
+    left: 95.2%;
+}
+.hud-heating .hud-icon-circle {
+    border-color: rgba(255, 90, 31, 0.2);
+}
+.hud-heating .icon-bg-snow {
+    stroke: #00e5ff;
+    width: 26px;
+    height: 26px;
+    transform: translate(12px, -8px);
+}
+.hud-heating .icon-fg-flame {
+    stroke: var(--heating-orange);
+    fill: var(--heating-orange);
+    width: 26px;
+    height: 26px;
+    transform: translate(-6px, 6px);
+}
+.hud-heating.active .hud-icon-circle {
+    border-color: var(--heating-orange);
+    box-shadow: 0 0 20px rgba(255, 90, 31, 0.55);
+    background: rgba(255, 90, 31, 0.1);
+}
+
+/* Electrical tag styles (overlays bottom-left Southwest corner point 24.0, 130.0) */
+.hud-electrical {
+    top: 96.875%;
+    left: 3.92%;
+}
+.hud-electrical .hud-icon-circle {
+    border-color: rgba(255, 192, 0, 0.2);
+    color: var(--electrical-yellow);
+}
+.hud-electrical.active .hud-icon-circle {
+    border-color: var(--electrical-yellow);
+    box-shadow: 0 0 20px rgba(255, 192, 0, 0.55);
+    background: rgba(255, 192, 0, 0.1);
+}
 
 .city-dot.city-dot-minor {
     opacity: 0.35;
@@ -1066,6 +1191,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     transition: var(--transition);
     z-index: 1;
+    scroll-margin-top: 130px;
 }
 
 /* Allow physics elements to physically spiral and erupt outside the card structure */
@@ -1293,12 +1419,13 @@ h1, h2, h3, h4, h5, h6 {
     mix-blend-mode: screen; /* keys out the black background, leaving white ice crystals */
     -webkit-mask-image: radial-gradient(circle, transparent 15%, rgba(0, 0, 0, 0.4) 45%, black 85%);
     mask-image: radial-gradient(circle, transparent 15%, rgba(0, 0, 0, 0.4) 45%, black 85%);
-    transition: opacity 0.8s ease;
+    transition: opacity 3.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Thaw slow when off hover */
     border-radius: inherit;
 }
 
 .service-card.heating.climate-cold:hover .frost-video {
     opacity: 0.95; 
+    transition: opacity 0.5s ease-in; /* Freeze fast on hover */
 }
 
 /* Set off card content visually from the white crystals */
@@ -1320,7 +1447,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
     border-radius: inherit;
     overflow: hidden;
-    transition: opacity 0.3s ease;
+    transition: opacity 3.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Thaw slow when off hover */
 }
 
 .service-card.heating.climate-cold .frost-cracks-svg path {
@@ -1332,16 +1459,20 @@ h1, h2, h3, h4, h5, h6 {
     stroke-linejoin: round;
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
-    transition: stroke-dashoffset 8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: stroke-dashoffset 4.5s ease-out; /* Thaw slow when off hover */
 }
 
 .service-card.heating.climate-cold:hover .frost-cracks-svg {
     opacity: 0.25; /* lowered to let the video dominate */
+    transition: opacity 0.3s ease-in; /* Freeze fast on hover */
 }
 
 .service-card.heating.climate-cold:hover .frost-cracks-svg path {
     stroke-dashoffset: 0;
+    transition: stroke-dashoffset 8s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
+
 /* Graphic API: Above Freezing -> Crystal Frost! */
 .service-card.heating.climate-cold:hover .icon-bg-snow {
     filter: drop-shadow(0 0 15px rgba(0, 200, 255, 1)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.8));
@@ -1474,8 +1605,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 
-.feature-list i {
-    color: var(--plumbing-blue);
+.feature-list i,
+.feature-list svg {
+    color: #10b981;
+    stroke: #10b981;
+    filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.7));
 }
 
 /* =========================================
@@ -1488,10 +1622,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .certifications-container {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 4rem;
-    align-items: center;
+    position: relative;
+    min-height: 480px;
     text-align: left;
 }
 
@@ -1499,6 +1631,14 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
+    max-width: 720px;
+}
+
+.cert-title-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
 }
 
@@ -1528,25 +1668,23 @@ h1, h2, h3, h4, h5, h6 {
     display: none !important;
 }
 
-.certifications-graphic {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
 .large-safety-shield {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
     height: auto;
     filter: drop-shadow(0 15px 35px rgba(0,0,0,0.75));
     animation: shieldFloat 6s ease-in-out infinite;
+    z-index: 2;
 }
 
 @keyframes shieldFloat {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0); }
+    0% { transform: translateY(-50%) translateY(0); }
+    50% { transform: translateY(-50%) translateY(-10px); }
+    100% { transform: translateY(-50%) translateY(0); }
 }
 
 .cert-badge,
@@ -1580,9 +1718,9 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 68, 0, 0.1);
-    border: 1.5px solid var(--heating-orange);
-    color: var(--white);
+    background: rgba(234, 179, 8, 0.1);
+    border: 1.5px solid #eab308;
+    color: #fef08a;
     padding: 0.75rem 2rem;
     border-radius: 50px;
     font-size: 0.85rem;
@@ -1590,15 +1728,16 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     margin: 1.5rem 0 0 0;
     transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(255, 68, 0, 0.2);
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     max-width: fit-content;
 }
 
 .cert-badge-more-btn:hover {
-    background: var(--heating-orange);
-    box-shadow: 0 0 25px rgba(255, 68, 0, 0.5);
+    background: #eab308;
+    color: #0c0a09;
+    box-shadow: 0 0 25px rgba(234, 179, 8, 0.5);
     transform: translateY(-2px);
 }
 
@@ -1724,10 +1863,79 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* =========================================
+   Navigation Dropdown Menu
+   ========================================= */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.dropdown-icon {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+    color: inherit;
+}
+
+.nav-dropdown:hover .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transform: translateY(10px);
+    background: rgba(3, 6, 14, 0.92);
+    border: none;
+    border-left: 2px solid var(--heating-orange); /* sleek vertical orange indicator line instead of yellow */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 0 8px 8px 0;
+    padding: 0.3rem 0; /* tighter padding */
+    min-width: 220px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.45rem 1.25rem; /* tighter padding */
+    color: var(--silver);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    text-transform: none;
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    color: var(--white);
+    background: transparent; /* removed background box highlight */
+    padding-left: 1.45rem; /* adjusted hover transition shift */
+}
+
+/* =========================================
    Internal Pages (General)
    ========================================= */
 .page-hero {
-    padding: 12rem 0 6rem;
+    padding: 14rem 0 6rem;
     text-align: center;
     position: relative;
     z-index: 10;
@@ -1834,7 +2042,7 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: 50%;
     height: 60px;
-    width: 15%;
+    width: 10%; /* adjusted from 15% to stop elbows from protruding into cards */
     z-index: 1;
     transition: var(--transition);
     filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
@@ -1876,6 +2084,15 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: flex-end;
 }
 
+.pipe-item.right .service-card-modern {
+    text-align: right;
+}
+
+.pipe-item.right .service-card-modern .card-icon-wrap {
+    margin-left: auto;
+    margin-right: 0;
+}
+
 .service-card-modern .card-icon-wrap {
     width: 50px;
     height: 50px;
@@ -1908,7 +2125,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hover Effects */
 .pipe-item:hover .service-card-modern {
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--navy-blue); /* fully opaque on hover */
     border-color: rgba(0, 136, 255, 0.3);
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 136, 255, 0.15);
@@ -1946,6 +2163,13 @@ h1, h2, h3, h4, h5, h6 {
     }
     .service-card-modern {
         width: calc(100% - 80px);
+    }
+    .pipe-item.right .service-card-modern {
+        text-align: left;
+    }
+    .pipe-item.right .service-card-modern .card-icon-wrap {
+        margin-left: 0;
+        margin-right: auto;
     }
     .pipe-item.left .pipe-connector,
     .pipe-item.right .pipe-connector {
@@ -2498,7 +2722,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cor-badge {
-    height: 42px;
+    height: 32px;
 }
 
 
@@ -2531,10 +2755,38 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.5rem;
 }
 
+.footer-location-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray);
+    transition: all 0.3s ease;
+}
+
+.footer-location-link:hover {
+    color: var(--heating-orange) !important;
+    text-shadow: 0 0 10px rgba(255, 68, 0, 0.6);
+}
+
+.footer-location-link:hover .location-dot {
+    filter: drop-shadow(0 0 5px rgba(255, 68, 0, 0.8));
+}
+
+.footer-phone-link {
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.footer-phone-link:hover {
+    color: var(--plumbing-blue) !important;
+    text-shadow: 0 0 10px rgba(0, 136, 255, 0.6);
+}
+
 .location-dot {
     color: var(--heating-orange);
     width: 20px;
     height: 20px;
+    flex-shrink: 0;
 }
 
 .social-links {
@@ -2600,7 +2852,13 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .hero-subtitle {
+        margin: 0 auto 1rem;
+        text-align: center;
+    }
+    
+    .hero-specialties {
         margin: 0 auto 2.5rem;
+        text-align: center;
     }
     
     .hero-actions {
@@ -2978,6 +3236,47 @@ h1, h2, h3, h4, h5, h6 {
     transform: translate(-50%, -50%) scale(1.05);
 }
 
+@media (max-width: 1350px) {
+    .certifications-container {
+        position: relative;
+        min-height: auto;
+    }
+    
+    .certifications-content {
+        max-width: 100%;
+        align-items: center;
+    }
+    
+    .cert-title-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    
+    .cert-title {
+        font-size: 2.2rem;
+        margin: 0;
+        width: auto;
+        text-align: center;
+        line-height: 1.2;
+    }
+    
+    .large-safety-shield {
+        position: static;
+        display: block;
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        transform: none !important;
+        animation: none !important;
+        filter: none !important;
+    }
+}
+
 /* Certifications, Section Padding & Footer Responsiveness */
 @media (max-width: 768px) {
     /* Decrease section paddings on mobile */
@@ -2998,28 +3297,13 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .certifications-container {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
+        display: block;
+        min-height: auto;
         text-align: center;
     }
     
     .certifications-content {
         align-items: center;
-    }
-    
-    .cert-title {
-        text-align: center;
-        font-size: 1.8rem;
-        margin: 0 auto 2rem;
-    }
-    
-    .certifications-graphic {
-        order: 2;
-    }
-    
-    .large-safety-shield {
-        max-width: 180px;
-        margin: 1rem auto 0;
     }
 
     .cert-title-row {
@@ -3033,7 +3317,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .cert-title {
-        order: initial;
         font-size: 1.8rem;
         margin: 0;
         width: auto;
@@ -3042,21 +3325,15 @@ h1, h2, h3, h4, h5, h6 {
         line-height: 1.2;
     }
 
-    .cert-mobile-shield {
+    .large-safety-shield {
+        position: static;
         display: block;
         width: 32px;
         height: 32px;
         flex-shrink: 0;
-    }
-
-    .mobile-safety-shield-svg {
-        width: 100%;
-        height: 100%;
-        display: block;
-    }
-
-    .certifications-graphic {
-        display: none !important;
+        transform: none !important;
+        animation: none !important;
+        filter: none !important;
     }
 
     .cert-badges-primary {
@@ -3089,7 +3366,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .cert-badge-more-btn {
-        order: initial;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -3113,6 +3389,52 @@ h1, h2, h3, h4, h5, h6 {
         color: #0c0a09;
         box-shadow: 0 0 25px rgba(234, 179, 8, 0.5);
         transform: translateY(-2px);
+    }
+
+    /* Mobile Dropdown styles */
+    .nav-dropdown-menu {
+        display: none;
+        position: static;
+        transform: none;
+        opacity: 0;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.02);
+        border: none;
+        border-left: 2px solid var(--heating-orange); /* matches desktop orange indicator line */
+        box-shadow: none;
+        padding: 0.3rem 0;
+        margin-top: 0.5rem;
+        margin-left: 0.75rem;
+        min-width: auto;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-dropdown.active .nav-dropdown-menu {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    .dropdown-item {
+        padding: 0.45rem 1rem;
+        font-size: 1rem;
+        text-align: left;
+        color: var(--silver);
+    }
+    
+    .dropdown-item:hover {
+        padding-left: 1.25rem;
+        background: transparent;
+        color: var(--white);
+    }
+    
+    .dropdown-icon {
+        display: inline-block; /* show chevron on mobile */
+        transition: transform 0.3s ease;
+    }
+
+    .nav-dropdown.active .dropdown-icon {
+        transform: rotate(180deg);
     }
     
     .footer-container {
@@ -3315,4 +3637,259 @@ h1, h2, h3, h4, h5, h6 {
 }
 .payment-modal-body strong {
     color: var(--white);
+}
+
+/* Contact Map Graphic Styles */
+.map-link-container {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.contact-map-graphic {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.3s ease;
+    filter: brightness(0.9);
+}
+
+.map-overlay-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(10, 20, 45, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.map-link-container:hover {
+    border-color: #eab308;
+    box-shadow: 0 5px 15px rgba(234, 179, 8, 0.15);
+}
+
+.map-link-container:hover .contact-map-graphic {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.map-link-container:hover .map-overlay-btn {
+    background: #eab308;
+    color: #0c0a09;
+    border-color: #eab308;
+}
+
+/* =========================================
+   Simplified Trades Sections
+   ========================================= */
+.trades-section {
+    padding: 6rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.trades-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+}
+
+.trade-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2.25rem 2rem 4.5rem; /* extra bottom padding for action link spacing */
+    transition: var(--transition);
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.card-action-link {
+    position: absolute;
+    bottom: 1.75rem;
+    right: 2rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.plumbing-theme .card-action-link { color: var(--plumbing-blue); }
+.heating-theme .card-action-link { color: var(--heating-orange); }
+.electrical-theme .card-action-link { color: var(--electrical-yellow); }
+
+.trade-card:hover .card-action-link {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Opaque on hover + float up */
+.trade-card:hover {
+    background: var(--navy-blue) !important; /* fully opaque */
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+/* Specifically for plumbing theme color shadows/borders */
+.plumbing-theme .trade-card:hover {
+    border-color: rgba(0, 136, 255, 0.35);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 136, 255, 0.15);
+}
+
+/* Heating theme */
+.heating-theme .trade-card:hover {
+    border-color: rgba(255, 68, 0, 0.35);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 68, 0, 0.15);
+}
+
+/* Electrical theme */
+.electrical-theme .trade-card:hover {
+    border-color: rgba(255, 192, 0, 0.35);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 192, 0, 0.15);
+}
+
+.trade-card .card-icon-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+}
+
+.plumbing-theme .trade-card .card-icon-wrap { background: rgba(0, 136, 255, 0.1); }
+.heating-theme .trade-card .card-icon-wrap { background: rgba(255, 68, 0, 0.1); }
+.electrical-theme .trade-card .card-icon-wrap { background: rgba(255, 192, 0, 0.1); }
+
+.plumbing-theme .trade-card:hover .card-icon-wrap { background: var(--plumbing-blue); box-shadow: 0 0 15px rgba(0, 136, 255, 0.4); }
+.heating-theme .trade-card:hover .card-icon-wrap { background: var(--heating-orange); box-shadow: 0 0 15px rgba(255, 68, 0, 0.4); }
+.electrical-theme .trade-card:hover .card-icon-wrap { background: var(--electrical-yellow); box-shadow: 0 0 15px rgba(255, 192, 0, 0.4); }
+
+.trade-card .service-icon {
+    width: 24px;
+    height: 24px;
+    transition: var(--transition);
+}
+
+.plumbing-theme .trade-card .service-icon { color: var(--plumbing-blue); }
+.heating-theme .trade-card .service-icon { color: var(--heating-orange); }
+.electrical-theme .trade-card .service-icon { color: var(--electrical-yellow); }
+
+.trade-card:hover .service-icon {
+    color: var(--white) !important;
+}
+
+.trade-card h3 {
+    color: var(--white);
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.trade-card p {
+    color: var(--gray);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Page heading respective colors */
+.color-plumbing { color: var(--plumbing-blue); }
+.color-heating { color: var(--heating-orange); }
+.color-electrical { color: var(--electrical-yellow); }
+
+@media (max-width: 1024px) {
+    .trades-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .trades-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .trades-section {
+        padding: 4rem 0;
+    }
+}
+
+/* =========================================
+   Individual Card Heating & Cooling Themes
+   ========================================= */
+.card-heating-theme:hover {
+    border-color: rgba(255, 68, 0, 0.35) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 68, 0, 0.15) !important;
+}
+.card-heating-theme .card-icon-wrap {
+    background: rgba(255, 68, 0, 0.1) !important;
+}
+.card-heating-theme:hover .card-icon-wrap {
+    background: var(--heating-orange) !important;
+    box-shadow: 0 0 15px rgba(255, 68, 0, 0.4) !important;
+}
+.card-heating-theme .service-icon {
+    color: var(--heating-orange) !important;
+}
+.card-heating-theme .card-action-link {
+    color: var(--heating-orange) !important;
+}
+.card-heating-theme:hover .service-icon {
+    color: var(--white) !important;
+}
+
+.card-cooling-theme:hover {
+    border-color: rgba(0, 229, 255, 0.35) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.15) !important;
+}
+.card-cooling-theme .card-icon-wrap {
+    background: rgba(0, 229, 255, 0.1) !important;
+}
+.card-cooling-theme:hover .card-icon-wrap {
+    background: #00e5ff !important;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.4) !important;
+}
+.card-cooling-theme .service-icon {
+    color: #00e5ff !important;
+}
+.card-cooling-theme .card-action-link {
+    color: #00e5ff !important;
+}
+.card-cooling-theme:hover .service-icon {
+    color: var(--white) !important;
 }

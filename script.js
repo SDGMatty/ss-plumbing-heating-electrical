@@ -27,9 +27,20 @@ mobileToggle.addEventListener('click', () => {
     lucide.createIcons();
 });
 
-// Close mobile menu when a nav link is clicked
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
+// Mobile dropdown toggling and menu closing logic
+document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+    link.addEventListener('click', (e) => {
+        // If on mobile (<= 768px) and clicking the dropdown toggle, toggle dropdown expansion instead of closing menu/navigating
+        if (link.classList.contains('dropdown-toggle') && window.innerWidth <= 768) {
+            e.preventDefault();
+            const parent = link.closest('.nav-dropdown');
+            if (parent) {
+                parent.classList.toggle('active');
+            }
+            return;
+        }
+        
+        // Otherwise, close the mobile menu on selection
         navbar.classList.remove('mobile-menu-active');
         mobileToggle.innerHTML = '<i data-lucide="menu"></i>';
         document.body.style.overflow = '';
@@ -149,7 +160,7 @@ if (canvas) {
             } else if (pathKeys[key].type === 'stroke') {
                 oCtx.lineCap = 'round';
                 oCtx.lineJoin = 'round';
-                oCtx.lineWidth = 1.5;
+                oCtx.lineWidth = 12.0;
                 oCtx.strokeStyle = 'rgba(255, 0, 0, 1)';
                 oCtx.stroke(pathKeys[key].path);
             }
@@ -413,246 +424,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initWeatherWidget();
 
-    function initDashboard() {
-        const dashboard = document.querySelector('.compact-dashboard');
-        const selectors = document.querySelectorAll('.selector-btn');
-        const canvas = document.getElementById('telemetry-wave');
-        if (!dashboard || !selectors || !canvas) return;
+    function initMapCycling() {
+        const mapContainer = document.querySelector('.map-visual-container');
+        const hudTags = document.querySelectorAll('.hud-icon-tag');
+        if (!mapContainer) return;
 
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = canvas.offsetWidth;
-        let height = canvas.height = canvas.offsetHeight;
+        const modes = ['plumbing', 'heating', 'electrical'];
+        let currentIndex = 0;
+        let cycleInterval;
 
-        function resizeCanvas() {
-            width = canvas.width = canvas.offsetWidth;
-            height = canvas.height = canvas.offsetHeight;
-        }
-        
-        window.addEventListener('resize', resizeCanvas);
-        // Force an initial layout sync
-        setTimeout(resizeCanvas, 100);
+        function setMode(mode) {
+            modes.forEach(m => {
+                mapContainer.classList.remove(`mode-${m}`);
+            });
+            mapContainer.classList.add(`mode-${mode}`);
 
-        // Current telemetry mode
-        let currentMode = 'plumbing';
-
-        const profiles = {
-            plumbing: {
-                amplitude: 20,
-                frequency: 0.015,
-                speed: 0.05,
-                color1: '#0088ff',
-                noise: 0.05,
-                type: 'sine',
-                metrics: [
-                    { label: 'FLOW RATE', val: 4.8, unit: ' GPM', variance: 0.3 },
-                    { label: 'SYSTEM PRESSURE', val: 55.0, unit: ' PSI', variance: 1.5 }
-                ]
-            },
-            heating: {
-                amplitude: 25,
-                frequency: 0.03,
-                speed: 0.08,
-                color1: '#ff4400',
-                noise: 0.25,
-                type: 'thermal',
-                metrics: [
-                    { label: 'BTU OUTPUT', val: 42500, unit: ' BTU/h', variance: 400 },
-                    { label: 'ZONE TEMPERATURE', val: 21.4, unit: ' °C', variance: 0.2 }
-                ]
-            },
-            electrical: {
-                amplitude: 30,
-                frequency: 0.04,
-                speed: 0.12,
-                color1: '#ffc000',
-                noise: 0.4,
-                type: 'pulse',
-                metrics: [
-                    { label: 'GRID LOAD', val: 12.8, unit: ' kW', variance: 0.6 },
-                    { label: 'VOLTAGE', val: 240.2, unit: ' V', variance: 0.8 }
-                ]
-            }
-        };
-
-        // Smoothly interpolated values
-        let currentAmp = profiles.plumbing.amplitude;
-        let currentFreq = profiles.plumbing.frequency;
-        let currentSpeed = profiles.plumbing.speed;
-        let currentNoise = profiles.plumbing.noise;
-        let color1 = profiles.plumbing.color1;
-
-        let time = 0;
-
-        // Fluctuating values representation
-        let metricsState = [
-            { val: 4.8 },
-            { val: 55.0 }
-        ];
-
-        function hexToRgb(hex) {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : null;
-        }
-
-        // Interpolate colors
-        function interpolateColor(colorA, colorB, factor) {
-            const rgbA = hexToRgb(colorA);
-            const rgbB = hexToRgb(colorB);
-            if (!rgbA || !rgbB) return colorA;
-
-            const r = Math.round(rgbA.r + (rgbB.r - rgbA.r) * factor);
-            const g = Math.round(rgbA.g + (rgbB.g - rgbA.g) * factor);
-            const b = Math.round(rgbA.b + (rgbB.b - rgbA.b) * factor);
-            return `rgb(${r}, ${g}, ${b})`;
-        }
-
-        function drawWave() {
-            ctx.clearRect(0, 0, width, height);
-
-            time += currentSpeed;
-
-            // Interpolate toward target profile values
-            const target = profiles[currentMode];
-            currentAmp += (target.amplitude - currentAmp) * 0.1;
-            currentFreq += (target.frequency - currentFreq) * 0.1;
-            currentSpeed += (target.speed - currentSpeed) * 0.1;
-            currentNoise += (target.noise - currentNoise) * 0.1;
-            color1 = interpolateColor(color1, target.color1, 0.1);
-            
-            // Draw gradient background wave fill
-            const grad = ctx.createLinearGradient(0, 0, 0, height);
-            grad.addColorStop(0, color1);
-            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
-            ctx.beginPath();
-            ctx.moveTo(0, height);
-
-            for (let x = 0; x <= width; x += 2) {
-                let y = height / 2;
-
-                if (target.type === 'sine') {
-                    y += Math.sin(x * currentFreq + time) * currentAmp;
-                    y += Math.cos(x * (currentFreq * 0.5) - time * 0.5) * (currentAmp * 0.3);
-                } else if (target.type === 'thermal') {
-                    y += Math.sin(x * currentFreq + time) * currentAmp;
-                    y += Math.sin(x * (currentFreq * 2) - time * 1.5) * (currentAmp * 0.25);
-                    y += (Math.random() - 0.5) * currentAmp * currentNoise;
-                } else if (target.type === 'pulse') {
-                    let base = Math.sin(x * currentFreq + time);
-                    let pulse = Math.sign(base) * Math.pow(Math.abs(base), 0.25);
-                    y += pulse * currentAmp;
-                    if (Math.sin(x * 0.1 + time * 3) > 0.8) {
-                        y += (Math.random() - 0.5) * currentAmp * currentNoise * 2.5;
-                    }
-                }
-
-                ctx.lineTo(x, y);
-            }
-
-            ctx.lineTo(width, height);
-            ctx.closePath();
-
-            ctx.fillStyle = grad;
-            ctx.globalAlpha = 0.12;
-            ctx.fill();
-
-            // Draw line on top
-            ctx.beginPath();
-            for (let x = 0; x <= width; x += 2) {
-                let y = height / 2;
-
-                if (target.type === 'sine') {
-                    y += Math.sin(x * currentFreq + time) * currentAmp;
-                    y += Math.cos(x * (currentFreq * 0.5) - time * 0.5) * (currentAmp * 0.3);
-                } else if (target.type === 'thermal') {
-                    y += Math.sin(x * currentFreq + time) * currentAmp;
-                    y += Math.sin(x * (currentFreq * 2) - time * 1.5) * (currentAmp * 0.25);
-                    y += (Math.random() - 0.5) * currentAmp * currentNoise;
-                } else if (target.type === 'pulse') {
-                    let base = Math.sin(x * currentFreq + time);
-                    let pulse = Math.sign(base) * Math.pow(Math.abs(base), 0.25);
-                    y += pulse * currentAmp;
-                    if (Math.sin(x * 0.1 + time * 3) > 0.8) {
-                        y += (Math.random() - 0.5) * currentAmp * currentNoise * 2.5;
-                    }
-                }
-
-                if (x === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-
-            ctx.strokeStyle = color1;
-            ctx.lineWidth = 2.5;
-            ctx.globalAlpha = 0.85;
-            ctx.stroke();
-
-            requestAnimationFrame(drawWave);
-        }
-
-        // Fluctuate metrics data
-        function updateMetrics() {
-            const target = profiles[currentMode];
-            target.metrics.forEach((m, idx) => {
-                const labelEl = document.getElementById(`metric-label-${idx + 1}`);
-                const valueEl = document.getElementById(`metric-value-${idx + 1}`);
-
-                if (labelEl && valueEl) {
-                    labelEl.textContent = m.label;
-                    
-                    const change = (Math.random() - 0.5) * m.variance;
-                    metricsState[idx].val += change;
-                    
-                    const minBound = m.val - m.variance * 5;
-                    const maxBound = m.val + m.variance * 5;
-                    metricsState[idx].val = Math.max(minBound, Math.min(maxBound, metricsState[idx].val));
-
-                    let formattedVal = metricsState[idx].val;
-                    if (m.val % 1 !== 0) {
-                        formattedVal = formattedVal.toFixed(1);
-                    } else {
-                        formattedVal = Math.round(formattedVal);
-                    }
-
-                    valueEl.textContent = `${formattedVal}${m.unit}`;
+            hudTags.forEach(tag => {
+                if (tag.getAttribute('data-trade') === mode) {
+                    tag.classList.add('active');
+                } else {
+                    tag.classList.remove('active');
                 }
             });
         }
 
-        const initialTarget = profiles[currentMode];
-        metricsState[0].val = initialTarget.metrics[0].val;
-        metricsState[1].val = initialTarget.metrics[1].val;
-        updateMetrics();
+        function startInterval() {
+            cycleInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % modes.length;
+                setMode(modes[currentIndex]);
+            }, 3500);
+        }
 
-        // Interval to fluctuate stats slightly
-        setInterval(updateMetrics, 800);
+        startInterval();
 
-        selectors.forEach(btn => {
-            const handleModeChange = () => {
-                const trade = btn.getAttribute('data-trade');
-                if (trade === currentMode) return;
-
-                selectors.forEach(s => s.classList.remove('active'));
-                btn.classList.add('active');
-
-                dashboard.className = `compact-dashboard mode-${trade}`;
-                currentMode = trade;
-
-                metricsState[0].val = profiles[trade].metrics[0].val;
-                metricsState[1].val = profiles[trade].metrics[1].val;
-                updateMetrics();
-            };
-
-            btn.addEventListener('click', handleModeChange);
-            btn.addEventListener('mouseenter', handleModeChange);
+        hudTags.forEach((tag, index) => {
+            tag.style.pointerEvents = 'auto';
+            tag.style.cursor = 'pointer';
+            tag.addEventListener('click', () => {
+                clearInterval(cycleInterval);
+                currentIndex = index;
+                setMode(modes[currentIndex]);
+                startInterval();
+            });
+            tag.addEventListener('mouseenter', () => {
+                clearInterval(cycleInterval);
+                currentIndex = index;
+                setMode(modes[currentIndex]);
+            });
+            tag.addEventListener('mouseleave', () => {
+                clearInterval(cycleInterval);
+                startInterval();
+            });
         });
 
-        drawWave();
+        setMode(modes[currentIndex]);
     }
-    initDashboard();
+    initMapCycling();
 
     // --- CERTIFICATIONS MODAL LOGIC ---
     const openCertModal = document.getElementById('open-cert-modal');
@@ -696,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3 class="payment-modal-title">Online Payment</h3>
                 <div class="payment-modal-body">
                     <p style="margin-bottom: 1.25rem; font-weight: 600; color: #fef08a;">Online payment coming soon!</p>
-                    <p>Please call us at <strong><a href="tel:2042220723" style="color: var(--white); text-decoration: none;">204.222.0723</a></strong> or email <strong><a href="mailto:info@ssplumbing.ca" style="color: var(--white); text-decoration: none;">info@ssplumbing.ca</a></strong> with the proper information to complete your payment.</p>
+                    <p>Please call us at <strong><a href="tel:2042220723" style="color: #ff5a1f; text-decoration: none;">204.222.0723</a></strong> or email <strong><a href="contact.html" style="color: #38bdf8; text-decoration: none;">info@ssplumbing.ca</a></strong> with the proper information to complete your payment.</p>
                 </div>
             </div>
         `;
@@ -736,4 +563,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     initPaymentModal();
+
+    // --- CONTACT FORM AJAX SUBMISSION ---
+    const contactForms = document.querySelectorAll('.contact-form');
+    contactForms.forEach((form) => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn ? submitBtn.textContent : 'Submit';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+            }
+            
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    form.innerHTML = `
+                        <div class="form-success-message" style="text-align: center; padding: 3rem 1rem;">
+                            <i data-lucide="check-circle" style="color: #10b981; width: 64px; height: 64px; margin-bottom: 1.5rem; filter: drop-shadow(0 0 10px rgba(16,185,129,0.5));"></i>
+                            <h3 style="color: var(--white); font-size: 1.8rem; margin-bottom: 1rem;">Thank You!</h3>
+                            <p style="color: var(--silver); font-size: 1.1rem; line-height: 1.6;">Your request has been sent successfully. We will get back to you shortly.</p>
+                        </div>
+                    `;
+                    lucide.createIcons();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                alert('Oops! There was a problem submitting your form. Please try again or call us directly at 204.222.0723.');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            }
+        });
+    });
+
+    // --- CONTACT FORM PRE-FILL FROM QUERY PARAMETERS ---
+    const prefillContactForm = () => {
+        if (!window.location.pathname.includes('contact.html')) return;
+        
+        const params = new URLSearchParams(window.location.search);
+        const tradeParam = params.get('trade'); // e.g. 'plumbing', 'heating', 'electrical'
+        const serviceParam = params.get('service'); // e.g. 'Bathroom & Kitchen Renovations'
+        
+        if (tradeParam) {
+            const selectEl = document.getElementById('serviceType');
+            if (selectEl) {
+                selectEl.value = tradeParam;
+            }
+        }
+        
+        if (serviceParam) {
+            const messageEl = document.getElementById('message');
+            if (messageEl) {
+                messageEl.value = `Hello! I would like to request service or get a quote for: "${serviceParam}".\n\n[Please add details here]`;
+            }
+        }
+    };
+    prefillContactForm();
 });

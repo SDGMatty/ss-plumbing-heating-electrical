@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=18">
+    <link rel="stylesheet" href="styles.css?v=40">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -46,9 +46,16 @@
             </a>
             
                         <nav class="nav-links">
-                <a href="about.html" class="nav-link">About Us</a>
+                <a href="#about" class="nav-link">About Us</a>
                 <a href="#services" class="nav-link">Trades</a>
-                <a href="service-area.html" class="nav-link">Service Area</a>
+                <div class="nav-dropdown">
+                    <a href="service-area.html" class="nav-link dropdown-toggle">Service Area <i data-lucide="chevron-down" class="dropdown-icon"></i></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="service-area.html#winnipeg" class="dropdown-item">Winnipeg & Surrounding</a>
+                        <a href="service-area.html#manitoba" class="dropdown-item">Rest of Manitoba</a>
+                        <a href="service-area.html#out-of-province" class="dropdown-item">Out of Province</a>
+                    </div>
+                </div>
                 <a href="our-work.html" class="nav-link">Our Work</a>
                 <a href="contact.html" class="nav-link">Contact Us</a>
             </nav>
@@ -93,7 +100,9 @@
             <div class="container hero-container">
                 <div class="hero-content fade-up">
                     <div class="hero-leader-container">
-                        <img src="assets/Safety Certification/Accredited_Business_Seal_Rating_RGB.svg.svg" alt="BBB A+" class="banner-bbb-logo-outside">
+                        <a href="https://www.bbb.org/ca/mb/sunnyside/profile/plumber/ss-plumbing-heating-co-ltd-0057-12222#sealclick" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/Safety Certification/Accredited_Business_Seal_Rating_RGB.svg.svg" alt="BBB A+" class="banner-bbb-logo-outside">
+                        </a>
                         <div class="badge hero-leader-banner">
                             <span class="desktop-text"><em>YOUR</em> LOCAL LEADER IN <span class="commercial-text">COMMERCIAL</span> & <span class="retail-text">RETAIL</span> SERVICE.</span>
                             <span class="mobile-text"><em>YOUR</em> <span class="commercial-text">COMMERCIAL</span> & <span class="retail-text">RETAIL</span> LEADER.</span>
@@ -101,8 +110,11 @@
                     </div>
                     <h1 class="hero-title">Service.<br>Satisfaction.<br><span class="highlight">Since 1963.</span></h1>
                     <p class="hero-subtitle">
-                        <strong>Winnipeg & Manitoba's</strong> <em>trusted</em> full-service tradesmen.<br><br>
-                        Leaders in commercial projects and residential repairs for plumbing, heating, electrical, and A/C.
+                        <strong>Winnipeg & Manitoba's</strong> <em>trusted</em> full-service tradesmen.
+                    </p>
+                    <p class="hero-specialties">
+                        Leaders in <span style="color: var(--plumbing-blue); font-weight: 700; white-space: nowrap;">PLUMBING</span>, <span style="color: var(--heating-orange); font-weight: 700; white-space: nowrap;">HEATING</span><br>
+                        &amp; <span style="color: #00e5ff; font-weight: 700; white-space: nowrap;">COOLING</span>, and <span style="color: var(--electrical-yellow); font-weight: 700; white-space: nowrap;">ELECTRICAL</span>.
                     </p>
                     <div class="hero-actions">
                         <a href="#services" class="btn btn-primary btn-lg">Explore Services</a>
@@ -110,57 +122,23 @@
                     </div>
                 </div>
                 <div class="hero-visual fade-up delay-1">
-                    <!-- Floating Compact Dashboard -->
-                    <div class="compact-dashboard mode-plumbing">
-                        <!-- Header / Power Info -->
-                        <div class="compact-header">
-                            <div class="compact-beacon">
-                                <span class="pulse-dot"></span>
-                                <span class="compact-status">WPG DISPATCH</span>
+                    <div class="map-visual-container mode-plumbing">                        <!-- HUD Icon Tags (Surrounding the Manitoba outline) -->
+                        <a href="#card-plumbing" class="hud-icon-tag hud-plumbing active" data-trade="plumbing" title="Plumbing">
+                            <div class="hud-icon-circle">
+                                <i data-lucide="droplets"></i>
                             </div>
-                            <span class="compact-power">ONLINE</span>
-                        </div>
-
-                        <!-- Mini Telemetry Screen -->
-                        <div class="compact-screen">
-                            <div class="compact-grid"></div>
-                            <canvas id="telemetry-wave"></canvas>
-                        </div>
-
-                        <!-- Metrics Readouts -->
-                        <div class="compact-readouts">
-                            <div class="compact-metric">
-                                <span class="compact-metric-label" id="metric-label-1">FLOW RATE</span>
-                                <span class="compact-metric-val" id="metric-value-1">4.8 GPM</span>
+                        </a>
+                        <a href="#card-heating" class="hud-icon-tag hud-heating" data-trade="heating" title="Heating & Cooling">
+                            <div class="hud-icon-circle icon-combo">
+                                <i data-lucide="snowflake" class="icon-bg-snow"></i>
+                                <i data-lucide="flame" class="icon-fg-flame"></i>
                             </div>
-                            <div class="compact-metric">
-                                <span class="compact-metric-label" id="metric-label-2">PRESSURE</span>
-                                <span class="compact-metric-val" id="metric-value-2">55 PSI</span>
+                        </a>
+                        <a href="#card-electrical" class="hud-icon-tag hud-electrical" data-trade="electrical" title="Electrical">
+                            <div class="hud-icon-circle">
+                                <i data-lucide="zap"></i>
                             </div>
-                        </div>
-
-                        <!-- Mini Selector Grid -->
-                        <div class="compact-selectors">
-                            <button class="selector-btn active" data-trade="plumbing" title="Plumbing">
-                                <div class="selector-icon-wrap bg-blue">
-                                    <i data-lucide="droplets"></i>
-                                </div>
-                            </button>
-                            <button class="selector-btn" data-trade="heating" title="Heating & Cooling">
-                                <div class="selector-icon-wrap bg-orange icon-combo">
-                                    <i data-lucide="snowflake" class="icon-bg-snow"></i>
-                                    <i data-lucide="flame" class="icon-fg-flame"></i>
-                                </div>
-                            </button>
-                            <button class="selector-btn" data-trade="electrical" title="Electrical">
-                                <div class="selector-icon-wrap bg-yellow">
-                                    <i data-lucide="zap"></i>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="map-visual-container">
+                        </a>
                         <!-- Large stylized Manitoba Map SVG -->
                         <svg class="interactive-manitoba-map" viewBox="20 6 102 128">
                             <defs>
@@ -219,13 +197,14 @@
         <section class="services" id="services">
             <div class="container">
                 <div class="section-header text-center fade-up">
+                    <span class="section-subtitle">we care about your comfort</span>
                     <h2 class="section-title">One Company. <br>All Your Needs.</h2>
                     <p class="section-desc">Reliable, experienced, Winnipeg-rooted tradesmen serving both residential and commercial renovations and repairs.</p>
                 </div>
 
                 <div class="services-grid">
                     <!-- Plumbing Card -->
-                    <a href="plumbing.html" class="service-card plumbing fade-up" style="display: block; text-decoration: none;">
+                    <a href="plumbing.html" id="card-plumbing" class="service-card plumbing fade-up" style="display: block; text-decoration: none;">
                         <div class="card-glow"></div>
                         <div class="card-icon">
                             <i data-lucide="droplets"></i>
@@ -235,7 +214,7 @@
                         <div class="card-link">Learn More <i data-lucide="arrow-right" class="icon-sm"></i></div>
                     </a>
 
-                    <a href="heating-cooling.html" class="service-card heating fade-up delay-1" style="display: block; text-decoration: none;">
+                    <a href="heating-cooling.html" id="card-heating" class="service-card heating fade-up delay-1" style="display: block; text-decoration: none;">
                         <div class="card-glow"></div>
                         <video class="frost-video" loop muted playsinline>
                             <source src="assets/130488_small.mp4" type="video/mp4">
@@ -262,7 +241,7 @@
                     </a>
 
                     <!-- Electrical Card -->
-                    <a href="electrical.html" class="service-card electrical fade-up delay-2" style="display: block; text-decoration: none;">
+                    <a href="electrical.html" id="card-electrical" class="service-card electrical fade-up delay-2" style="display: block; text-decoration: none;">
                         <div class="card-glow"></div>
                         <div class="card-icon">
                             <i data-lucide="zap"></i>
@@ -336,26 +315,30 @@
                 <div class="certifications-content">
                     <div class="cert-title-row">
                         <h3 class="cert-title">Safety & Certifications</h3>
-                        <div class="cert-mobile-shield">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" class="mobile-safety-shield-svg">
-                                <defs>
-                                    <linearGradient id="shield-border-grad-mob" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#e2e8f0" />
-                                        <stop offset="50%" stop-color="#94a3b8" />
-                                        <stop offset="100%" stop-color="#475569" />
-                                    </linearGradient>
-                                    <linearGradient id="shield-body-grad-mob" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#64748b" />
-                                        <stop offset="100%" stop-color="#1e293b" />
-                                    </linearGradient>
-                                </defs>
-                                <path d="M50 90 C 85 75, 88 45, 88 25 L 50 10 L 12 25 C 12 45, 15 75, 50 90 Z" fill="url(#shield-border-grad-mob)" />
-                                <path d="M50 85 C 80 71, 83 44, 83 27 L 50 14 L 17 27 C 17 44, 20 71, 50 85 Z" fill="url(#shield-body-grad-mob)" />
-                                <path d="M50 80 C 75 68, 78 43, 78 29 L 50 17 L 22 29 C 22 43, 25 68, 50 80 Z" fill="none" stroke="#475569" stroke-width="1.5" opacity="0.4" />
-                                <path d="M34 50 L 46 62 L 68 35" stroke="#10b981" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M34 50 L 46 62 L 68 35" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" class="large-safety-shield">
+                            <defs>
+                                <!-- Metallic outer border gradient -->
+                                <linearGradient id="shield-border-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#e2e8f0" />
+                                    <stop offset="50%" stop-color="#94a3b8" />
+                                    <stop offset="100%" stop-color="#475569" />
+                                </linearGradient>
+                                <!-- Metallic inner body gradient (distinctly premium grey/steel) -->
+                                <linearGradient id="shield-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#64748b" />
+                                    <stop offset="100%" stop-color="#1e293b" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Outer Shield Border -->
+                            <path d="M50 90 C 85 75, 88 45, 88 25 L 50 10 L 12 25 C 12 45, 15 75, 50 90 Z" fill="url(#shield-border-grad)" />
+                            <!-- Inner Shield Body -->
+                            <path d="M50 85 C 80 71, 83 44, 83 27 L 50 14 L 17 27 C 17 44, 20 71, 50 85 Z" fill="url(#shield-body-grad)" />
+                            <!-- Symmetrical inner line detailing for technical premium shield look -->
+                            <path d="M50 80 C 75 68, 78 43, 78 29 L 50 17 L 22 29 C 22 43, 25 68, 50 80 Z" fill="none" stroke="#475569" stroke-width="1.5" opacity="0.4" />
+                            <!-- Beautiful bold clean green checkmark -->
+                            <path d="M34 50 L 46 62 L 68 35" stroke="#10b981" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M34 50 L 46 62 L 68 35" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
                     </div>
                     <div class="cert-badges-primary">
                         <span class="cert-badge">COR Certified</span>
@@ -369,34 +352,6 @@
                         <span class="cert-badge">Fork Lift Operation</span>
                     </div>
                     <button class="cert-badge-more-btn" id="open-cert-modal">And More...</button>
-                </div>
-
-                <!-- Right Column: Large Grey Shield with Green Checkmark -->
-                <div class="certifications-graphic">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" class="large-safety-shield">
-                        <defs>
-                            <!-- Metallic outer border gradient -->
-                            <linearGradient id="shield-border-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#e2e8f0" />
-                                <stop offset="50%" stop-color="#94a3b8" />
-                                <stop offset="100%" stop-color="#475569" />
-                            </linearGradient>
-                            <!-- Metallic inner body gradient (distinctly premium grey/steel) -->
-                            <linearGradient id="shield-body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#64748b" />
-                                <stop offset="100%" stop-color="#1e293b" />
-                            </linearGradient>
-                        </defs>
-                        <!-- Outer Shield Border -->
-                        <path d="M50 90 C 85 75, 88 45, 88 25 L 50 10 L 12 25 C 12 45, 15 75, 50 90 Z" fill="url(#shield-border-grad)" />
-                        <!-- Inner Shield Body -->
-                        <path d="M50 85 C 80 71, 83 44, 83 27 L 50 14 L 17 27 C 17 44, 20 71, 50 85 Z" fill="url(#shield-body-grad)" />
-                        <!-- Symmetrical inner line detailing for technical premium shield look -->
-                        <path d="M50 80 C 75 68, 78 43, 78 29 L 50 17 L 22 29 C 22 43, 25 68, 50 80 Z" fill="none" stroke="#475569" stroke-width="1.5" opacity="0.4" />
-                        <!-- Beautiful bold clean green checkmark -->
-                        <path d="M34 50 L 46 62 L 68 35" stroke="#10b981" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M34 50 L 46 62 L 68 35" stroke="#34d399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
                 </div>
             </div>
 
@@ -471,7 +426,7 @@
                 <p class="footer-tagline">Service you can trust since 1963.</p>
                 <div class="footer-badges">
                     <a href="https://www.bbb.org/ca/mb/sunnyside/profile/plumber/ss-plumbing-heating-co-ltd-0057-12222#sealclick" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/Accredited_Business_Seal_Rating_RGB.svg.svg" alt="BBB A+ Rated Accredited Business" class="footer-badge bbb-badge"></a>
-                    <img src="assets/Safety Certification/cor_badge.webp" alt="COR Certified CSAM" class="footer-badge cor-badge">
+                    <a href="https://www.constructionsafety.mb.ca/" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/cor_badge.webp" alt="COR Certified CSAM" class="footer-badge cor-badge"></a>
                 </div>
             </div>
             
@@ -491,7 +446,7 @@
                     <li><a href="#services">Trades</a></li>
                     <li><a href="service-area.html">Service Area</a></li>
                     <li><a href="our-work.html">Our Work</a></li>
-                    <li><a href="certifications.html">Certifications</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
                     <li><a href="careers.html">Careers</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
@@ -499,8 +454,8 @@
 
             <div class="footer-contact">
                 <h4>Contact Us</h4>
-                <p class="location-text"><i data-lucide="map-pin" class="location-dot"></i> Winnipeg, Manitoba</p>
-                <p>Phone: <a href="tel:2042220723">204.222.0723</a></p>
+                <p class="location-text"><a href="https://www.google.com/maps/search/?api=1&query=2318+Springfield+Road+Sunnyside+MB+R5R+0E8" target="_blank" rel="noopener noreferrer" class="footer-location-link"><i data-lucide="map-pin" class="location-dot"></i> 2318 Springfield Road, Sunnyside, MB</a></p>
+                <p>Phone: <a href="tel:2042220723" class="footer-phone-link">204.222.0723</a></p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/profile.php?id=100054262460305" target="_blank" aria-label="Facebook">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -517,6 +472,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=7"></script>
 </body>
 </html>
