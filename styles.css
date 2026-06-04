@@ -2762,7 +2762,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     gap: 1.25rem;
-    margin-top: 1.5rem;
+    margin-top: 0.65rem;
 }
 
 .footer-brand .brand-logo-footer {
@@ -2772,7 +2772,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-brand .footer-tagline {
-    margin-top: 1.25rem;
+    margin-top: 0.35rem;
     color: var(--gray);
     font-size: 0.95rem;
     text-transform: uppercase;
@@ -2818,15 +2818,42 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--plumbing-blue);
 }
 
-.footer-contact p {
-    color: var(--gray);
-    margin-bottom: 0.5rem;
+.location-label {
+    color: var(--heating-orange);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 0 10px rgba(255, 69, 0, 0.6);
+    display: inline-block;
 }
 
 .location-text {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.footer-phone-block {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    color: var(--gray);
+}
+
+.footer-phone-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--white);
+    flex-shrink: 0;
+}
+
+.footer-contact p {
+    color: var(--gray);
+    margin-bottom: 0.5rem;
 }
 
 .footer-location-link {
@@ -2835,6 +2862,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.5rem;
     color: var(--gray);
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .footer-location-link:hover {
@@ -3622,8 +3650,15 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .footer-contact .location-text,
+    .footer-contact .footer-phone-block,
     .footer-contact .social-links {
         justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-location-link {
+        white-space: normal !important;
     }
 }
 
