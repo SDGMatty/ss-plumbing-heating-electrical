@@ -2956,9 +2956,11 @@ h1, h2, h3, h4, h5, h6 {
     .nav-cta {
         display: inline-flex !important;
         font-size: 0.66rem !important;
-        padding: 0.3rem 0.5rem !important;
+        padding: 0.35rem 0.6rem !important;
         border-radius: 8px !important;
         white-space: nowrap;
+        min-width: auto !important; /* Reset desktop fixed width */
+        height: auto !important;    /* Reset desktop fixed height */
     }
 
     @media (max-width: 480px) {
@@ -2968,6 +2970,14 @@ h1, h2, h3, h4, h5, h6 {
         .nav-cta {
             font-size: 0.58rem !important;
             padding: 0.25rem 0.4rem !important;
+        }
+        /* Hide 'Make Payment' on small phone headers to make room for logo/call button */
+        .nav-buttons .btn-outline {
+            display: none !important;
+        }
+        /* Keep it visible in the active menu drawer */
+        .navbar.mobile-menu-active .nav-buttons .btn-outline {
+            display: flex !important;
         }
     }
 
@@ -3052,6 +3062,14 @@ h1, h2, h3, h4, h5, h6 {
     .footer-container {
         grid-template-columns: 1fr 1fr;
         gap: 2.5rem;
+    }
+
+    .map-visual-container {
+        width: 100% !important;
+        max-width: 320px !important;
+        height: auto !important;
+        aspect-ratio: 530 / 610;
+        margin: 0 auto !important;
     }
 }
 
