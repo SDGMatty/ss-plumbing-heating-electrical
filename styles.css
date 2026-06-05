@@ -544,7 +544,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-leader-banner {
-    height: 44px; /* Set to 44px */
+    height: 45px; /* Increased by 1px to 45px */
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
@@ -3703,7 +3703,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .hero-leader-banner {
-        height: clamp(24px, 6.4vw, 32px); /* Shorter height to match proportion */
+        height: clamp(25px, 6.6vw, 33px); /* Increased by 1px to match proportion */
         font-size: clamp(9.5px, 2.5vw, 12px);
         padding: 0 0.8rem 0 clamp(16px, 4.5vw, 22px); /* Sized to clear the overlapping logo */
         margin-left: clamp(-36px, -9vw, -28px); /* Pulls flat end further behind logo to clear SVG padding */
