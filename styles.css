@@ -535,11 +535,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .banner-bbb-logo-outside {
-    height: 55px; /* Set to 55px (visible height is ~49px to overlap the 44px banner) */
+    height: 54px; /* Made 1px smaller */
     width: auto;
     object-fit: contain;
     z-index: 2;
     position: relative;
+    top: 1px; /* Moved down 1px */
 }
 
 .hero-leader-banner {
@@ -3694,10 +3695,11 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .banner-bbb-logo-outside {
-        height: clamp(32px, 8.5vw, 42px); /* Slightly taller than banner on mobile */
+        height: clamp(31px, 8.2vw, 41px); /* Slightly taller than banner on mobile */
         width: auto;
         flex-shrink: 0;
         position: relative;
+        top: 1px; /* Moved down 1px */
     }
     
     .hero-leader-banner {
