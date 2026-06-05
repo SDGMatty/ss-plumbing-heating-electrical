@@ -535,7 +535,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .banner-bbb-logo-outside {
-    height: 52px; /* Set to 52px to match banner height */
+    height: 51px; /* Set to 51px */
     width: auto;
     object-fit: contain;
     z-index: 2;
@@ -543,12 +543,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-leader-banner {
-    height: 52px; /* Matched to 52px so the logo pill and glass banner flow flush */
+    height: 44px; /* Set to 44px */
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    padding: 0 1.5rem 0 3.4rem; /* Sized to clear the overlapping logo width */
-    margin-left: -44px; /* Pulls the banner behind the logo so the glass flow starts from the pill */
+    padding: 0 1.25rem 0 2.2rem; /* Sized to clear the overlapping logo width */
+    margin-left: -25px; /* Pulls the banner behind the logo so the glass flow starts from the pill without protruding */
     font-size: 0.88rem;
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -3682,16 +3682,16 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .banner-bbb-logo-outside {
-        height: clamp(28px, 7.5vw, 38px); /* Matches mobile banner height limits exactly */
+        height: clamp(28px, 7.5vw, 38px);
         width: auto;
         flex-shrink: 0;
     }
     
     .hero-leader-banner {
-        height: clamp(28px, 7.5vw, 38px); /* Same height as mobile logo */
+        height: clamp(24px, 6.4vw, 32px); /* Shorter height to match proportion */
         font-size: clamp(9.5px, 2.5vw, 12px);
-        padding: 0 0.8rem 0 clamp(24px, 6.5vw, 32px); /* Left padding sized to clear the logo */
-        margin-left: clamp(-32px, -8vw, -24px); /* Slides the banner behind the logo on mobile */
+        padding: 0 0.8rem 0 clamp(16px, 4.5vw, 22px); /* Adjusted left padding */
+        margin-left: clamp(-20px, -5vw, -15px); /* Pulls banner behind logo without protruding */
         border-radius: 50px;
         display: inline-flex;
         align-items: center;
