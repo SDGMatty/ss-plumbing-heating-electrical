@@ -2761,7 +2761,6 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: 1.25rem;
     margin-top: 0.65rem;
-    width: 220px; /* Matched to tagline width for balance */
 }
 
 .footer-brand .brand-logo-footer {
@@ -2773,13 +2772,13 @@ h1, h2, h3, h4, h5, h6 {
 .footer-brand .footer-tagline {
     margin-top: 0.15rem;
     color: var(--gray);
-    font-size: 0.9rem; /* Adjusted for a clean 2-line wrap at 220px */
+    font-size: 0.72rem; /* Sized to fit on a single line matching the width of the badges below */
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em; /* Slightly tighter letter-spacing for compactness */
     font-weight: 600;
-    width: 220px; /* Matched to badges width for perfect column stacking */
+    white-space: nowrap; /* Forces text to stay on a single line */
     text-align: center;
-    line-height: 1.45;
+    line-height: 1.2;
 }
 
 .footer-badge {
