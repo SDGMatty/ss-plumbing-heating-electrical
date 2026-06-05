@@ -540,6 +540,7 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: contain;
     z-index: 2;
     position: relative;
+    left: 12px; /* Shifts the logo to the right over the banner */
 }
 
 .hero-leader-banner {
@@ -547,7 +548,7 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    padding: 0 1.25rem 0 2.2rem; /* Sized to clear the overlapping logo width */
+    padding: 0 1.25rem 0 2.7rem; /* Increased left padding to account for shifted logo */
     margin-left: -25px; /* Pulls the banner behind the logo so the glass flow starts from the pill without protruding */
     font-size: 0.88rem;
     background: rgba(255, 255, 255, 0.07);
@@ -2753,26 +2754,27 @@ h1, h2, h3, h4, h5, h6 {
 .footer-brand {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .footer-badges {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1.25rem;
     margin-top: 0.65rem;
 }
 
 .footer-brand .brand-logo-footer {
-    height: 90px;
+    height: 115px;
     width: auto;
     object-fit: contain;
+    margin-left: -5px; /* Visual balance adjustment */
 }
 
 .footer-brand .footer-tagline {
-    margin-top: 0.35rem;
+    margin-top: 0.15rem;
     color: var(--gray);
     font-size: 0.95rem;
     text-transform: uppercase;
@@ -2819,13 +2821,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .location-label {
-    color: var(--heating-orange);
+    color: #ff3b30; /* Premium red */
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 0.25rem;
-    text-shadow: 0 0 10px rgba(255, 69, 0, 0.6);
+    text-shadow: 0 0 10px rgba(255, 59, 48, 0.6);
     display: inline-block;
 }
 
@@ -3621,6 +3623,16 @@ h1, h2, h3, h4, h5, h6 {
     .footer-brand {
         grid-area: brand;
         margin-bottom: 1rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-badges {
+        justify-content: center;
+    }
+
+    .footer-brand .brand-logo-footer {
+        margin-left: 0;
     }
     
     .footer-container > div:nth-child(2) {
