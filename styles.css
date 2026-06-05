@@ -540,7 +540,6 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: contain;
     z-index: 2;
     position: relative;
-    left: 14px; /* Shifts the logo to the right over the banner */
 }
 
 .hero-leader-banner {
@@ -548,12 +547,13 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    padding: 0 1.25rem 0 2.8rem; /* Sized to clear the shifted logo */
-    margin-left: -25px; /* Pulls the banner behind the logo so the glass flow starts from the pill without protruding */
+    padding: 0 1.25rem 0 2.2rem; /* Adjusted left padding to clear the logo */
+    margin-left: -32px; /* Pulls the flat left end of the banner behind the logo */
     font-size: 0.88rem;
     background: rgba(255, 255, 255, 0.07);
-    border: 2px solid rgba(255, 255, 255, 0.15); /* Increased border thickness to 2px */
-    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-left: none; /* Removes left border to merge seamlessly behind the logo */
+    border-radius: 0 50px 50px 0; /* Flat left end, rounded right end */
     text-transform: uppercase;
     margin-bottom: 0;
     z-index: 1;
@@ -3697,16 +3697,15 @@ h1, h2, h3, h4, h5, h6 {
         height: clamp(28px, 7.5vw, 38px);
         width: auto;
         flex-shrink: 0;
-        position: relative;
-        left: clamp(8px, 2.2vw, 12px); /* Shift logo to the right on mobile */
     }
     
     .hero-leader-banner {
         height: clamp(24px, 6.4vw, 32px); /* Shorter height to match proportion */
         font-size: clamp(9.5px, 2.5vw, 12px);
-        padding: 0 0.8rem 0 clamp(18px, 5vw, 25px); /* Adjusted left padding for shifted logo */
-        margin-left: clamp(-20px, -5vw, -15px); /* Pulls banner behind logo without protruding */
-        border-radius: 50px;
+        padding: 0 0.8rem 0 clamp(16px, 4.5vw, 22px); /* Sized to clear the overlapping logo */
+        margin-left: clamp(-28px, -7.5vw, -20px); /* Pulls flat end behind logo */
+        border-radius: 0 50px 50px 0; /* Flat left end, rounded right end */
+        border-left: none; /* Merges behind the logo */
         display: inline-flex;
         align-items: center;
         line-height: normal;
