@@ -2751,32 +2751,35 @@ h1, h2, h3, h4, h5, h6 {
 .footer-brand {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
 }
 
 .footer-badges {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 1.25rem;
     margin-top: 0.65rem;
+    width: 220px; /* Matched to tagline width for balance */
 }
 
 .footer-brand .brand-logo-footer {
     height: 115px;
     width: auto;
     object-fit: contain;
-    margin-left: -5px; /* Visual balance adjustment */
 }
 
 .footer-brand .footer-tagline {
     margin-top: 0.15rem;
     color: var(--gray);
-    font-size: 0.95rem;
+    font-size: 0.9rem; /* Adjusted for a clean 2-line wrap at 220px */
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-weight: 600;
+    width: 220px; /* Matched to badges width for perfect column stacking */
+    text-align: center;
+    line-height: 1.45;
 }
 
 .footer-badge {
