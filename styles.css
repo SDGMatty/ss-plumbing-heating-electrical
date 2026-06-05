@@ -286,15 +286,13 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1000;
     position: relative;
     overflow: hidden;
-    display: flex;
-    align-items: center;
 }
 
 .ticker {
-    display: flex;
-    align-items: center;
+    display: inline-block;
     white-space: nowrap;
     animation: ticker 35s linear infinite;
+    line-height: 36px;
 }
 
 .ticker:hover {
@@ -302,15 +300,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ticker-item {
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
     padding-right: 3rem;
     font-size: 0.85rem;
     color: var(--navy-dark);
     text-decoration: none;
     cursor: pointer;
     transition: opacity 0.3s ease;
-    line-height: 1;
+    line-height: 36px;
 }
 
 .ticker-item:hover {
@@ -327,10 +324,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .top-bar-inner {
-    display: flex;
-    align-items: center;
+    display: block;
     position: relative;
-    min-height: 24px;
+    height: 100%;
 }
 
 .top-bar-text {
@@ -3005,14 +3001,19 @@ h1, h2, h3, h4, h5, h6 {
         height: 30px !important;
     }
     
+    .ticker {
+        line-height: 30px !important;
+    }
+    
     .ticker-item {
         font-size: 0.72rem !important;
+        line-height: 30px !important;
     }
     
     .top-bar-inner {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
+        display: block !important;
+        height: 100% !important;
+        text-align: center !important;
     }
     
     .nav-links, .nav-socials, .weather-widget {
