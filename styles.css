@@ -535,13 +535,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .banner-bbb-logo-outside {
-    height: 51px; /* Set to 51px */
+    height: 55px; /* Set to 55px (visible height is ~49px to overlap the 44px banner) */
     width: auto;
     object-fit: contain;
     z-index: 2;
     position: relative;
-    left: 4px; /* Nudged over to the right */
-    top: 1px;  /* Nudged down 1px */
 }
 
 .hero-leader-banner {
@@ -549,8 +547,8 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    padding: 0 1.25rem 0 2.2rem; /* Adjusted left padding to clear the logo */
-    margin-left: -32px; /* Pulls the flat left end of the banner behind the logo */
+    padding: 0 1.25rem 0 2.2rem; /* Sized to clear the visible logo */
+    margin-left: -42px; /* Pulls the flat left end of the banner behind the logo, compensating for SVG empty space */
     font-size: 0.88rem;
     background: rgba(255, 255, 255, 0.07);
     border: 2px solid rgba(255, 255, 255, 0.15);
@@ -3696,19 +3694,17 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .banner-bbb-logo-outside {
-        height: clamp(28px, 7.5vw, 38px);
+        height: clamp(32px, 8.5vw, 42px); /* Slightly taller than banner on mobile */
         width: auto;
         flex-shrink: 0;
         position: relative;
-        left: 3px; /* Nudged over to the right on mobile */
-        top: 1px;  /* Nudged down on mobile */
     }
     
     .hero-leader-banner {
         height: clamp(24px, 6.4vw, 32px); /* Shorter height to match proportion */
         font-size: clamp(9.5px, 2.5vw, 12px);
         padding: 0 0.8rem 0 clamp(16px, 4.5vw, 22px); /* Sized to clear the overlapping logo */
-        margin-left: clamp(-28px, -7.5vw, -20px); /* Pulls flat end behind logo */
+        margin-left: clamp(-36px, -9vw, -28px); /* Pulls flat end further behind logo to clear SVG padding */
         border-radius: 0 50px 50px 0; /* Flat left end, rounded right end */
         border-left: none; /* Merges behind the logo */
         display: inline-flex;
