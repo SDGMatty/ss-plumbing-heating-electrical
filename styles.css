@@ -2763,6 +2763,12 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0.65rem;
 }
 
+.footer-brand-link {
+    display: block;
+    height: auto;
+    width: auto;
+}
+
 .footer-brand .brand-logo-footer {
     height: 115px;
     width: auto;
@@ -3702,7 +3708,7 @@ h1, h2, h3, h4, h5, h6 {
         width: auto;
         flex-shrink: 0;
         position: relative;
-        top: 1px; /* Moved down 1px */
+        top: 4px; /* Moved down 4px on mobile to align vertically */
     }
     
     .hero-leader-banner {
