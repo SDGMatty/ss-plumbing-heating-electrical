@@ -759,13 +759,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isWinnipegOperatingHours()) {
             dot.className = 'status-dot green';
             text.textContent = 'Ready to Serve You';
-            img.style.display = 'block';
-            img.style.opacity = '1';
         } else {
             dot.className = 'status-dot red';
             text.textContent = '24/7 Emergency Service';
-            img.style.display = 'none';
         }
+        img.style.display = 'block';
+        img.style.opacity = '1';
     };
     updateDynamicStatusWidget();
 });
