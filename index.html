@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=76">
+    <link rel="stylesheet" href="styles.css?v=82">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -199,6 +199,15 @@
                                 <circle cx="58.8" cy="120.2" r="2.0" class="marker-dot"></circle>
                             </g>
                         </svg>
+                        
+                        <!-- Operating Hours & Status Widget (Dynamic) -->
+                        <div id="map-status-widget" class="map-status-widget">
+                            <div class="status-indicator">
+                                <span id="status-dot" class="status-dot green"></span>
+                                <span id="status-text" class="status-text">Ready to Serve You</span>
+                            </div>
+                            <img src="assets/service_van_tech.png" alt="SS Service Van & Technician" class="status-van-img" id="status-van-img">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -293,39 +302,37 @@
         </div>
 
         <!-- Trusted Brands Section -->
-        <div class="page-frame">
-            <section class="trusted-brands" id="brands">
-                <div class="container text-center fade-up">
-                    <h3 class="brands-title">We use the industry's most trusted, high-quality brands</h3>
-                    <div class="brands-grid">
-                        <a href="https://www.americanstandard-us.com/" target="_blank" class="brand-link american-standard" aria-label="American Standard">
-                            <img src="assets/Brands/png-transparent-american-standard-hd-logo_grey.png" alt="American Standard" class="brand-default">
-                            <img src="assets/Brands/png-transparent-american-standard-hd-logo.png" alt="American Standard" class="brand-hover">
-                        </a>
-                        <a href="https://www.rheem.com/" target="_blank" class="brand-link rheem" aria-label="Rheem">
-                            <img src="assets/Brands/rheem_grey.png" alt="Rheem" class="brand-default">
-                            <img src="assets/Brands/rheem_fullcolur.png" alt="Rheem" class="brand-hover">
-                        </a>
-                        <a href="https://www.bryant.com/" target="_blank" class="brand-link bryant" aria-label="Bryant">
-                            <img src="assets/Brands/bryant-01-logo-png-transparent_grey.png" alt="Bryant" class="brand-default">
-                            <img src="assets/Brands/bryant-01-logo-png-transparent.png" alt="Bryant" class="brand-hover">
-                        </a>
-                        <a href="https://www.grohe.us/" target="_blank" class="brand-link grohe" aria-label="Grohe">
-                            <img src="assets/Brands/Grohe-logo_grey.png" alt="Grohe" class="brand-default">
-                            <img src="assets/Brands/Grohe-logo.png" alt="Grohe" class="brand-hover">
-                        </a>
-                        <a href="https://www.deltafaucet.com/" target="_blank" class="brand-link delta" aria-label="Delta">
-                            <img src="assets/Brands/delta-faucets-logo-png-transparent_grey.png" alt="Delta" class="brand-default">
-                            <img src="assets/Brands/delta-faucets-logo-png-transparent.png" alt="Delta" class="brand-hover">
-                        </a>
-                        <a href="https://www.kohler.com/" target="_blank" class="brand-link kohler" aria-label="Kohler">
-                            <img src="assets/Brands/KohlerLogoImage_grey.png" alt="Kohler" class="brand-default">
-                            <img src="assets/Brands/KohlerLogoImage.png" alt="Kohler" class="brand-hover">
-                        </a>
-                    </div>
+        <section class="trusted-brands" id="brands">
+            <div class="container text-center fade-up">
+                <h3 class="brands-title">We use the industry's most trusted, high-quality brands</h3>
+                <div class="brands-grid">
+                    <a href="https://www.americanstandard-us.com/" target="_blank" class="brand-link american-standard" aria-label="American Standard">
+                        <img src="assets/Brands/png-transparent-american-standard-hd-logo_grey.png" alt="American Standard" class="brand-default">
+                        <img src="assets/Brands/png-transparent-american-standard-hd-logo.png" alt="American Standard" class="brand-hover">
+                    </a>
+                    <a href="https://www.rheem.com/" target="_blank" class="brand-link rheem" aria-label="Rheem">
+                        <img src="assets/Brands/rheem_grey.png" alt="Rheem" class="brand-default">
+                        <img src="assets/Brands/rheem_fullcolur.png" alt="Rheem" class="brand-hover">
+                    </a>
+                    <a href="https://www.bryant.com/" target="_blank" class="brand-link bryant" aria-label="Bryant">
+                        <img src="assets/Brands/bryant-01-logo-png-transparent_grey.png" alt="Bryant" class="brand-default">
+                        <img src="assets/Brands/bryant-01-logo-png-transparent.png" alt="Bryant" class="brand-hover">
+                    </a>
+                    <a href="https://www.grohe.us/" target="_blank" class="brand-link grohe" aria-label="Grohe">
+                        <img src="assets/Brands/Grohe-logo_grey.png" alt="Grohe" class="brand-default">
+                        <img src="assets/Brands/Grohe-logo.png" alt="Grohe" class="brand-hover">
+                    </a>
+                    <a href="https://www.deltafaucet.com/" target="_blank" class="brand-link delta" aria-label="Delta">
+                        <img src="assets/Brands/delta-faucets-logo-png-transparent_grey.png" alt="Delta" class="brand-default">
+                        <img src="assets/Brands/delta-faucets-logo-png-transparent.png" alt="Delta" class="brand-hover">
+                    </a>
+                    <a href="https://www.kohler.com/" target="_blank" class="brand-link kohler" aria-label="Kohler">
+                        <img src="assets/Brands/KohlerLogoImage_grey.png" alt="Kohler" class="brand-default">
+                        <img src="assets/Brands/KohlerLogoImage.png" alt="Kohler" class="brand-hover">
+                    </a>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
 
         <!-- Certifications Section -->
         <section class="certifications" id="certifications">
@@ -440,10 +447,10 @@
                 <a href="index.html" class="footer-brand-link">
                     <img src="assets/ss_detailed_colour.png" alt="SS Plumbing Logo" class="brand-logo-footer">
                 </a>
+                <p class="footer-tagline">Service you can trust since 1963</p>
                 <div class="footer-badges">
                     <a href="https://constructionsafety.ca/" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/cor_badge.webp" alt="COR Certified CSAM" class="footer-badge cor-badge"></a>
                 </div>
-                <p class="footer-tagline">Service you can trust since 1963</p>
             </div>
             
             <div class="footer-links">
@@ -496,6 +503,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=9"></script>
 </body>
 </html>

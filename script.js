@@ -709,4 +709,63 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     prefillContactForm();
+
+    // --- DYNAMIC STATUS WIDGET LOGIC ---
+    const updateDynamicStatusWidget = () => {
+        const widget = document.getElementById('map-status-widget');
+        const dot = document.getElementById('status-dot');
+        const text = document.getElementById('status-text');
+        const img = document.getElementById('status-van-img');
+        
+        if (!widget || !dot || !text || !img) return;
+
+        const isWinnipegOperatingHours = () => {
+            try {
+                // Get current date/time in Winnipeg timezone
+                const options = { timeZone: "America/Winnipeg", hour12: false, weekday: 'short', hour: 'numeric', minute: 'numeric' };
+                const formatter = new Intl.DateTimeFormat('en-US', options);
+                const parts = formatter.formatToParts(new Date());
+                
+                let weekday = "";
+                let hour = 0;
+                let minute = 0;
+                
+                for (const part of parts) {
+                    if (part.type === 'weekday') weekday = part.value;
+                    if (part.type === 'hour') hour = parseInt(part.value, 10);
+                    if (part.type === 'minute') minute = parseInt(part.value, 10);
+                }
+                
+                // Check if weekday is Mon, Tue, Wed, Thu, or Fri
+                const isWeekday = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(weekday);
+                
+                // Check if time is between 8:00 and 16:30 (4:30 PM)
+                const timeInMinutes = hour * 60 + minute;
+                const isBetweenHours = timeInMinutes >= (8 * 60) && timeInMinutes <= (16 * 60 + 30);
+                
+                return isWeekday && isBetweenHours;
+            } catch (e) {
+                // Fallback to local browser time if timezone formatting is not supported
+                const now = new Date();
+                const day = now.getDay();
+                const hours = now.getHours();
+                const mins = now.getMinutes();
+                const isWeekday = day >= 1 && day <= 5;
+                const timeInMinutes = hours * 60 + mins;
+                return isWeekday && timeInMinutes >= (8 * 60) && timeInMinutes <= (16 * 60 + 30);
+            }
+        };
+
+        if (isWinnipegOperatingHours()) {
+            dot.className = 'status-dot green';
+            text.textContent = 'Ready to Serve You';
+            img.style.display = 'block';
+            img.style.opacity = '1';
+        } else {
+            dot.className = 'status-dot red';
+            text.textContent = '24/7 Emergency Service';
+            img.style.display = 'none';
+        }
+    };
+    updateDynamicStatusWidget();
 });

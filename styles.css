@@ -73,12 +73,12 @@ body::before {
     max-width: 1400px;
     width: 92%;
     margin: 4rem auto;
-    background: rgba(11, 35, 65, 0.4);
+    background: rgba(11, 25, 44, 0.15);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(0, 136, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     border-radius: 24px;
-    border: 1px solid rgba(0, 136, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
     z-index: 10;
     overflow: hidden;
@@ -86,12 +86,11 @@ body::before {
 
 @media (max-width: 1400px) {
     .page-frame {
-        width: 100%;
-        margin: 0 auto;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
-        box-shadow: none;
+        width: 92%;
+        margin: 2rem auto;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     }
 }
 
@@ -921,6 +920,105 @@ h1, h2, h3, h4, h5, h6 {
     100% { transform: scale(2.4); opacity: 0; }
 }
 
+/* =========================================
+   Operating Hours & Status Widget (Bottom Right of Map)
+   ========================================= */
+.map-status-widget {
+    position: absolute;
+    bottom: -15px;
+    right: -110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 20;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(11, 25, 44, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.45rem 0.95rem;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.status-dot.green {
+    background-color: #00ff66;
+    box-shadow: 0 0 8px #00ff66, 0 0 16px rgba(0, 255, 102, 0.4);
+    animation: statusPulseGreen 2s infinite;
+}
+
+.status-dot.red {
+    background-color: #ff3b30;
+    box-shadow: 0 0 8px #ff3b30, 0 0 16px rgba(255, 59, 48, 0.4);
+    animation: statusPulseRed 2s infinite;
+}
+
+@keyframes statusPulseGreen {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }
+    70% { box-shadow: 0 0 0 6px rgba(0, 255, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+}
+
+@keyframes statusPulseRed {
+    0% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); }
+    70% { box-shadow: 0 0 0 6px rgba(255, 59, 48, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
+}
+
+.status-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.status-van-img {
+    width: 270px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
+    transition: all 0.5s ease;
+}
+
+/* responsive behaviors */
+@media (max-width: 1200px) {
+    .map-status-widget {
+        right: -60px;
+    }
+    .status-van-img {
+        width: 240px;
+    }
+}
+
+@media (max-width: 992px) {
+    .map-status-widget {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        margin: 2rem auto 0;
+    }
+    .status-van-img {
+        width: 280px;
+    }
+}
+
 /* Floating Compact Dashboard Panel (Bottom Right Corner of Map) */
 .compact-dashboard {
     position: absolute;
@@ -1627,6 +1725,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================= */
 .about {
     padding: 8rem 0;
+    scroll-margin-top: 130px;
 }
 
 .about-container {
@@ -2466,8 +2565,9 @@ h1, h2, h3, h4, h5, h6 {
    ========================================= */
 .trusted-brands {
     padding: 5rem 0;
-    background: transparent;
-    border: none;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .brands-title {
@@ -2919,7 +3019,7 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: #ff4d4d;
+    color: var(--gray);
     transition: all 0.3s ease;
     white-space: nowrap;
 }
@@ -2931,6 +3031,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-location-link:hover .location-dot {
     filter: drop-shadow(0 0 5px rgba(255, 59, 48, 0.8));
+    color: #ff3b30 !important;
 }
 
 .footer-phone-link {
@@ -2944,10 +3045,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .location-dot {
-    color: #ff3b30;
+    color: var(--gray);
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+    transition: all 0.3s ease;
 }
 
 .social-links {
@@ -4125,4 +4227,30 @@ h1, h2, h3, h4, h5, h6 {
 }
 .card-cooling-theme:hover .service-icon {
     color: var(--white) !important;
+}
+
+/* Dynamic Status Widget Mobile Scaling Overrides */
+@media (max-width: 768px) {
+    .map-status-widget {
+        margin: 1.5rem auto 0;
+    }
+    .status-van-img {
+        width: 210px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-status-widget {
+        margin: 0.75rem auto 0;
+        gap: 0.5rem;
+    }
+    .status-indicator {
+        padding: 0.35rem 0.75rem;
+    }
+    .status-text {
+        font-size: 0.68rem;
+    }
+    .status-van-img {
+        width: 150px;
+    }
 }
