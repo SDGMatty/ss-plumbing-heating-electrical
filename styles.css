@@ -926,7 +926,7 @@ h1, h2, h3, h4, h5, h6 {
 .map-status-widget {
     position: absolute;
     bottom: -15px;
-    right: -410px;
+    right: -250px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -990,7 +990,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .status-van-img {
-    width: 540px;
+    width: 480px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
@@ -1000,19 +1000,19 @@ h1, h2, h3, h4, h5, h6 {
 /* responsive behaviors */
 @media (min-width: 1201px) and (max-width: 1400px) {
     .map-status-widget {
-        right: -255px;
+        right: -130px;
     }
     .status-van-img {
-        width: 440px;
+        width: 360px;
     }
 }
 
 @media (max-width: 1200px) {
     .map-status-widget {
-        right: -310px;
+        right: -150px;
     }
     .status-van-img {
-        width: 480px;
+        width: 380px;
     }
 }
 
@@ -1025,7 +1025,8 @@ h1, h2, h3, h4, h5, h6 {
         align-items: center;
     }
     .status-van-img {
-        width: 560px;
+        width: 100%;
+        max-width: 560px;
     }
 }
 
