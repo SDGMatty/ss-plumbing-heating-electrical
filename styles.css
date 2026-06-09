@@ -727,10 +727,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Map Container & SVG */
 .map-visual-container {
-    width: 530px;
-    height: 610px;
+    width: 100%;
+    max-width: 530px;
+    height: auto;
+    aspect-ratio: 530 / 610;
     position: relative;
-    margin-left: 0;
+    margin-left: -80px; /* Shift left to keep the van fully within the hero section */
     margin-right: 0;
     margin-top: -30px; /* moved map outline up */
     transition: all 0.5s ease;
@@ -926,11 +928,13 @@ h1, h2, h3, h4, h5, h6 {
 .map-status-widget {
     position: absolute;
     bottom: -15px;
-    right: -250px;
+    right: -45%;
+    width: 85%;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.35rem;
+    gap: 0.25rem;
     z-index: 20;
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -990,7 +994,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .status-van-img {
-    width: 480px;
+    width: 100%;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
@@ -999,20 +1003,18 @@ h1, h2, h3, h4, h5, h6 {
 
 /* responsive behaviors */
 @media (min-width: 1201px) and (max-width: 1400px) {
-    .map-status-widget {
-        right: -130px;
+    .map-visual-container {
+        margin-left: -120px; /* Shift further left on narrower desktops */
     }
-    .status-van-img {
-        width: 360px;
+    .map-status-widget {
+        right: -30%;
+        width: 75%;
     }
 }
 
 @media (max-width: 1200px) {
     .map-status-widget {
         right: -150px;
-    }
-    .status-van-img {
-        width: 380px;
     }
 }
 
