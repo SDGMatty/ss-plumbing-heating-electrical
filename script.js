@@ -358,6 +358,7 @@ if (canvas) {
             if (isTouch) return;
             
             hoveredCard = card;
+            canvas.style.zIndex = '12'; // Bring particles in front of frame to gather on cards
             if (card.classList.contains('plumbing')) currentShape = 'plumbing';
             if (card.classList.contains('heating')) {
                 currentShape = card.classList.contains('climate-cold') ? 'heating_snow' : 'heating_flame';
@@ -384,6 +385,7 @@ if (canvas) {
             
             hoveredCard = null;
             currentShape = null; 
+            canvas.style.zIndex = '2'; // Put particles back behind frame and footer
             if (card.classList.contains('heating')) {
                 const video = card.querySelector('.frost-video');
                 if (video) {
