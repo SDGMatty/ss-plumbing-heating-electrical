@@ -2565,9 +2565,11 @@ h1, h2, h3, h4, h5, h6 {
    ========================================= */
 .trusted-brands {
     padding: 5rem 0;
-    background: rgba(255, 255, 255, 0.02);
-    border-top: 1px solid var(--glass-border);
-    border-bottom: 1px solid var(--glass-border);
+    background: rgba(11, 25, 44, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .brands-title {
@@ -2980,7 +2982,7 @@ h1, h2, h3, h4, h5, h6 {
 .location-label {
     color: #ff3b30; /* Premium red */
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 0.25rem;
@@ -3045,7 +3047,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .location-dot {
-    color: var(--gray);
+    color: #ff3b30;
     width: 20px;
     height: 20px;
     flex-shrink: 0;
