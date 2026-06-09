@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3 class="payment-modal-title">Online Payment</h3>
                 <div class="payment-modal-body">
                     <p style="margin-bottom: 1.25rem; font-weight: 600; color: #fef08a;">Online payment coming soon!</p>
-                    <p>Please call us at <strong><a href="tel:2042220723" style="color: #ff5a1f; text-decoration: none;">204.222.0723</a></strong> or email <strong><a href="contact.html" style="color: #38bdf8; text-decoration: none;">info@ssplumbing.ca</a></strong> with the proper information to complete your payment.</p>
+                    <p>Please call us at <strong><a href="tel:2042220723" style="color: #ff5a1f; text-decoration: none;">204.222.0723</a></strong> or email <strong><a href="mailto:accountsreceivable@ssplumbing.ca" style="color: #38bdf8; text-decoration: none;">accountsreceivable@ssplumbing.ca</a></strong> with the proper information to complete your payment.</p>
                 </div>
             </div>
         `;

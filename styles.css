@@ -530,27 +530,16 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 2rem;
 }
 
-.banner-bbb-logo-outside {
-    height: 54px; /* Made 1px smaller */
-    width: auto;
-    object-fit: contain;
-    z-index: 2;
-    position: relative;
-    top: 1px; /* Moved down 1px */
-}
-
 .hero-leader-banner {
     height: 45px; /* Increased by 1px to 45px */
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    padding: 0 1.25rem 0 2.2rem; /* Sized to clear the visible logo */
-    margin-left: -42px; /* Pulls the flat left end of the banner behind the logo, compensating for SVG empty space */
+    padding: 0 1.5rem; /* Symmetric padding */
     font-size: 0.88rem;
     background: rgba(255, 255, 255, 0.07);
     border: 2px solid rgba(255, 255, 255, 0.15);
-    border-left: none; /* Removes left border to merge seamlessly behind the logo */
-    border-radius: 0 50px 50px 0; /* Flat left end, rounded right end */
+    border-radius: 50px; /* Symmetric rounded ends */
     text-transform: uppercase;
     margin-bottom: 0;
     z-index: 1;
@@ -3703,21 +3692,13 @@ h1, h2, h3, h4, h5, h6 {
         box-sizing: border-box;
     }
 
-    .banner-bbb-logo-outside {
-        height: clamp(31px, 8.2vw, 41px); /* Slightly taller than banner on mobile */
-        width: auto;
-        flex-shrink: 0;
-        position: relative;
-        top: 4px; /* Moved down 4px on mobile to align vertically */
-    }
-    
     .hero-leader-banner {
         height: clamp(25px, 6.6vw, 33px); /* Increased by 1px to match proportion */
         font-size: clamp(9.5px, 2.5vw, 12px);
-        padding: 0 0.8rem 0 clamp(36px, 10vw, 48px); /* Increased left padding to clear the logo */
-        margin-left: clamp(-36px, -9vw, -28px); /* Pulls flat end further behind logo to clear SVG padding */
-        border-radius: 0 50px 50px 0; /* Flat left end, rounded right end */
-        border-left: none; /* Merges behind the logo */
+        padding: 0 clamp(0.8rem, 2.5vw, 1.2rem); /* Symmetric padding */
+        margin-left: 0;
+        border-radius: 50px; /* Symmetric rounded ends */
+        border-left: 2px solid rgba(255, 255, 255, 0.15);
         display: inline-flex;
         align-items: center;
         line-height: normal;
