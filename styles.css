@@ -61,7 +61,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to bottom, rgba(10, 17, 34, 0.55) 0%, rgba(10, 17, 34, 0.3) 25%, rgba(10, 17, 34, 0.3) 75%, rgba(10, 17, 34, 0.65) 100%), url('assets/rooftop_hvac_sunset.jpg');
+    background-image: linear-gradient(to bottom, rgba(5, 12, 28, 0.88) 0%, rgba(5, 12, 28, 0.76) 25%, rgba(5, 12, 28, 0.76) 75%, rgba(5, 12, 28, 0.92) 100%), url('assets/rooftop_hvac_sunset.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -73,16 +73,10 @@ body::before {
     max-width: 1400px;
     width: 92%;
     margin: 4rem auto;
-    background-color: rgba(5, 11, 20, 0.82);
+    background: rgba(11, 25, 44, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    background-image: 
-        linear-gradient(to bottom, rgba(5, 11, 20, 0.88) 0%, rgba(11, 25, 44, 0.9) 50%, rgba(5, 11, 20, 0.88) 100%),
-        url('assets/blueprint_bg.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
@@ -585,15 +579,17 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     padding: 0 1.5rem; /* Symmetric padding */
     font-size: 0.88rem;
-    background: rgba(255, 255, 255, 0.07);
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: rgba(11, 25, 44, 0.75); /* Deep blue glass background */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid rgba(0, 136, 255, 0.45); /* Plumbing blue glowing border */
     border-radius: 50px; /* Symmetric rounded ends */
     text-transform: uppercase;
     margin-bottom: 0;
     z-index: 1;
     position: relative;
     white-space: nowrap;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 102, 0, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 136, 255, 0.35);
 }
 
 
@@ -2531,8 +2527,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(11, 25, 44, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 2rem;
     display: flex;
@@ -2542,19 +2540,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(11, 25, 44, 0.9);
+    border-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
 }
 
 .emergency-card {
-    background: linear-gradient(135deg, rgba(255, 68, 0, 0.1), rgba(255, 68, 0, 0.02));
-    border-color: rgba(255, 68, 0, 0.2);
+    background: rgba(220, 38, 38, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(220, 38, 38, 0.3);
 }
 
 .emergency-card:hover {
-    background: linear-gradient(135deg, rgba(255, 68, 0, 0.15), rgba(255, 68, 0, 0.05));
-    border-color: rgba(255, 68, 0, 0.4);
+    background: rgba(220, 38, 38, 0.25);
+    border-color: rgba(220, 38, 38, 0.5);
+    transform: translateY(-2px);
 }
 
 .emergency-icon {
@@ -2919,18 +2920,18 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--gray);
+    color: #ff4d4d;
     transition: all 0.3s ease;
     white-space: nowrap;
 }
 
 .footer-location-link:hover {
-    color: var(--heating-orange) !important;
-    text-shadow: 0 0 10px rgba(255, 68, 0, 0.6);
+    color: #ff1a0a !important;
+    text-shadow: 0 0 10px rgba(255, 59, 48, 0.6);
 }
 
 .footer-location-link:hover .location-dot {
-    filter: drop-shadow(0 0 5px rgba(255, 68, 0, 0.8));
+    filter: drop-shadow(0 0 5px rgba(255, 59, 48, 0.8));
 }
 
 .footer-phone-link {
@@ -2944,7 +2945,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .location-dot {
-    color: var(--heating-orange);
+    color: #ff3b30;
     width: 20px;
     height: 20px;
     flex-shrink: 0;
@@ -3761,7 +3762,7 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0 clamp(0.8rem, 2.5vw, 1.2rem); /* Symmetric padding */
         margin-left: 0;
         border-radius: 50px; /* Symmetric rounded ends */
-        border-left: 2px solid rgba(255, 255, 255, 0.15);
+        border-left: 2px solid rgba(0, 136, 255, 0.45);
         display: inline-flex;
         align-items: center;
         line-height: normal;
