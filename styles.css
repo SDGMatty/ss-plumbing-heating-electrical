@@ -45,6 +45,11 @@ html {
 body {
     font-family: var(--font-primary);
     background-color: var(--navy-dark);
+    background-image: radial-gradient(circle at 50% 50%, rgba(10, 17, 34, 0.45) 0%, var(--navy-dark) 100%), url('assets/isometric_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--silver);
     line-height: 1.6;
     position: relative;
