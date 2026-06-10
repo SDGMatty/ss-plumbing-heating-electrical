@@ -928,7 +928,7 @@ h1, h2, h3, h4, h5, h6 {
 .map-status-widget {
     position: absolute;
     bottom: -15px;
-    right: -45%;
+    right: -56%;
     width: 85%;
     max-width: 450px;
     display: flex;
