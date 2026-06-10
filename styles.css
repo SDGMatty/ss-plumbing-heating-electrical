@@ -928,9 +928,9 @@ h1, h2, h3, h4, h5, h6 {
 .map-status-widget {
     position: absolute;
     bottom: -15px;
-    right: -56%;
-    width: 85%;
-    max-width: 450px;
+    left: 72%; /* Starts to the right of the Manitoba outline bottom-right corner to prevent overlap */
+    width: 80%;
+    max-width: 420px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1002,9 +1002,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* responsive behaviors */
-@media (min-width: 1201px) and (max-width: 1400px) {
+@media (min-width: 1201px) and (max-width: 1300px) {
     .map-visual-container {
-        margin-left: -8vw; /* Shift further left on narrower desktops */
+        margin-left: -10vw; /* Shift further left on narrower desktops */
+    }
+    .map-status-widget {
+        left: 70%;
+        width: 72%; /* slightly narrower to guarantee right edge padding */
+    }
+}
+
+@media (min-width: 1301px) and (max-width: 1450px) {
+    .map-visual-container {
+        margin-left: -7vw; /* Shift slightly left */
+    }
+    .map-status-widget {
+        left: 72%;
+        width: 76%; /* fit comfortably */
     }
 }
 
@@ -1012,7 +1026,7 @@ h1, h2, h3, h4, h5, h6 {
     .map-status-widget {
         position: relative;
         bottom: 0;
-        right: 0;
+        left: 0;
         margin: 2rem auto 0;
         align-items: center;
         width: 75vw; /* Fluid scaling on mobile/tablet */
@@ -1328,8 +1342,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .service-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 20px;
     padding: 3rem 2rem;
     position: relative;
@@ -1339,6 +1353,37 @@ h1, h2, h3, h4, h5, h6 {
     scroll-margin-top: 130px;
 }
 
+.service-card.plumbing {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(0, 136, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(0, 136, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(0, 136, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(0, 136, 255, 0.15) 0%, transparent 40%),
+        rgba(11, 25, 44, 0.75); /* increased base opacity */
+    border: 1px solid rgba(0, 136, 255, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 136, 255, 0.08);
+}
+.service-card.heating {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 68, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(0, 229, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(255, 68, 0, 0.15) 0%, transparent 40%),
+        rgba(11, 25, 44, 0.75); /* increased base opacity */
+    border: 1px solid rgba(255, 68, 0, 0.25);
+    box-shadow: 0 10px 30px rgba(255, 68, 0, 0.08);
+}
+.service-card.electrical {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 192, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(255, 192, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(255, 192, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(255, 192, 0, 0.15) 0%, transparent 40%),
+        rgba(11, 25, 44, 0.75); /* increased base opacity */
+    border: 1px solid rgba(255, 192, 0, 0.25);
+    box-shadow: 0 10px 30px rgba(255, 192, 0, 0.08);
+}
+
 /* Allow physics elements to physically spiral and erupt outside the card structure */
 .service-card.electrical,
 .service-card.heating {
@@ -1346,34 +1391,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-glow {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    top: -50px;
-    right: -50px;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0;
-    transition: var(--transition);
-    z-index: -1;
+    display: none; /* Deactivated old single-corner glow in favor of 4-corner glows */
 }
 
-.service-card.plumbing .card-glow { background: var(--plumbing-blue); }
-.service-card.heating .card-glow { background: var(--heating-orange); }
-.service-card.electrical .card-glow { background: var(--electrical-yellow); }
-
-.service-card:hover {
+.service-card.plumbing:hover {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(0, 136, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 0%, rgba(0, 136, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(0, 136, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(0, 136, 255, 0.3) 0%, transparent 45%),
+        rgba(11, 35, 65, 0.85); /* increased opacity on hover */
+    border-color: rgba(0, 136, 255, 0.45);
+    box-shadow: 0 20px 45px rgba(0, 136, 255, 0.3);
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.1);
 }
-
-.service-card.plumbing:hover { box-shadow: 0 20px 40px rgba(0, 136, 255, 0.15); }
-.service-card.heating:hover { box-shadow: 0 20px 40px rgba(255, 68, 0, 0.15); }
-.service-card.electrical:hover { box-shadow: 0 20px 40px rgba(255, 192, 0, 0.15); }
-
-.service-card:hover .card-glow {
-    opacity: 0.5;
+.service-card.heating:hover {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(0, 229, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        rgba(11, 35, 65, 0.85); /* increased opacity on hover */
+    border-color: rgba(255, 68, 0, 0.45);
+    box-shadow: 0 20px 45px rgba(255, 68, 0, 0.3);
+    transform: translateY(-10px);
+}
+.service-card.electrical:hover {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 192, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 0%, rgba(255, 192, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(255, 192, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(255, 192, 0, 0.3) 0%, transparent 45%),
+        rgba(11, 35, 65, 0.85); /* increased opacity on hover */
+    border-color: rgba(255, 192, 0, 0.45);
+    box-shadow: 0 20px 45px rgba(255, 192, 0, 0.3);
+    transform: translateY(-10px);
 }
 
 /* =========================================
@@ -1593,16 +1645,28 @@ h1, h2, h3, h4, h5, h6 {
     transition: opacity 1.5s ease-in-out; /* ignites slowly on hover */
 }
 
-/* Heating Card Glow Transitions */
 .service-card.heating.climate-hot {
-    transition: transform 0.4s ease, border-color 1.5s ease, box-shadow 1.5s ease, background-color 1.5s ease;
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 68, 0, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(255, 68, 0, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(255, 68, 0, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(255, 68, 0, 0.18) 0%, transparent 40%),
+        rgba(22, 16, 16, 0.75); /* increased base opacity */
+    border-color: rgba(255, 68, 0, 0.25);
+    box-shadow: 0 10px 30px rgba(255, 68, 0, 0.08);
+    transition: transform 0.4s ease, border-color 1.5s ease, box-shadow 1.5s ease, background 1.5s ease;
 }
 
 .service-card.heating.climate-hot:hover {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 0%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        rgba(35, 18, 11, 0.85) !important; /* increased hover opacity */
     border-color: rgba(255, 68, 0, 0.6) !important;
     box-shadow: 0 20px 45px rgba(255, 68, 0, 0.35), inset 0 0 20px rgba(255, 68, 0, 0.25) !important;
-    background-color: rgba(20, 8, 5, 0.82) !important;
-    transition: transform 0.4s ease, border-color 4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 0.4s ease, border-color 4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 4s cubic-bezier(0.25, 0.8, 0.25, 1), background 4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Set off card content visually from the white crystals */
@@ -4051,8 +4115,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .trade-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-radius: 16px;
     padding: 2.25rem 2rem 4.5rem; /* extra bottom padding for action link spacing */
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -4065,6 +4129,47 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     color: inherit;
     text-decoration: none;
+}
+
+/* Base themed trade cards styling with 4 corner glows and higher base opacity */
+.plumbing-theme .trade-card {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(0, 136, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(0, 136, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(0, 136, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(0, 136, 255, 0.15) 0%, transparent 40%),
+        rgba(11, 25, 44, 0.70);
+    border: 1px solid rgba(0, 136, 255, 0.15);
+}
+
+.trade-card.card-heating-theme {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 68, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(255, 68, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(255, 68, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(255, 68, 0, 0.15) 0%, transparent 40%),
+        rgba(11, 25, 44, 0.70);
+    border: 1px solid rgba(255, 68, 0, 0.15);
+}
+
+.trade-card.card-cooling-theme {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(0, 229, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(0, 229, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(0, 229, 255, 0.15) 0%, transparent 40%),
+        rgba(11, 25, 44, 0.70);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+}
+
+.electrical-theme .trade-card {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 192, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(255, 192, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(255, 192, 0, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(255, 192, 0, 0.15) 0%, transparent 40%),
+        rgba(11, 25, 44, 0.70);
+    border: 1px solid rgba(255, 192, 0, 0.15);
 }
 
 .card-action-link {
@@ -4092,30 +4197,31 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(0);
 }
 
-/* Opaque on hover + float up */
+/* Opaque on hover + float up + brighter corner glows */
 .trade-card:hover {
-    background: var(--navy-blue) !important; /* fully opaque */
-    border-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.03);
 }
 
-/* Specifically for plumbing theme color shadows/borders */
 .plumbing-theme .trade-card:hover {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(0, 136, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 0%, rgba(0, 136, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(0, 136, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(0, 136, 255, 0.3) 0%, transparent 45%),
+        var(--navy-blue) !important; /* fully opaque */
     border-color: rgba(0, 136, 255, 0.35);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 136, 255, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 136, 255, 0.2);
 }
 
-/* Heating theme */
-.heating-theme .trade-card:hover {
-    border-color: rgba(255, 68, 0, 0.35);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 68, 0, 0.15);
-}
-
-/* Electrical theme */
 .electrical-theme .trade-card:hover {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 192, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 0%, rgba(255, 192, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(255, 192, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(255, 192, 0, 0.3) 0%, transparent 45%),
+        var(--navy-blue) !important; /* fully opaque */
     border-color: rgba(255, 192, 0, 0.35);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 192, 0, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 192, 0, 0.2);
 }
 
 .trade-card .card-icon-wrap {
@@ -4192,8 +4298,14 @@ h1, h2, h3, h4, h5, h6 {
    Individual Card Heating & Cooling Themes
    ========================================= */
 .card-heating-theme:hover {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 0%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(255, 68, 0, 0.3) 0%, transparent 45%),
+        var(--navy-blue) !important; /* fully opaque */
     border-color: rgba(255, 68, 0, 0.35) !important;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 68, 0, 0.15) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 68, 0, 0.2) !important;
 }
 .card-heating-theme .card-icon-wrap {
     background: rgba(255, 68, 0, 0.1) !important;
@@ -4213,8 +4325,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-cooling-theme:hover {
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(0, 229, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 0%, rgba(0, 229, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(0, 229, 255, 0.3) 0%, transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(0, 229, 255, 0.3) 0%, transparent 45%),
+        var(--navy-blue) !important; /* fully opaque */
     border-color: rgba(0, 229, 255, 0.35) !important;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.15) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.2) !important;
 }
 .card-cooling-theme .card-icon-wrap {
     background: rgba(0, 229, 255, 0.1) !important;
