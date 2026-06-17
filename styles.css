@@ -934,7 +934,7 @@ h1, h2, h3, h4, h5, h6 {
 .map-status-widget {
     position: absolute;
     bottom: -15px;
-    left: 58%; /* Starts to the right of the Manitoba outline bottom-right corner to prevent overlap */
+    left: 68%; /* Starts to the right of the Manitoba outline bottom-right corner to prevent overlap */
     width: 80%;
     max-width: 420px;
     display: flex;
@@ -1013,7 +1013,7 @@ h1, h2, h3, h4, h5, h6 {
         margin-left: -10vw; /* Shift further left on narrower desktops */
     }
     .map-status-widget {
-        left: 58%;
+        left: 68%;
         width: 72%; /* slightly narrower to guarantee right edge padding */
     }
 }
@@ -1023,7 +1023,7 @@ h1, h2, h3, h4, h5, h6 {
         margin-left: -7vw; /* Shift slightly left */
     }
     .map-status-widget {
-        left: 58%;
+        left: 68%;
         width: 76%; /* fit comfortably */
     }
 }
