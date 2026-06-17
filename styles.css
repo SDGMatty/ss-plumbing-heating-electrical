@@ -928,7 +928,7 @@ h1, h2, h3, h4, h5, h6 {
 .map-status-widget {
     position: absolute;
     bottom: -15px;
-    left: 72%; /* Starts to the right of the Manitoba outline bottom-right corner to prevent overlap */
+    left: 58%; /* Starts to the right of the Manitoba outline bottom-right corner to prevent overlap */
     width: 80%;
     max-width: 420px;
     display: flex;
@@ -1007,7 +1007,7 @@ h1, h2, h3, h4, h5, h6 {
         margin-left: -10vw; /* Shift further left on narrower desktops */
     }
     .map-status-widget {
-        left: 70%;
+        left: 58%;
         width: 72%; /* slightly narrower to guarantee right edge padding */
     }
 }
@@ -1017,7 +1017,7 @@ h1, h2, h3, h4, h5, h6 {
         margin-left: -7vw; /* Shift slightly left */
     }
     .map-status-widget {
-        left: 72%;
+        left: 58%;
         width: 76%; /* fit comfortably */
     }
 }
@@ -1279,10 +1279,28 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
-    .hero-visual {
+    .interactive-manitoba-map,
+    .hud-icon-tag {
         display: none !important;
     }
+    .map-visual-container {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: auto;
+        margin: 0;
+    }
+    .map-status-widget {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        margin: 0 auto;
+        align-items: center;
+        width: 75vw;
+        max-width: 480px;
+    }
 }
+
 
 
 
@@ -3392,9 +3410,9 @@ h1, h2, h3, h4, h5, h6 {
 
     .map-visual-container {
         width: 100% !important;
-        max-width: 320px !important;
+        max-width: 100% !important;
         height: auto !important;
-        aspect-ratio: 530 / 610;
+        aspect-ratio: auto !important;
         margin: 0 auto !important;
     }
 }
@@ -3898,11 +3916,16 @@ h1, h2, h3, h4, h5, h6 {
     .footer-contact .social-links {
         justify-content: flex-start;
     }
-}
 
-@media (max-width: 480px) {
     .footer-location-link {
         white-space: normal !important;
+        font-size: clamp(0.72rem, 2.2vw, 0.9rem) !important;
+        align-items: flex-start !important;
+        line-height: 1.4;
+    }
+
+    .footer-location-link .location-dot {
+        margin-top: 3px;
     }
 }
 
