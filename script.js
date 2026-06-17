@@ -130,6 +130,30 @@ if (canvas) {
         mouse.y = null;
     });
 
+    window.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 0) {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', function(e) {
+        if (e.touches.length > 0) {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchend', function() {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
+    window.addEventListener('touchcancel', function() {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
     const paths = {
         'drop': new Path2D('M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z'),
         'lightning': new Path2D('M 13 2 L 3 14 L 12 14 L 10.5 24 L 21 10 L 12 10 Z'),
