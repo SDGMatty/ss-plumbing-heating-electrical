@@ -180,8 +180,12 @@ if (canvas) {
     let currentShape = null; 
 
     function initCanvas() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        const dpr = window.devicePixelRatio || 1;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
     }
 
     function generateShapePoints() {
@@ -215,7 +219,7 @@ if (canvas) {
             const imageData = oCtx.getImageData(0, 0, width, height).data;
             const points = [];
             
-            const step = Math.max(3, Math.floor(width / 300)); 
+            const step = Math.max(1, Math.floor(width / 350)); 
             for (let y = 0; y < height; y += step) {
                 for (let x = 0; x < width; x += step) {
                     const idx = (y * width + x) * 4;
