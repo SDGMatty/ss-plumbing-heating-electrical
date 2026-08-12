@@ -61,7 +61,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to bottom, rgba(5, 12, 28, 0.88) 0%, rgba(5, 12, 28, 0.76) 25%, rgba(5, 12, 28, 0.76) 75%, rgba(5, 12, 28, 0.92) 100%), url('assets/rooftop_hvac_sunset.jpg');
+    background-image: linear-gradient(to bottom, rgba(5, 12, 28, 0.88) 0%, rgba(5, 12, 28, 0.76) 25%, rgba(5, 12, 28, 0.76) 75%, rgba(5, 12, 28, 0.92) 100%), url('assets/rooftop_hvac_sunset.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1669,6 +1669,16 @@ h1, h2, h3, h4, h5, h6 {
     transition: opacity 1.5s ease-in-out; /* ignites slowly on hover */
 }
 
+/* These clips are purely a hover flourish and can never be revealed on a touch
+   device, so keep them out of the layout entirely there. Paired with the
+   data-src loading in script.js, phones download none of this video. */
+@media (hover: none), (pointer: coarse) {
+    .frost-video,
+    .fire-video {
+        display: none;
+    }
+}
+
 .service-card.heating.climate-hot {
     background: 
         radial-gradient(circle at 0% 0%, rgba(255, 68, 0, 0.18) 0%, transparent 40%),
@@ -2974,7 +2984,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================= */
 .footer {
     background-color: #03060E;
-    background-image: linear-gradient(to bottom, rgba(3, 6, 14, 0.94) 0%, rgba(3, 6, 14, 0.88) 100%), url('assets/blueprint_bg.png');
+    background-image: linear-gradient(to bottom, rgba(3, 6, 14, 0.94) 0%, rgba(3, 6, 14, 0.88) 100%), url('assets/blueprint_bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -3178,15 +3188,27 @@ h1, h2, h3, h4, h5, h6 {
 /* =========================================
    Animations
    ========================================= */
-.fade-up {
+/* The hidden state is scoped to .js, which an inline snippet in <head> sets before
+   first paint. If scripting is unavailable or script.js fails to run, the content
+   simply shows instead of being stranded at opacity 0. */
+.js .fade-up {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.fade-up.visible {
+.js .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Someone who has asked for less motion gets the content, not the animation. */
+@media (prefers-reduced-motion: reduce) {
+    .js .fade-up {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 .delay-1 { transition-delay: 0.2s; }

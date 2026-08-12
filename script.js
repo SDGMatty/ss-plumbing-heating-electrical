@@ -1,5 +1,25 @@
-// Initialize Lucide Icons
-lucide.createIcons();
+// Initialize Lucide Icons.
+// The icon library comes from a third-party CDN. If it is slow, blocked or down,
+// a bare lucide.createIcons() throws on the first line and takes the whole file
+// with it -- including the IntersectionObserver that reveals every .fade-up
+// section, which would leave the page blank. Never call it unguarded.
+function renderIcons() {
+    if (typeof lucide !== 'undefined' && lucide && typeof lucide.createIcons === 'function') {
+        try {
+            lucide.createIcons();
+        } catch (err) {
+            console.warn('Lucide icons failed to render:', err);
+        }
+        return true;
+    }
+    return false;
+}
+
+// Deferred scripts run in order, so lucide is normally ready by now. If it is not
+// (CDN failure), retry once on window load and then give up quietly.
+if (!renderIcons()) {
+    window.addEventListener('load', renderIcons, { once: true });
+}
 
 // Navbar Scroll Effect
 const navbar = document.getElementById('navbar');
@@ -24,7 +44,7 @@ mobileToggle.addEventListener('click', () => {
         mobileToggle.innerHTML = '<i data-lucide="menu"></i>';
         document.body.style.overflow = '';
     }
-    lucide.createIcons();
+    renderIcons();
 });
 
 // Mobile dropdown toggling and menu closing logic
@@ -44,7 +64,7 @@ document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
         navbar.classList.remove('mobile-menu-active');
         mobileToggle.innerHTML = '<i data-lucide="menu"></i>';
         document.body.style.overflow = '';
-        lucide.createIcons();
+        renderIcons();
     });
 });
 
@@ -180,7 +200,10 @@ if (canvas) {
     let currentShape = null; 
 
     function initCanvas() {
-        const dpr = window.devicePixelRatio || 1;
+        // Cap the backing store at 2x. Phones routinely report a DPR of 3, which
+        // triples the pixels cleared and repainted every frame for no visible gain
+        // on a field of 1-3px dots.
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
         width = window.innerWidth;
         height = window.innerHeight;
         canvas.width = width * dpr;
@@ -350,12 +373,15 @@ if (canvas) {
 
     let hoveredCard = null;
 
-    function animate() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let rafId = null;
+
+    function renderFrame() {
         ctx.clearRect(0, 0, width, height);
 
         let activeCenterX = width / 2;
         let activeCenterY = height / 2;
-        
+
         if (hoveredCard) {
             let rect = hoveredCard.getBoundingClientRect();
             activeCenterX = rect.left + rect.width / 2;
@@ -366,42 +392,97 @@ if (canvas) {
             particles[i].update(currentShape, activeCenterX, activeCenterY);
             particles[i].draw();
         }
-        requestAnimationFrame(animate);
     }
 
+    function animate() {
+        renderFrame();
+        rafId = requestAnimationFrame(animate);
+    }
+
+    function startAnimation() {
+        if (rafId !== null) return;
+        if (reducedMotion.matches) {
+            renderFrame(); // honour the preference: draw once, then stay still
+            return;
+        }
+        rafId = requestAnimationFrame(animate);
+    }
+
+    function stopAnimation() {
+        if (rafId === null) return;
+        cancelAnimationFrame(rafId);
+        rafId = null;
+    }
+
+    // A backgrounded tab should not be running a particle simulation.
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAnimation();
+        else startAnimation();
+    });
+
+    if (reducedMotion.addEventListener) {
+        reducedMotion.addEventListener('change', () => {
+            stopAnimation();
+            startAnimation();
+        });
+    }
+
+    let resizeTimer = null;
+    let lastWidth = window.innerWidth;
     window.addEventListener('resize', function() {
-        // Re-initialize the entire field so particles spawn across the newly expanded fullscreen dimensions
-        init();
+        // On phones, scrolling collapses the address bar and fires resize continuously.
+        // Rebuilding the whole particle field on each of those is pure jank, and the
+        // width has not actually changed, so ignore height-only changes on touch.
+        const isTouch = !window.matchMedia('(pointer: fine)').matches;
+        if (isTouch && window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            // Re-initialize the entire field so particles spawn across the newly expanded fullscreen dimensions
+            init();
+        }, 150);
     });
 
     init();
-    animate();
+    startAnimation();
 
     const serviceCards = document.querySelectorAll('.service-card');
-    
+
+    // The frost/fire clips are ~6 MB each and are only ever visible on hover, so
+    // their src stays in data-src until a pointer device actually needs one.
+    // Touch visitors never download them.
+    function loadHoverVideo(video) {
+        if (!video) return null;
+        const pending = video.dataset.src;
+        if (pending) {
+            video.src = pending;
+            delete video.dataset.src;
+        }
+        return video;
+    }
+
+    function playHoverVideo(video) {
+        if (!loadHoverVideo(video)) return;
+        video.currentTime = 0;
+        video.play().catch(err => console.log('Video play interrupted:', err));
+    }
+
     // Set up hover triggers for services
     serviceCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
             const isTouch = !window.matchMedia('(pointer: fine)').matches;
             if (isTouch) return;
-            
+
             hoveredCard = card;
             canvas.style.zIndex = '12'; // Bring particles in front of frame to gather on cards
             if (card.classList.contains('plumbing')) currentShape = 'plumbing';
             if (card.classList.contains('heating')) {
                 currentShape = card.classList.contains('climate-cold') ? 'heating_snow' : 'heating_flame';
                 if (card.classList.contains('climate-cold')) {
-                    const video = card.querySelector('.frost-video');
-                    if (video) {
-                        video.currentTime = 0;
-                        video.play().catch(err => console.log('Video play interrupted:', err));
-                    }
+                    playHoverVideo(card.querySelector('.frost-video'));
                 } else {
-                    const fireVideo = card.querySelector('.fire-video');
-                    if (fireVideo) {
-                        fireVideo.currentTime = 0;
-                        fireVideo.play().catch(err => console.log('Video play interrupted:', err));
-                    }
+                    playHoverVideo(card.querySelector('.fire-video'));
                 }
             }
             if (card.classList.contains('electrical')) currentShape = 'electrical';
@@ -426,6 +507,22 @@ if (canvas) {
             }
         });
     });
+
+    // On pointer devices, warm the clips once the page has gone idle so the first
+    // hover still plays instantly. This deliberately runs after load, never during it.
+    if (window.matchMedia('(pointer: fine)').matches) {
+        const warm = () => document
+            .querySelectorAll('.frost-video[data-src], .fire-video[data-src]')
+            .forEach(v => {
+                loadHoverVideo(v);
+                v.preload = 'auto';
+            });
+        const schedule = () => (window.requestIdleCallback
+            ? window.requestIdleCallback(warm, { timeout: 5000 })
+            : setTimeout(warm, 2000));
+        if (document.readyState === 'complete') schedule();
+        else window.addEventListener('load', schedule, { once: true });
+    }
 }
 
 // --- WEATHER WIDGET LOGIC ---
@@ -700,7 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p style="color: var(--silver); font-size: 1.1rem; line-height: 1.6;">Your request has been sent successfully. We will get back to you shortly.</p>
                         </div>
                     `;
-                    lucide.createIcons();
+                    renderIcons();
                 } else {
                     throw new Error('Form submission failed');
                 }

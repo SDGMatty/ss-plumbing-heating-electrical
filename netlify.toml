@@ -1,0 +1,43 @@
+[build]
+  publish = "."
+
+# ---------------------------------------------------------------------------
+# Caching
+#
+# HTML is revalidated on every visit so content edits go live immediately.
+# Everything else is content-addressed by hand (styles.css?v=NNN, script.js?v=NN)
+# or is an image/video that changes only when its filename changes, so those get
+# a long immutable cache. This is what makes a repeat mobile visit near-instant.
+# ---------------------------------------------------------------------------
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Bump the ?v= query when editing these and visitors pick the change up at once.
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/script.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

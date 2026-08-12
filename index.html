@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="assets/ss_detailed_colour.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>document.documentElement.classList.add('js');</script>
     <title>SS Plumbing, Heating & Electrical | Service you can trust since 1963 Since 1963</title>
     <meta name="description" content="Winnipeg's full-service plumbing, heating, and electrical team. Family-owned and operated since 1963.">
     
@@ -23,11 +25,12 @@
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap"></noscript>
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=100">
+    <link rel="stylesheet" href="styles.css?v=101">
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 
     <!-- Schema.org Structured Data for SEO -->
     <script type="application/ld+json">
@@ -100,8 +103,8 @@
         <div class="container nav-container">
             <a href="index.html" class="logo">
                 <div class="logo-wrapper">
-                    <img src="assets/ss_detailed_white.png" alt="SS Plumbing White" class="brand-logo brand-white">
-                    <img src="assets/ss_detailed_colour.png" alt="SS Plumbing Colour" class="brand-logo brand-orange">
+                    <img src="assets/ss_detailed_white.webp" alt="SS Plumbing White" class="brand-logo brand-white" decoding="async" fetchpriority="high" width="360" height="243">
+                    <img src="assets/ss_detailed_colour.webp" alt="SS Plumbing Colour" class="brand-logo brand-orange" decoding="async" fetchpriority="high" width="360" height="248">
                 </div>
             </a>
             
@@ -252,7 +255,7 @@
                                 <span id="status-dot" class="status-dot green"></span>
                                 <span id="status-text" class="status-text">Ready to Serve You</span>
                             </div>
-                            <img src="assets/service_van_tech.png" alt="SS Service Van & Technician" class="status-van-img" id="status-van-img">
+                            <img src="assets/service_van_tech.webp" alt="SS Service Van & Technician" class="status-van-img" id="status-van-img" decoding="async" width="855" height="489">
                         </div>
                     </div>
                 </div>
@@ -284,12 +287,12 @@
 
                     <a href="heating-cooling.html" id="card-heating" class="service-card heating fade-up delay-1" style="display: block; text-decoration: none;">
                         <div class="card-glow"></div>
-                        <video class="frost-video" loop muted playsinline preload="auto">
-                            <source src="assets/130488_small.mp4" type="video/mp4">
-                        </video>
-                        <video class="fire-video" loop muted playsinline preload="auto">
-                            <source src="assets/6347916_Fire Trail Flames Burning_By_Mark_Miko_Artlist_HD.mp4" type="video/mp4">
-                        </video>
+                        <!-- Hover-only decoration. Sources are attached by script.js on first
+                             hover so touch devices never download them (see loadHoverVideo). -->
+                        <video class="frost-video" loop muted playsinline preload="none"
+                               data-src="assets/130488_small.mp4"></video>
+                        <video class="fire-video" loop muted playsinline preload="none"
+                               data-src="assets/6347916_Fire Trail Flames Burning_By_Mark_Miko_Artlist_HD.mp4"></video>
                         <svg class="frost-cracks-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
                             <g class="crack-lines">
                                 <path d="M0,0 L15,10 L10,15 M15,10 L30,8 L35,2 M30,8 L35,13" />
@@ -329,7 +332,7 @@
         <section class="about" id="about">
             <div class="container about-container">
                 <div class="about-image fade-up">
-                    <img src="assets/since63.png" alt="Trusted in Winnipeg Since 1963" class="about-sticker">
+                    <img src="assets/since63.webp" alt="Trusted in Winnipeg Since 1963" class="about-sticker" loading="lazy" decoding="async" width="900" height="590">
                 </div>
                 <div class="about-content fade-up delay-1">
                     <h2 class="section-title">Built on a foundation of Trust.</h2>
@@ -353,28 +356,28 @@
                 <h3 class="brands-title">We use the industry's most trusted, high-quality brands</h3>
                 <div class="brands-grid">
                     <a href="https://www.americanstandard-us.com/" target="_blank" class="brand-link american-standard" aria-label="American Standard">
-                        <img src="assets/Brands/png-transparent-american-standard-hd-logo_grey.png" alt="American Standard" class="brand-default">
-                        <img src="assets/Brands/png-transparent-american-standard-hd-logo.png" alt="American Standard" class="brand-hover">
+                        <img src="assets/Brands/png-transparent-american-standard-hd-logo_grey.webp" alt="American Standard" class="brand-default" loading="lazy" decoding="async" width="400" height="182">
+                        <img src="assets/Brands/png-transparent-american-standard-hd-logo.webp" alt="American Standard" class="brand-hover" loading="lazy" decoding="async" width="400" height="182">
                     </a>
                     <a href="https://www.rheem.com/" target="_blank" class="brand-link rheem" aria-label="Rheem">
-                        <img src="assets/Brands/rheem_grey.png" alt="Rheem" class="brand-default">
-                        <img src="assets/Brands/rheem_fullcolur.png" alt="Rheem" class="brand-hover">
+                        <img src="assets/Brands/rheem_grey.webp" alt="Rheem" class="brand-default" loading="lazy" decoding="async" width="400" height="400">
+                        <img src="assets/Brands/rheem_fullcolur.webp" alt="Rheem" class="brand-hover" loading="lazy" decoding="async" width="400" height="400">
                     </a>
                     <a href="https://www.bryant.com/" target="_blank" class="brand-link bryant" aria-label="Bryant">
-                        <img src="assets/Brands/bryant-01-logo-png-transparent_grey.png" alt="Bryant" class="brand-default">
-                        <img src="assets/Brands/bryant-01-logo-png-transparent.png" alt="Bryant" class="brand-hover">
+                        <img src="assets/Brands/bryant-01-logo-png-transparent_grey.webp" alt="Bryant" class="brand-default" loading="lazy" decoding="async" width="400" height="400">
+                        <img src="assets/Brands/bryant-01-logo-png-transparent.webp" alt="Bryant" class="brand-hover" loading="lazy" decoding="async" width="400" height="400">
                     </a>
                     <a href="https://www.grohe.us/" target="_blank" class="brand-link grohe" aria-label="Grohe">
-                        <img src="assets/Brands/Grohe-logo_grey.png" alt="Grohe" class="brand-default">
-                        <img src="assets/Brands/Grohe-logo.png" alt="Grohe" class="brand-hover">
+                        <img src="assets/Brands/Grohe-logo_grey.webp" alt="Grohe" class="brand-default" loading="lazy" decoding="async" width="400" height="170">
+                        <img src="assets/Brands/Grohe-logo.webp" alt="Grohe" class="brand-hover" loading="lazy" decoding="async" width="400" height="170">
                     </a>
                     <a href="https://www.deltafaucet.com/" target="_blank" class="brand-link delta" aria-label="Delta">
-                        <img src="assets/Brands/delta-faucets-logo-png-transparent_grey.png" alt="Delta" class="brand-default">
-                        <img src="assets/Brands/delta-faucets-logo-png-transparent.png" alt="Delta" class="brand-hover">
+                        <img src="assets/Brands/delta-faucets-logo-png-transparent_grey.webp" alt="Delta" class="brand-default" loading="lazy" decoding="async" width="400" height="400">
+                        <img src="assets/Brands/delta-faucets-logo-png-transparent.webp" alt="Delta" class="brand-hover" loading="lazy" decoding="async" width="400" height="400">
                     </a>
                     <a href="https://www.kohler.com/" target="_blank" class="brand-link kohler" aria-label="Kohler">
-                        <img src="assets/Brands/KohlerLogoImage_grey.png" alt="Kohler" class="brand-default">
-                        <img src="assets/Brands/KohlerLogoImage.png" alt="Kohler" class="brand-hover">
+                        <img src="assets/Brands/KohlerLogoImage_grey.webp" alt="Kohler" class="brand-default" loading="lazy" decoding="async" width="400" height="269">
+                        <img src="assets/Brands/KohlerLogoImage.webp" alt="Kohler" class="brand-hover" loading="lazy" decoding="async" width="400" height="269">
                     </a>
                 </div>
             </div>
@@ -491,11 +494,11 @@
         <div class="container footer-container">
             <div class="footer-brand">
                 <a href="index.html" class="footer-brand-link">
-                    <img src="assets/ss_detailed_colour.png" alt="SS Plumbing Logo" class="brand-logo-footer">
+                    <img src="assets/ss_detailed_colour.webp" alt="SS Plumbing Logo" class="brand-logo-footer" loading="lazy" decoding="async" width="360" height="248">
                 </a>
                 <p class="footer-tagline">Service you can trust since 1963</p>
                 <div class="footer-badges">
-                    <a href="https://constructionsafety.ca/" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/cor_badge.webp" alt="COR Certified CSAM" class="footer-badge cor-badge"></a>
+                    <a href="https://constructionsafety.ca/" target="_blank" rel="noopener noreferrer"><img src="assets/Safety Certification/cor_badge.webp" alt="COR Certified CSAM" class="footer-badge cor-badge" loading="lazy" decoding="async" width="240" height="59"></a>
                 </div>
             </div>
             
@@ -549,6 +552,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="script.js?v=12"></script>
+    <script src="script.js?v=13" defer></script>
 </body>
 </html>
