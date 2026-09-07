@@ -86,8 +86,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     block: 'center'
                 });
             } else {
+                const absoluteTop = targetElement.getBoundingClientRect().top + window.scrollY;
                 window.scrollTo({
-                    top: targetElement.offsetTop - 100, // Account for fixed header
+                    top: absoluteTop - 100, // Account for fixed header
                     behavior: 'smooth'
                 });
             }
