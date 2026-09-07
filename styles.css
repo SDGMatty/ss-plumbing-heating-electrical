@@ -81,7 +81,7 @@ body::before {
     border: 1px solid rgba(0, 136, 255, 0.25);
     position: relative;
     z-index: 10;
-    overflow: hidden;
+    overflow: clip; /* clip (not hidden) so #about anchor scrolling still works */
 }
 
 @media (max-width: 1400px) {
