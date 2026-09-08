@@ -1,0 +1,18 @@
+# Old WordPress site URLs still in Google's index -> new pages (301)
+/home-2                 /                        301
+/home-2/                /                        301
+/home                   /                        301
+/index.htm              /                        301
+/main.htm               /                        301
+/about-us               /about.html              301
+/about-us/              /about.html              301
+/services               /                        301
+/services/              /                        301
+/gallery                /                        301
+/gallery/               /                        301
+/contact-us             /contact.html            301
+/contact-us/            /contact.html            301
+# Retired pages
+/heating.html           /heating-cooling.html    301
+/heating                /heating-cooling.html    301
+/mb_test.html           /                        301

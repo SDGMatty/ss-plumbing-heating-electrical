@@ -61,7 +61,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to bottom, rgba(5, 12, 28, 0.88) 0%, rgba(5, 12, 28, 0.76) 25%, rgba(5, 12, 28, 0.76) 75%, rgba(5, 12, 28, 0.92) 100%), url('assets/rooftop_hvac_sunset.jpg');
+    background-image: linear-gradient(to bottom, rgba(5, 12, 28, 0.88) 0%, rgba(5, 12, 28, 0.76) 25%, rgba(5, 12, 28, 0.76) 75%, rgba(5, 12, 28, 0.92) 100%), url('assets/rooftop_hvac_sunset.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2974,7 +2974,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================= */
 .footer {
     background-color: #03060E;
-    background-image: linear-gradient(to bottom, rgba(3, 6, 14, 0.94) 0%, rgba(3, 6, 14, 0.88) 100%), url('assets/blueprint_bg.png');
+    background-image: linear-gradient(to bottom, rgba(3, 6, 14, 0.94) 0%, rgba(3, 6, 14, 0.88) 100%), url('assets/blueprint_bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

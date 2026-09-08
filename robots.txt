@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /our-work.html
+Disallow: /trades.html
+Disallow: /certifications.html
+Disallow: /404.html
+
+Sitemap: https://ssplumbing.ca/sitemap.xml
